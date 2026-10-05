@@ -1,0 +1,6461 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Technical and operations documentation for the Taimen platform">
+      
+      
+      
+      
+        <link rel="prev" href="event-subscriptions.html">
+      
+      
+        <link rel="next" href="context.html">
+      
+      
+        
+          <link rel="alternate" href="harness-protocol.html" hreflang="en">
+        
+          <link rel="alternate" href="../ru/control-plane/harness-protocol.html" hreflang="ru">
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Harness protocol - Taimen Platform Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#harness-protocol" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Taimen Platform Guide" class="md-header__button md-logo" aria-label="Taimen Platform Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Taimen Platform Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Harness protocol
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="harness-protocol.html" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../ru/control-plane/harness-protocol.html" hreflang="ru" class="md-select__link">
+              Русский
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../overview/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Overview
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../getting-started/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Getting started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Control Plane
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../packages/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Packages
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../processes/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Processes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../iam/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  IAM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../memory/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Memory
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../workplace/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Personal workspace
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../notifications/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Notifications
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../runner/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Agents and runner
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../operator/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Operator guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../sdk/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SDKs and integrations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../operations/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Operations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../troubleshooting/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Troubleshooting
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../reference/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Taimen Platform Guide" class="md-nav__button md-logo" aria-label="Taimen Platform Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Taimen Platform Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../overview/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Overview
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/what-is-taimen.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    What is Taimen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/architecture.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/concepts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Key concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/components.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Components
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/security-model.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../getting-started/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/requirements.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requirements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/quickstart.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation and first run
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/configuration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    .env configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/bootstrap.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bootstrap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/first-task.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    First task
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Control Plane
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Control Plane
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="work-model.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Work model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="task-types.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Task types and statuses
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="goals-and-evidence.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Goals, acceptance and evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="work-rules.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Work rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="execution.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Execution: claims and runs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="approvals.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Approvals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="artifacts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Artifacts and comments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="events.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Events
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="event-subscriptions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Event subscriptions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Harness protocol
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="harness-protocol.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Harness protocol
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#roles-and-trust" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roles and trust
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#harness-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Harness lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#session-registering-the-harness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session: registering the harness
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Session: registering the harness">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#control-level-controllevel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Control level (controlLevel)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#protocol-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protocol versions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#harness-capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Harness capabilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heartbeat-and-leases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heartbeat and leases
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bootstrap-get-harnesscontext" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bootstrap: GET /harness/context
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finding-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding work
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#execution-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Execution cycle
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Execution cycle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fencing-and-stale_claim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fencing and stale_claim
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-budgets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run budgets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#action-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Action log
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#waiting-gate-approval-and-suspend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Waiting: gate approval and suspend
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#handing-a-run-off-to-another-harness-handoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Handing a run off to another harness (handoff)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agent-revision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent revision on a run
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tools-and-skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tools and skills
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#active-turn-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Active Turn Control
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#child-runs-child-run-handle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Child runs (Child Run Handle)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cancellation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cancellation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Events
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recovery-after-a-restart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recovery after a restart
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#failure-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#new-harness-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New harness checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        See also
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="context.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Task context and memory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="catalog-packages.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Catalog packages
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authorization.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authorization and permissions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cli-and-mcp.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI and MCP server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="api.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="configuration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../packages/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Packages
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Packages
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/quickstart.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A package in 10 minutes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/anatomy.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package anatomy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/work.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Work: task types and roles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/rules.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rules in a package
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/processes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Processes in a package
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/agents.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package agents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/skills.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package skills
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/integrations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/knowledge.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge and ontology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/notifications.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package notifications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/settings.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/testing.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package tests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/install-and-release.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation and release
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/author-plugin.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package author in Claude Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/tutorial.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Example: customer claims
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/checklist.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Readiness checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../processes/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Processes
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Processes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../processes/knowledge.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Processes and the knowledge base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../processes/expressions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Expressions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../processes/package-tests.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scenarios and the core plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../iam/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IAM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IAM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/principals.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tenants and principals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/credentials.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credentials and PATs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/tokens.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tokens, audiences, scopes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/service-accounts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service accounts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/federation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identity federation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/keycloak.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Keycloak as the external IdP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/api.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/configuration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../memory/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memory
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Memory
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memory/knowledge-model.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memory/namespaces.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespaces and access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memory/ingestion.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge ingestion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memory/retrieval.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Retrieval and context assembly
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memory/api.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memory/configuration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../workplace/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Personal workspace
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Personal workspace
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workplace/telegram.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assistant in Telegram
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../notifications/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifications
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_10" id="__nav_10_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Notifications
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notifications/notification-rules.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notification rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notifications/telegram.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Telegram
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../runner/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agents and runner
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_11" id="__nav_11_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Agents and runner
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runner/declarative-agents.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Declarative agents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runner/fleet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nodes and fleet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runner/agent-identity.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent identity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runner/installation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installing executors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runner/adapters.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Executor adapters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runner/execution-workspace.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Execution workspaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runner/trace.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Run trace
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runner/configuration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../operator/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operator guide
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_12" id="__nav_12_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operator guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operator/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operator/assistant.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assistant
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operator/mcp-plugin.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP plugin for Claude Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operator/workflows.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Everyday workflows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../sdk/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SDKs and integrations
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_13" id="__nav_13_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SDKs and integrations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sdk/platform-auth-sdk.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    platform-auth-sdk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sdk/clients.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service clients
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sdk/skill-sdk.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    skill-sdk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sdk/platform-llm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    platform-llm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../operations/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_14" id="__nav_14_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/deployment.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Production deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/edge-and-tls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Edge and TLS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/upgrades.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrades and migrations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/secrets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets and rotation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/backup.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/object-storage.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Object storage (MinIO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/monitoring.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monitoring and health
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/capacity.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capacity and scaling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/emergency.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Emergency procedures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../troubleshooting/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_15" id="__nav_15_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Troubleshooting
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/startup.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation and startup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/auth.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication and access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/runner.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Execution and runner
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/memory.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memory and context
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../reference/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_16" id="__nav_16_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/environment.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/api.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core service APIs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/services-and-ports.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Services and ports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/permissions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permissions and scopes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/package-schema.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/package-sdk-cli.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    package-sdk commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/errors.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Error codes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/make.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Make targets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/glossary.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#roles-and-trust" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roles and trust
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#harness-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Harness lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#session-registering-the-harness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Session: registering the harness
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Session: registering the harness">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#control-level-controllevel" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Control level (controlLevel)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#protocol-versions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protocol versions
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#harness-capabilities" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Harness capabilities
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#heartbeat-and-leases" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Heartbeat and leases
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bootstrap-get-harnesscontext" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bootstrap: GET /harness/context
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#finding-work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Finding work
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#execution-cycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Execution cycle
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Execution cycle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#fencing-and-stale_claim" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Fencing and stale_claim
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#run-budgets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Run budgets
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#action-log" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Action log
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#waiting-gate-approval-and-suspend" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Waiting: gate approval and suspend
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#handing-a-run-off-to-another-harness-handoff" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Handing a run off to another harness (handoff)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#agent-revision" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Agent revision on a run
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tools-and-skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tools and skills
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#active-turn-control" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Active Turn Control
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#child-runs-child-run-handle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Child runs (Child Run Handle)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cancellation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cancellation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Events
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#recovery-after-a-restart" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Recovery after a restart
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#failure-summary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Failure summary
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#new-harness-checklist" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New harness checklist
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        See also
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../index.html" class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="index.html" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Control Plane
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="harness-protocol">Harness protocol<a class="headerlink" href="#harness-protocol" title="Permanent link">&para;</a></h1>
+<p>The harness protocol (<code>control-harness</code>) is the semantic contract between the
+Control Plane and the execution environment. The execution environment (the
+harness) can be Claude Code, Codex, OpenCode, a CLI, an IDE extension, an
+autonomous agent daemon, a CI worker, or a third-party client. This page is for
+those who write their own harness or want to understand how the existing
+adapters behave.</p>
+<p>The protocol <strong>does not introduce a new wire format</strong>. The transport is the
+regular REST API <code>/api/v1</code> and the event log: polling <code>GET /api/v1/events</code>
+and/or the WebSocket <code>/api/v1/events/ws</code>. Human and autonomous harnesses use
+the same protocol. Only the client policy differs: a human picks the task, or
+the agent picks it itself. The server paths are the same.</p>
+<h2 id="roles-and-trust">Roles and trust<a class="headerlink" href="#roles-and-trust" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Participant</th>
+<th>Role</th>
+<th>What is trusted</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Control Plane</td>
+<td>authoritative coordination core</td>
+<td>every command re-checks permissions, eligibility, readiness, leases, and fencing in its own transaction</td>
+</tr>
+<tr>
+<td>Harness</td>
+<td>untrusted distributed client</td>
+<td>nothing on its word: neither "I still own the task" nor "the user confirmed"</td>
+</tr>
+<tr>
+<td>Credential</td>
+<td>the only source of identity</td>
+<td><code>Authorization: Bearer &lt;token&gt;</code>, see <a href="authorization.html">Authorization and permissions</a></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title"><code>harness.type</code> is not a security boundary</p>
+<p>The harness type, its version, the declared capabilities, and
+<code>controlLevel</code> are observability metadata. The server makes no
+authorization decision based on them.</p>
+</div>
+<p>A bearer credential comes in two kinds:</p>
+<ul>
+<li><strong>IAM access token</strong> (JWT with audience <code>control-plane</code>). The harness obtains
+  it by exchanging a Platform Access Token (PAT). Permissions come from the
+  binding of the identity to a local principal. This is the primary mode of the
+  delivery;</li>
+<li><strong>legacy API key</strong> <code>cp_&lt;prefix&gt;_&lt;secret&gt;</code>. Accepted only while
+  <code>CP_LEGACY_API_KEYS_ENABLED=true</code>. The delivery's <code>deploy/local/compose.yml</code> sets <code>false</code>
+  by default.</li>
+</ul>
+<h2 id="harness-lifecycle">Harness lifecycle<a class="headerlink" href="#harness-lifecycle" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>sequenceDiagram
+    autonumber
+    participant H as Harness
+    participant CP as Control Plane
+    H-&gt;&gt;CP: GET /harness/context
+    CP--&gt;&gt;H: identity, activeClaims, activeRuns, eventCursor
+    H-&gt;&gt;CP: POST /sessions {harness: {...}}
+    CP--&gt;&gt;H: Session (controlLevel, expiresAt)
+    loop every ~ttl/3
+        H-&gt;&gt;CP: POST /sessions/{id}:heartbeat
+    end
+    H-&gt;&gt;CP: GET /work/available
+    H-&gt;&gt;CP: POST /tasks/{ref}:claim {sessionId}
+    CP--&gt;&gt;H: Claim {fencingToken, expiresAt}
+    H-&gt;&gt;CP: POST /tasks/{ref}:start-run {claimId, fencingToken, agentRevisionId?}
+    CP--&gt;&gt;H: Run
+    H-&gt;&gt;CP: POST /context {task, runId}
+    loop work
+        H-&gt;&gt;CP: POST /runs/{id}/checkpoints | /actions | POST /artifacts
+        H-&gt;&gt;CP: POST /claims/{id}:heartbeat
+    end
+    H-&gt;&gt;CP: POST /runs/{id}:succeed {completeTask: true}
+    CP--&gt;&gt;H: run succeeded, claim released, task → completionStatus</code></pre>
+<h2 id="session-registering-the-harness">Session: registering the harness<a class="headerlink" href="#session-registering-the-harness" title="Permanent link">&para;</a></h2>
+<p>There is no separate "harness" entity. A harness is metadata of a live session:
+the <code>harness</code> block in the body of <code>POST /api/v1/sessions</code>. Opening a session
+requires the <code>sessions.open</code> permission.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>https://platform.example.com/api/v1/sessions<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Idempotency-Key: </span><span class="k">$(</span>uuidgen<span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">'{</span>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a><span class="s1">    "clientName": "my-harness",</span>
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a><span class="s1">    "clientVersion": "1.4.0",</span>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a><span class="s1">    "ttlSeconds": 300,</span>
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a><span class="s1">    "harness": {</span>
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a><span class="s1">      "type": "my-harness",</span>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a><span class="s1">      "version": "1.4.0",</span>
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a><span class="s1">      "protocolVersion": "2",</span>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a><span class="s1">      "capabilities": ["tasks.interactive", "artifacts.publish", "resume",</span>
+</span><span id="__span-0-14"><a id="__codelineno-0-14" name="__codelineno-0-14" href="#__codelineno-0-14"></a><span class="s1">                       "checkpoints", "skills.protocol.mcp"],</span>
+</span><span id="__span-0-15"><a id="__codelineno-0-15" name="__codelineno-0-15" href="#__codelineno-0-15"></a><span class="s1">      "environment": {"repository": "github:acme/app"}</span>
+</span><span id="__span-0-16"><a id="__codelineno-0-16" name="__codelineno-0-16" href="#__codelineno-0-16"></a><span class="s1">    }</span>
+</span><span id="__span-0-17"><a id="__codelineno-0-17" name="__codelineno-0-17" href="#__codelineno-0-17"></a><span class="s1">  }'</span>
+</span></code></pre></div>
+<p>Request fields:</p>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Type</th>
+<th>Constraints</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>clientName</code></td>
+<td>string</td>
+<td>1–200 characters</td>
+<td>client name</td>
+</tr>
+<tr>
+<td><code>clientVersion</code></td>
+<td>string</td>
+<td>≤100</td>
+<td>client version</td>
+</tr>
+<tr>
+<td><code>metadata</code></td>
+<td>object</td>
+<td>—</td>
+<td>arbitrary non-secret metadata</td>
+</tr>
+<tr>
+<td><code>onBehalfOf</code></td>
+<td>uuid</td>
+<td>—</td>
+<td>the human principal on whose behalf the agent works; requires an active delegation, otherwise <code>403 delegation_required</code></td>
+</tr>
+<tr>
+<td><code>ttlSeconds</code></td>
+<td>int</td>
+<td>clamped to <code>[CP_SESSION_TTL_MIN_SECONDS, CP_SESSION_TTL_MAX_SECONDS]</code></td>
+<td>session lease TTL, <code>CP_SESSION_TTL_SECONDS</code> (300) by default</td>
+</tr>
+<tr>
+<td><code>harness.type</code></td>
+<td>string</td>
+<td><code>^[a-z0-9][a-z0-9._-]{0,99}$</code></td>
+<td>client identifier, otherwise <code>422 invalid_harness</code></td>
+</tr>
+<tr>
+<td><code>harness.version</code></td>
+<td>string</td>
+<td>≤100</td>
+<td>harness version</td>
+</tr>
+<tr>
+<td><code>harness.protocolVersion</code></td>
+<td>string</td>
+<td><code>"1"</code> or <code>"2"</code>, <code>"1"</code> by default</td>
+<td>protocol version</td>
+</tr>
+<tr>
+<td><code>harness.capabilities</code></td>
+<td>string[]</td>
+<td>≤100</td>
+<td>what the client can do (see below)</td>
+</tr>
+<tr>
+<td><code>harness.hostname</code></td>
+<td>string</td>
+<td>≤255</td>
+<td>host name, for observability</td>
+</tr>
+<tr>
+<td><code>harness.environment</code></td>
+<td>object</td>
+<td>—</td>
+<td>non-secret environment, for example the repository</td>
+</tr>
+</tbody>
+</table>
+<p>The <code>harness</code> block is optional: you can open a session without it.</p>
+<h3 id="control-level-controllevel">Control level (<code>controlLevel</code>)<a class="headerlink" href="#control-level-controllevel" title="Permanent link">&para;</a></h3>
+<p>The server sets <code>controlLevel</code>; the client does not pass it:</p>
+<table>
+<thead>
+<tr>
+<th>Principal kind</th>
+<th><code>controlLevel</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>human</code></td>
+<td><code>human_operated</code></td>
+</tr>
+<tr>
+<td><code>agent</code>, <code>service</code></td>
+<td><code>connected</code></td>
+</tr>
+</tbody>
+</table>
+<p>The database schema also has the value <code>managed</code>, but the server does not
+assign it when a session opens. <code>controlLevel</code> is for observability only: it is
+neither a permission nor a trust signal.</p>
+<h3 id="protocol-versions">Protocol versions<a class="headerlink" href="#protocol-versions" title="Permanent link">&para;</a></h3>
+<p>The server supports the versions listed in
+<code>GET /harness/context → protocol.supportedVersions</code>. Currently <code>["1", "2"]</code>.
+An unsupported version returns <code>422 unsupported_protocol_version</code>, and the list
+of allowed versions comes in <code>details.supported</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Version</th>
+<th>Difference</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>2</code></td>
+<td>cursors (<code>eventCursor</code>, <code>/events</code> cursors) are opaque <code>ec1_…</code> strings; an <code>/events</code> page always carries <code>nextCursor</code> and <code>hasMore</code>; each event has its own <code>cursor</code> field</td>
+</tr>
+<tr>
+<td><code>1</code></td>
+<td>accepted for compatibility: the server adapts an integer <code>after</code> itself; already seen events may be delivered again (at-least-once)</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Responses are always in the v2 format</p>
+<p>Even a session with <code>protocolVersion: "1"</code> receives string cursors. A
+client that does arithmetic on <code>eventCursor</code> will break. New harnesses
+must declare <code>"2"</code>.</p>
+</div>
+<h3 id="harness-capabilities">Harness capabilities<a class="headerlink" href="#harness-capabilities" title="Permanent link">&para;</a></h3>
+<p>Protocol capabilities describe <strong>what the client can do</strong>. Do not confuse them
+with the organizational capabilities of a principal (see <a href="authorization.html#org-model">Authorization and
+permissions</a>).</p>
+<table>
+<thead>
+<tr>
+<th>capability</th>
+<th>meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>events.realtime</code></td>
+<td>consumes the WebSocket event stream</td>
+</tr>
+<tr>
+<td><code>tasks.interactive</code></td>
+<td>a human picks tasks; there is no automatic claim</td>
+</tr>
+<tr>
+<td><code>artifacts.publish</code></td>
+<td>can register artifacts</td>
+</tr>
+<tr>
+<td><code>approvals.interactive</code></td>
+<td>shows approvals to a human</td>
+</tr>
+<tr>
+<td><code>resume</code></td>
+<td>stores cursors and state, can continue after a restart</td>
+</tr>
+<tr>
+<td><code>checkpoints</code></td>
+<td>writes run checkpoints</td>
+</tr>
+<tr>
+<td><code>active_turn_control.v1</code></td>
+<td>reads and acknowledges durable run control messages</td>
+</tr>
+<tr>
+<td><code>child_run_handle.v1</code></td>
+<td>launches child runs and recovers them after a restart</td>
+</tr>
+<tr>
+<td><code>skills.protocol.&lt;p&gt;</code></td>
+<td>executes skills of protocol <code>&lt;p&gt;</code>: <code>mcp</code>, <code>http</code>, <code>local</code>, <code>opencode</code>, <code>custom</code></td>
+</tr>
+</tbody>
+</table>
+<p>The server silently drops unknown capabilities: this lets a new client work
+with an old server. The declared <code>skills.protocol.*</code> affect tool visibility
+(section <a href="#tools-and-skills">Tools and skills</a>).</p>
+<h3 id="heartbeat-and-leases">Heartbeat and leases<a class="headerlink" href="#heartbeat-and-leases" title="Permanent link">&para;</a></h3>
+<p>A session and a claim are leases. Send heartbeats with a period of <code>ttl / 3</code>.
+With the default TTL of 300 s this is about once every 100 s. The SDK class
+<code>HeartbeatRunner</code> beats every 60 s by default.</p>
+<table>
+<thead>
+<tr>
+<th>Endpoint</th>
+<th>Who can call it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>POST /sessions/{id}:heartbeat</code></td>
+<td>session owner or <code>sessions.manage</code></td>
+</tr>
+<tr>
+<td><code>POST /claims/{id}:heartbeat</code></td>
+<td>claim holder or <code>claims.manage</code></td>
+</tr>
+<tr>
+<td><code>POST /sessions/{id}:close</code></td>
+<td>owner or <code>sessions.manage</code>; releases the session's claims</td>
+</tr>
+</tbody>
+</table>
+<p>Error handling rules:</p>
+<ul>
+<li>a heartbeat is not a domain event and is not written to the event log;</li>
+<li>a <strong>domain</strong> error (<code>409 session_expired</code>, <code>claim_expired</code>,
+  <code>session_not_active</code>) means the lease is lost. The harness immediately stops
+  authoritative writes, notifies the user in an interactive harness, and rebuilds the
+  context;</li>
+<li>a <strong>transport</strong> failure does not prove loss of ownership. It is retried:
+  <code>HeartbeatRunner</code> tolerates up to three consecutive failures
+  (<code>max_transport_failures=3</code>), after which it treats the lease as lost.</li>
+</ul>
+<p>System correctness does not depend on heartbeats. An expired lease is reaped by
+the next claim or by a background worker.</p>
+<h2 id="bootstrap-get-harnesscontext">Bootstrap: <code>GET /harness/context</code><a class="headerlink" href="#bootstrap-get-harnesscontext" title="Permanent link">&para;</a></h2>
+<p>One request answers "who am I", "where am I", "what am I doing", "what is
+available to me", and "what has happened". Only authentication is required: the
+data describes the caller.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">"https://platform.example.com/api/v1/harness/context?sessionId=&lt;session-id&gt;"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span>
+</span></code></pre></div>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>{
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>  "protocol": {"name": "control-harness", "supportedVersions": ["1", "2"]},
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>  "tenant": {"id": "&lt;tenant-id&gt;", "slug": "acme", "name": "Acme"},
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>  "principal": {"id": "&lt;principal-id&gt;", "kind": "agent", "displayName": "Runner", "status": "active"},
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>  "session": { /* with ?sessionId=; contains controlLevel */ },
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>  "activeSessions": [ ... ],
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>  "activeClaims": [{"id": "...", "taskId": "...", "taskPublicId": "TASK-000042",
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>                    "fencingToken": 3, "expiresAt": "..."}],
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>  "activeRuns": [ ... ],
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>  "suspendedRuns": [ ... ],
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a>  "roles": [{"id": "...", "slug": "reviewer", "name": "Reviewer", "workspaceId": null}],
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a>  "capabilities": [{"id": "...", "name": "python", "description": "..."}],
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a>  "skills": [ ... ],
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a>  "pendingApprovals": [ ... ],
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a>  "eventCursor": "ec1_...",
+</span><span id="__span-2-16"><a id="__codelineno-2-16" name="__codelineno-2-16" href="#__codelineno-2-16"></a>  "permissions": ["tasks.read", "tasks.claim", "..."]
+</span><span id="__span-2-17"><a id="__codelineno-2-17" name="__codelineno-2-17" href="#__codelineno-2-17"></a>}
+</span></code></pre></div>
+<ul>
+<li><code>pendingApprovals</code> holds at most 50 entries, and only the approvals the
+  caller can actually decide: addressed to them personally or through a role in
+  a matching scope (a tenant-level role, or a role on the approval's workspace
+  or its ancestor).</li>
+<li><code>eventCursor</code> is an opaque string. A subscription from this point is
+  guaranteed to receive everything committed after it. Do not parse, compare, or
+  construct the cursor on the client. Only store it and return it to the server
+  (<code>GET /events?cursor=…</code>, <code>WS /events/ws?after=…</code>).</li>
+</ul>
+<h2 id="finding-work">Finding work<a class="headerlink" href="#finding-work" title="Permanent link">&para;</a></h2>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">"https://platform.example.com/api/v1/work/available?workspaceId=&lt;ws-id&gt;&amp;includeDescendants=true&amp;limit=20"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span>
+</span></code></pre></div>
+<p>The endpoint returns the tasks the caller <strong>could</strong> claim right now. The task
+status is not terminal, there is no live claim, dependencies are satisfied,
+there is no open gate approval, and organizational requirements are met.
+Sorting is stable: priority (critical → low), then <code>created_at</code> and <code>id</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>workspaceId</code>, <code>includeDescendants</code></td>
+<td>workspace subtree</td>
+</tr>
+<tr>
+<td><code>projectId</code></td>
+<td>the project's workspace and its regular descendants, without nested projects</td>
+</tr>
+<tr>
+<td><code>projectId</code> + <code>includeSubprojects=true</code></td>
+<td>the whole subtree of the project's workspace</td>
+</tr>
+<tr>
+<td><code>assigneeId</code></td>
+<td>tasks assigned to this principal</td>
+</tr>
+<tr>
+<td><code>assignedToMe=true</code></td>
+<td>only tasks addressed to the caller; overrides <code>assigneeId</code></td>
+</tr>
+<tr>
+<td><code>limit</code>, <code>cursor</code></td>
+<td>pagination</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">A page can be shorter than <code>limit</code></p>
+<p>Eligibility is checked after the query, so a page can be shorter than
+<code>limit</code> with a non-empty <code>nextCursor</code>. Page through until <code>nextCursor: null</code>.</p>
+</div>
+<p>Finding work is <strong>advisory</strong>. The only authoritative gate is the claim itself:
+the world can change between showing a task and claiming it. Why a specific
+task cannot be claimed is shown by <code>GET /tasks/{ref}/claimability</code>. The response
+has the form <code>{claimable, reasons[]}</code>, with reason codes: <code>task_already_claimed</code>,
+<code>task_not_ready</code>, <code>approval_required</code>, <code>not_eligible</code>, <code>task_not_claimable</code>.</p>
+<h2 id="execution-cycle">Execution cycle<a class="headerlink" href="#execution-cycle" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>claim → start-run → (checkpoints | actions | artifacts)* → succeed | fail | suspend | handoff | cancel
+</span></code></pre></div>
+<ol>
+<li><code>POST /tasks/{ref}:claim</code> with the body <code>{sessionId, ttlSeconds?, intent?}</code>
+   (permission <code>tasks.claim</code>) returns a claim with a <code>fencingToken</code> (the new
+   claim epoch of the task) and an <code>expiresAt</code> lease.</li>
+<li><code>POST /tasks/{ref}:start-run</code> with the body
+   <code>{claimId, fencingToken, input?, maxDurationSeconds?, maxActions?, agentRevisionId?}</code>
+   creates a run bound to this epoch. An executor whose principal is linked to
+   an agent names in <code>agentRevisionId</code> the revision it works by (see
+   <a href="#agent-revision">Agent revision on a run</a>).</li>
+<li><code>GET /runs/{id}/context</code> returns the operational context: the task,
+   workspace, claim, requirements, relations, recent artifacts, pending
+   approvals, <strong>checkpoints of all past runs of the task</strong>, executable skills,
+   <code>pendingControlMessages</code>, <code>childHandles</code>, and <code>eventCursor</code>. This is
+   operational state, not memory and not chat history. Memory is
+   <code>POST /context</code>, see <a href="context.html">Task context and memory</a>.</li>
+<li>Work:<ul>
+<li><code>POST /runs/{id}/checkpoints {kind, data}</code> — durable operational
+  state;</li>
+<li><code>POST /runs/{id}/actions {action, status, skill?, externalReference?, metadata}</code>
+  — log of external actions;</li>
+<li><code>POST /artifacts</code> — results, see <a href="artifacts.html">Artifacts and comments</a>.</li>
+</ul>
+</li>
+<li>Finish:<ul>
+<li><code>:succeed {output?, completeTask: true}</code> atomically moves the run to
+  <code>succeeded</code>, releases the claim, and completes the task;</li>
+<li><code>:fail</code> honestly records the failure. It does not touch the task and
+  works even after the lease is lost;</li>
+<li><code>:suspend</code> and <code>:handoff</code> are described below;</li>
+<li><code>:cancel</code> is a terminal cancellation.</li>
+</ul>
+</li>
+</ol>
+<h3 id="fencing-and-stale_claim">Fencing and <code>stale_claim</code><a class="headerlink" href="#fencing-and-stale_claim" title="Permanent link">&para;</a></h3>
+<p>Before every authoritative write the server checks three things: the claim is
+alive (the lease has not expired, the session is alive), the <code>fencingToken</code>
+matches the task's current claim epoch, and the caller is the owner. Any
+mismatch returns <code>409 stale_claim</code>.</p>
+<div class="admonition danger">
+<p class="admonition-title">After <code>stale_claim</code>, stop writing</p>
+<p>The harness must stop authoritative writes and re-read <code>/harness/context</code>.
+Retrying the write is pointless: ownership has passed to someone else, or
+the lease has expired.</p>
+</div>
+<h3 id="run-budgets">Run budgets<a class="headerlink" href="#run-budgets" title="Permanent link">&para;</a></h3>
+<p><code>maxActions</code> and <code>maxDurationSeconds</code> are set at <code>start-run</code>. The harness must
+respect them. On its side, the server rejects an action or checkpoint write
+over budget with <code>409 budget_exceeded</code>. The budget does not block finalization
+(<code>:succeed</code>, <code>:fail</code>).</p>
+<h3 id="action-log">Action log<a class="headerlink" href="#action-log" title="Permanent link">&para;</a></h3>
+<p><code>POST /runs/{id}/actions</code> records an external action: a tool call, a skill
+use, an external effect. For long operations there is a two-phase variant: a
+record with <code>status: started</code>, then <code>POST /runs/{id}/actions/{aid}:finish</code>.</p>
+<ul>
+<li>Both phases go through the full claim check. Having lost the lease, a process
+  cannot append an outcome to the audit of someone else's work: an unfinished
+  <code>started</code> stays unfinished.</li>
+<li>This is the execution log, separate from the domain event log. It contains no
+  secrets, no model reasoning, and no full payloads.</li>
+<li>The <code>skill</code> field (<code>uuid | name | name@version</code>) goes through
+  <strong>re-authorization</strong>: the server recomputes the effective tool policy. For a
+  revoked or forbidden assignment it responds <code>403 tool_not_authorized</code>, and
+  nothing is committed: <code>seq</code> does not grow, the budget is intact.</li>
+<li>If the skill's protocol is not declared by the session, the action is still
+  recorded, and the mismatch is noted in <code>metadata.capabilityMismatch</code>.</li>
+</ul>
+<p>Autonomous adapters write one action per tool call; see
+<a href="../runner/trace.html">Run trace</a>.</p>
+<h2 id="waiting-gate-approval-and-suspend">Waiting: gate approval and suspend<a class="headerlink" href="#waiting-gate-approval-and-suspend" title="Permanent link">&para;</a></h2>
+<p>The minimal waiting scheme without a workflow engine consists of three steps:
+<code>checkpoint → gate-approval → suspend</code>.</p>
+<ol>
+<li><code>POST /runs/{id}/checkpoints</code> — save the state.</li>
+<li><code>POST /approvals</code> with <code>gate: true</code> and exactly one of the fields
+   <code>requiredRoleId</code> or <code>assignedPrincipalId</code>. While such an approval is
+   <code>pending</code>, the task can be neither claimed nor completed:
+   <code>409 approval_required</code>.</li>
+<li><code>POST /runs/{id}:suspend {reason, waitingForApprovalId?}</code>. Atomically: the
+   run moves to <code>suspended</code> (a terminal state for this run), the claim is
+   released, and the task returns to its type's <code>releaseStatus</code>.</li>
+</ol>
+<p>Continuation is a new claim with a new fencing token and a new run, which reads
+the checkpoints of past attempts from the Run Context. No exclusive lease is
+held while waiting. Details about approvals are in <a href="approvals.html">Approvals</a>.</p>
+<h2 id="handing-a-run-off-to-another-harness-handoff">Handing a run off to another harness (handoff)<a class="headerlink" href="#handing-a-run-off-to-another-harness-handoff" title="Permanent link">&para;</a></h2>
+<p>When a human explicitly decides to switch harnesses, the current harness calls:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>https://platform.example.com/api/v1/runs/&lt;run-id&gt;:handoff<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Idempotency-Key: handoff-&lt;run-id&gt;-1"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">'{</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="s1">    "reason": "human_harness_handoff",</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="s1">    "checkpoint": {</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="s1">      "kind": "handoff",</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="s1">      "data": {</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="s1">        "summary": "Migration is written; the roundtrip still needs to run",</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="s1">        "nextSteps": ["Create a new Claim and Run", "Run make test"],</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="s1">        "evidenceRefs": ["commit:abc1234"]</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="s1">      }</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="s1">    }</span>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="s1">  }'</span>
+</span></code></pre></div>
+<p>A single transaction checks the permission, tenant, owner, live claim, and
+fencing, writes the checkpoint, moves the run to <code>suspended</code>, releases the
+claim, and returns the task to work. The events <code>run.checkpointed</code>,
+<code>run.suspended</code>, <code>claim.released</code>, and <code>run.handoff_prepared</code> go to the event
+log. The response contains <code>run</code>, <code>task</code>, <code>checkpoint</code>, <code>eventCursor</code>, and a
+hint for continuing.</p>
+<ul>
+<li>A repeat with the same <code>Idempotency-Key</code> after an ambiguous response returns
+  the stored response and does not create a second checkpoint.</li>
+<li>The second harness opens its own session, takes a new claim and a new run,
+  and reads the Run Context. The old run is not resumed. Process state and the
+  transcript are not transferred.</li>
+<li>A summary and evidence with credential-like values or full local paths are
+  rejected.</li>
+</ul>
+<h2 id="agent-revision">Agent revision on a run<a class="headerlink" href="#agent-revision" title="Permanent link">&para;</a></h2>
+<p>The executor's configuration — model, instructions, work selection, working
+copy — is fixed by the revision of its agent: an immutable snapshot of the
+description in the Control Plane agent registry (CP-ADR-0073). A run names the
+revision it went by: the server records <code>agentRevisionId</code> on the run and returns
+it in the <code>start-run</code> response and in the <code>run.started</code> event. There is no
+separate configuration snapshot per run.</p>
+<table>
+<thead>
+<tr>
+<th>Who starts the run</th>
+<th><code>agentRevisionId</code> in <code>start-run</code></th>
+<th>Refusal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>a principal linked to an agent</td>
+<td>required: a revision of its own agent</td>
+<td>no field — <code>422 agent_revision_required</code>; a revision of another agent — <code>422 agent_revision_mismatch</code></td>
+</tr>
+<tr>
+<td>a principal without an agent (a person, an executor in env mode)</td>
+<td>not passed</td>
+<td>a passed field — <code>422 agent_revision_mismatch</code></td>
+</tr>
+</tbody>
+</table>
+<p>A revision of its own agent that is not the current one is accepted: the
+executor learns about a new revision between runs, and publishing a revision
+while a run starts must not break work. The revision the run actually goes by
+is recorded. The revision is checked before the task is locked and before the
+claim is checked.</p>
+<p>The executor learns its agent and the current revision through
+<code>GET /agents/me</code>; how the executor daemon chooses its mode and what it takes
+from the revision is described in
+<a href="../runner/configuration.html">Executor configuration</a>.</p>
+<h2 id="tools-and-skills">Tools and skills<a class="headerlink" href="#tools-and-skills" title="Permanent link">&para;</a></h2>
+<p>The harness executes skills. The Control Plane coordinates their availability
+and keeps the audit. Three layers are deliberately separated:</p>
+<ul>
+<li><strong>catalog</strong> — what the runtime can do technically;</li>
+<li><strong>effective tool policy</strong> — what is allowed for this principal, run, and
+  workspace right now;</li>
+<li><strong>search view</strong> — a bounded projection of the intersection of the two.</li>
+</ul>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1"># search: short cards; the first page for an empty query</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">"https://platform.example.com/api/v1/tools?query=deploy&amp;runId=&lt;run-id&gt;&amp;limit=25"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="c1"># the full sanitized schema of a single tool</span>
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>curl<span class="w"> </span>-s<span class="w"> </span><span class="s2">"https://platform.example.com/api/v1/tools/git.merge@1?runId=&lt;run-id&gt;"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span>
+</span></code></pre></div>
+<p>Rules you can rely on:</p>
+<ul>
+<li>a tool outside the policy can be neither found nor described: describe
+  responds <code>404 tool_not_found</code>, the same as for a nonexistent name;</li>
+<li>a tool is assigned, but the session did not declare its protocol: it is
+  visible with <code>visible: false</code> and <code>reason: protocol_not_supported_by_harness</code>.
+  This is a diagnostic of the harness configuration, not a denial;</li>
+<li>the fields <code>view.catalogRevision</code>, <code>view.policyRevision</code>, and <code>view.viewHash</code>
+  describe what the page is built from. <code>viewHash</code> is returned as the <code>ETag</code>,
+  and <code>If-None-Match</code> returns <code>304</code> while both revisions are unchanged;</li>
+<li><code>config</code>, <code>default</code>, <code>examples</code>, and vendor extensions are removed from the
+  describe schema. The removed paths are listed in <code>schemaRedactions</code>;</li>
+<li><strong>finding a tool grants no permissions.</strong> The policy is recomputed before an
+  action is written.</li>
+</ul>
+<p>Visibility reasons (<code>reason</code>): <code>assigned_and_protocol_supported</code>,
+<code>not_assigned</code>, <code>skill_disabled</code>, <code>protocol_not_allowed_by_governance</code>,
+<code>not_granted_by_child_handle</code>, <code>protocol_not_supported_by_harness</code>.</p>
+<h2 id="active-turn-control">Active Turn Control<a class="headerlink" href="#active-turn-control" title="Permanent link">&para;</a></h2>
+<p>A plain "Stop" does not say which execution exactly to interrupt. A harness
+with the <code>active_turn_control.v1</code> capability accepts durable messages bound to
+the run.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>https://platform.example.com/api/v1/runs/&lt;run-id&gt;/control-messages<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-2"><a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-3"><a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-4"><a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Idempotency-Key: </span><span class="k">$(</span>uuidgen<span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-7-5"><a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">'{</span>
+</span><span id="__span-7-6"><a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="s1">    "operation": "steer",</span>
+</span><span id="__span-7-7"><a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="s1">    "causalPosition": "turn:17/tool-batch:2",</span>
+</span><span id="__span-7-8"><a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="s1">    "directive": "Check the migration roundtrip first",</span>
+</span><span id="__span-7-9"><a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="s1">    "expectedRunVersion": 4</span>
+</span><span id="__span-7-10"><a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="s1">  }'</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Operation</th>
+<th>Semantics</th>
+<th>Permission</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>queue</code></td>
+<td>a new intent after the current turn finishes</td>
+<td><code>tasks.write</code></td>
+</tr>
+<tr>
+<td><code>steer</code></td>
+<td>a correction at the nearest safe boundary, without cancelling the action</td>
+<td><code>tasks.write</code></td>
+</tr>
+<tr>
+<td><code>redirect</code></td>
+<td>cancel only the model inference; while a tool is running, the harness applies it as <code>steer</code></td>
+<td><code>tasks.write</code></td>
+</tr>
+<tr>
+<td><code>request_cancel</code></td>
+<td>cooperative stop; new actions are forbidden only after an <code>applied</code> acknowledgement</td>
+<td><code>tasks.write</code></td>
+</tr>
+<tr>
+<td><code>force_cancel</code></td>
+<td>the server immediately moves the run to <code>cancelled</code>, releases the claim, and cancels active descendants by <code>spawned_by</code></td>
+<td><code>claims.manage</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>Idempotency-Key</code> and <code>expectedRunVersion</code> are required (without the key —
+<code>422 idempotency_key_required</code>).</p>
+<p>The harness reads messages through <code>GET /runs/{id}/control-messages</code> with an
+opaque cursor <code>rc1_…</code> bound to the run (50 entries by default, 200 maximum).
+<code>GET /runs/{id}/context</code> additionally carries <code>pendingControlMessages</code>, so a
+restart between the <code>accepted</code> and <code>applied</code> states does not lose the intent.</p>
+<p>Application is acknowledged with
+<code>POST /runs/{id}/control-messages/{messageId}:acknowledge</code> with the fields
+<code>status</code> (<code>applied</code>, <code>rejected</code>, or <code>superseded</code>), <code>claimId</code>, <code>fencingToken</code>,
+<code>expectedRunVersion</code>, <code>expectedMessageVersion</code>, <code>safeBoundary</code> (required for
+<code>applied</code>), and <code>reason</code>. Only the holder of the live claim can acknowledge,
+and messages are resolved strictly in <code>seq</code> order. Message statuses:
+<code>accepted</code>, <code>applied</code>, <code>rejected</code>, <code>superseded</code>. The <code>directive</code> and <code>reason</code>
+text is not copied into events or the outbox.</p>
+<p>The old endpoint <code>POST /runs/{id}:request-cancel</code> (permission <code>tasks.write</code> or
+<code>claims.manage</code>) remains a wrapper: it materializes a typed <code>request_cancel</code>
+message and writes a <code>run.cancel_requested</code> event.</p>
+<h2 id="child-runs-child-run-handle">Child runs (Child Run Handle)<a class="headerlink" href="#child-runs-child-run-handle" title="Permanent link">&para;</a></h2>
+<p>A harness with the <code>child_run_handle.v1</code> capability can delegate work to a
+child run and survive its own restart.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>https://platform.example.com/api/v1/runs/&lt;run-id&gt;/child-handles<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-3"><a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-4"><a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Idempotency-Key: </span><span class="k">$(</span>uuidgen<span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-5"><a id="__codelineno-8-5" name="__codelineno-8-5" href="#__codelineno-8-5"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">'{</span>
+</span><span id="__span-8-6"><a id="__codelineno-8-6" name="__codelineno-8-6" href="#__codelineno-8-6"></a><span class="s1">    "correlationId": "review:migration-roundtrip",</span>
+</span><span id="__span-8-7"><a id="__codelineno-8-7" name="__codelineno-8-7" href="#__codelineno-8-7"></a><span class="s1">    "title": "Check the migration roundtrip",</span>
+</span><span id="__span-8-8"><a id="__codelineno-8-8" name="__codelineno-8-8" href="#__codelineno-8-8"></a><span class="s1">    "grant": {"permissions": ["tasks.read", "tasks.claim"]},</span>
+</span><span id="__span-8-9"><a id="__codelineno-8-9" name="__codelineno-8-9" href="#__codelineno-8-9"></a><span class="s1">    "cancellationPolicy": "cascade_cooperative"</span>
+</span><span id="__span-8-10"><a id="__codelineno-8-10" name="__codelineno-8-10" href="#__codelineno-8-10"></a><span class="s1">  }'</span>
+</span></code></pre></div>
+<ul>
+<li><strong>Idempotent launch.</strong> A repeat with the same <code>correlationId</code> returns <code>200</code>
+  and the same child run, even with a different <code>Idempotency-Key</code>. A new run
+  responds <code>201</code>.</li>
+<li><strong><code>handleToken</code> (<code>ch1_…</code>) is returned once.</strong> It is a pointer, not a
+  credential: every access still checks the key, tenant, and permission.
+  Losing the token is harmless; everything also works by <code>handleId</code>.</li>
+<li><strong>A grant narrows but does not widen.</strong> A request above the parent's ceiling
+  returns <code>422 child_grant_exceeds_parent</code>. The child run's grant must include
+  <code>tasks.claim</code>, otherwise <code>:start-run</code> is rejected.</li>
+<li><strong>Reconnection.</strong> <code>GET /runs/{id}/context</code> carries <code>childHandles</code>. There are
+  also <code>GET /runs/{id}/child-handles?active=true</code> (cursor <code>cd1_…</code>) and
+  <code>GET /child-handles/{idOrToken}</code>.</li>
+<li><strong>The status is computed</strong> from the child task and run. A revoked handle
+  with a live child shows <code>running</code>, not <code>revoked</code>.</li>
+<li><strong>The result is size-limited and immutable.</strong> The <code>output</code> of the child's
+  <code>:succeed</code> can carry <code>summary</code>, <code>data</code>, and <code>artifactRefs</code>. Exceeding the
+  limits returns <code>422 child_result_too_large</code>; move bulky data into an Artifact.</li>
+<li><strong>Cancellation policy.</strong> <code>cascade_cooperative</code> (the default) passes the
+  parent's acknowledged <code>request_cancel</code> to active children; <code>detach</code> does not.
+  <code>force_cancel</code> always cascades.</li>
+<li>Revocation: <code>POST /child-handles/{id}:revoke {reason, cancelChild}</code>. The
+  holder of the parent run or a principal with <code>claims.manage</code> can call it.</li>
+</ul>
+<h2 id="cancellation">Cancellation<a class="headerlink" href="#cancellation" title="Permanent link">&para;</a></h2>
+<ul>
+<li><code>POST /runs/{id}:request-cancel</code> is a cooperative signal. It sets
+  <code>cancel_requested_at</code> and writes a <code>run.cancel_requested</code> event. Idempotent.</li>
+<li>"Cancellation requested" does not mean "execution stopped". The harness
+  notices the signal through events or <code>GET /runs/{id}</code>, stops, and finalizes
+  the run through <code>:cancel</code> or <code>:fail</code>.</li>
+<li>You can authoritatively stop someone else's run through <code>:cancel</code>: this is
+  allowed to the holder or a principal with <code>claims.manage</code>. After the
+  cancellation commits, <code>:succeed</code> is impossible (<code>409 run_not_active</code>). The
+  cancel/succeed race is serialized by task and run locks; there is always
+  exactly one winner.</li>
+</ul>
+<h2 id="events">Events<a class="headerlink" href="#events" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a>store the last processed cursor
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a>GET /events?cursor=&lt;cursor&gt;   (or WS /events/ws?after=&lt;cursor&gt;)
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a>catch up → process → reconnect → catch up again
+</span></code></pre></div>
+<p>The event log in PostgreSQL is the source of truth. The WebSocket serves only
+as a "wake up" signal: if NOTIFY is lost, the server polls the log with a
+period of <code>CP_WS_POLL_INTERVAL_SECONDS</code>. The issued log prefix is always
+complete, so the only thing to store is the last processed cursor. The SDK's
+<code>follow_events(cursor=...)</code> implements this pattern on top of polling.</p>
+<p>Events an interactive harness should show to the user:
+<code>approval.requested|approved|rejected</code>, <code>task.claimed</code> (by someone else),
+<code>claim.released|expired</code> (loss of ownership), <code>run.cancel_requested</code>,
+<code>run.suspended</code>, <code>artifact.created</code>, <code>task.completed</code>. The full list of types is
+in <a href="events.html">Events</a>.</p>
+<h2 id="recovery-after-a-restart">Recovery after a restart<a class="headerlink" href="#recovery-after-a-restart" title="Permanent link">&para;</a></h2>
+<p>Continuity of work does not depend on process memory. After a restart the
+harness:</p>
+<ol>
+<li>Finds the credential (see <a href="cli-and-mcp.html#credentials">CLI and MCP server</a>).</li>
+<li>Calls <code>GET /harness/context</code>.</li>
+<li>
+<p>Chooses a branch:</p>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>the claim is alive (the task is in <code>activeClaims</code>)</td>
+<td>continue: heartbeat; an existing <code>activeRuns[*]</code> can be carried on with the same fencing token</td>
+</tr>
+<tr>
+<td>the claim expired, the task is free</td>
+<td>a new claim (new token) and a new run</td>
+</tr>
+<tr>
+<td>the task was taken over</td>
+<td>make no authoritative writes; <code>:succeed</code> honestly returns <code>409 stale_claim</code></td>
+</tr>
+<tr>
+<td>the run is <code>suspended</code></td>
+<td>check the gate, then a new claim and a new run</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li>
+<p>Reads the remaining events from the stored cursor or from the context's
+   <code>eventCursor</code>.</p>
+</li>
+<li>Opens a new session if the old one died. Sessions are cheap, but a new
+   session does not inherit other sessions' claims: they must be claimed again.</li>
+</ol>
+<p>The Control Plane restores the state of the work, but not the hidden state of
+the LLM.</p>
+<h2 id="failure-summary">Failure summary<a class="headerlink" href="#failure-summary" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Failure</th>
+<th>Authoritative state</th>
+<th>Client action</th>
+<th>Safe to retry?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>network failure</td>
+<td>unknown</td>
+<td>retry with the same <code>Idempotency-Key</code></td>
+<td>yes, with the key</td>
+</tr>
+<tr>
+<td>harness crash</td>
+<td>leases live until TTL</td>
+<td>restart, see the section above</td>
+<td>—</td>
+</tr>
+<tr>
+<td>Control Plane restart</td>
+<td>everything is in PostgreSQL</td>
+<td>reconnect, read the remaining events</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>session expired</td>
+<td>the session is stale, claims are released</td>
+<td>new session, new claim</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>claim expired</td>
+<td>the next claim reaps it</td>
+<td>new claim (new token)</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>takeover</td>
+<td>the task has someone else's claim</td>
+<td>stop writing, tell the human</td>
+<td>no, for the old process</td>
+</tr>
+<tr>
+<td>approval rejected</td>
+<td>the gate is open, the task is back in work</td>
+<td>the executor decides</td>
+<td>—</td>
+</tr>
+<tr>
+<td>skill unavailable</td>
+<td><code>409 skill_unavailable</code></td>
+<td>choose another version or skill</td>
+<td>yes</td>
+</tr>
+<tr>
+<td>event stream dropped</td>
+<td>the event log is complete</td>
+<td>reconnect from the last cursor</td>
+<td>yes</td>
+</tr>
+</tbody>
+</table>
+<p>Key error codes for harness UX: <code>not_eligible</code>, <code>task_not_ready</code>,
+<code>task_already_claimed</code>, <code>stale_claim</code>, <code>session_expired</code>, <code>approval_required</code>,
+<code>skill_unavailable</code>, <code>version_conflict</code>, <code>idempotency_key_reused</code>,
+<code>idempotency_in_flight</code>, <code>budget_exceeded</code>, <code>run_not_active</code>,
+<code>unsupported_protocol_version</code>, <code>task_cancelled</code>, <code>task_not_claimable</code>.
+The error format is described in <a href="api.html#errors">API</a>.</p>
+<h2 id="new-harness-checklist">New harness checklist<a class="headerlink" href="#new-harness-checklist" title="Permanent link">&para;</a></h2>
+<ul class="task-list">
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Obtain the principal's credential and keep it outside the repository and shell history.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> <code>GET /harness/context</code>: identity and the recovery branch.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Open a session with the <code>harness</code> block, <code>protocolVersion: "2"</code>, and honest capabilities.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Start session and claim heartbeats with a period of about <code>ttl/3</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Find work through <code>/work/available</code> (with <code>projectId</code> if the work happens inside a project).</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> claim → start-run → <code>POST /context</code> → checkpoints, actions, artifacts.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Record important conclusions and decisions through <code>POST /observations</code>.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Finalize the run; when waiting, use a gate and suspend.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Subscribe to events from the stored cursor.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> On any <code>stale_claim</code>, stop authoritative writes.</li>
+<li class="task-list-item"><label class="task-list-control"><input type="checkbox" disabled/><span class="task-list-indicator"></span></label> Send every mutation with an <code>Idempotency-Key</code>; on a transport failure, retry with the same key.</li>
+</ul>
+<h2 id="see-also">See also<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="execution.html">Execution — claims and runs</a></li>
+<li><a href="context.html">Task context and memory</a></li>
+<li><a href="authorization.html">Authorization and permissions</a></li>
+<li><a href="cli-and-mcp.html">CLI and MCP server</a></li>
+<li><a href="api.html">API</a></li>
+<li><a href="../runner/adapters.html">Executor adapters</a></li>
+<li><a href="../operator/mcp-plugin.html">MCP plugin for Claude Code</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="event-subscriptions.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Event subscriptions">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Event subscriptions
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="context.html" class="md-footer__link md-footer__link--next" aria-label="Next: Task context and memory">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Task context and memory
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "navigation.footer", "navigation.path", "toc.follow", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

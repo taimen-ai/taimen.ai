@@ -1,0 +1,6564 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Техническая и эксплуатационная документация платформы Taimen">
+      
+      
+      
+      
+        <link rel="prev" href="declarative-agents.html">
+      
+      
+        <link rel="next" href="agent-identity.html">
+      
+      
+        
+          <link rel="alternate" href="../../runner/fleet.html" hreflang="en">
+        
+          <link rel="alternate" href="fleet.html" hreflang="ru">
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Узлы и fleet - Taimen — руководство по платформе</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#fleet" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="../index.html" title="Taimen — руководство по платформе" class="md-header__button md-logo" aria-label="Taimen — руководство по платформе" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Taimen — руководство по платформе
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Узлы и fleet
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Выберите язык">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../runner/fleet.html" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="fleet.html" hreflang="ru" class="md-select__link">
+              Русский
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Вкладки" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Главная
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../overview/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Обзор
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../getting-started/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Быстрый старт
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../control-plane/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Control Plane
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../packages/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Пакеты
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../processes/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Процессы
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../iam/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  IAM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../memory/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Память
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../workplace/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Рабочее место человека
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../notifications/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Уведомления
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Агенты и runner
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../operator/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Работа оператора
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../sdk/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SDK и интеграции
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../operations/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Эксплуатация
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../troubleshooting/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Диагностика
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../reference/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Справочник
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Taimen — руководство по платформе" class="md-nav__button md-logo" aria-label="Taimen — руководство по платформе" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Taimen — руководство по платформе
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Главная
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../overview/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Обзор
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/what-is-taimen.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Что такое Taimen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/architecture.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Архитектура
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/concepts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ключевые понятия
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/components.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Состав поставки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/security-model.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Модель безопасности
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../getting-started/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Быстрый старт
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Быстрый старт
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/requirements.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Требования
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/quickstart.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Установка и первый запуск
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/configuration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Конфигурация .env
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/bootstrap.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bootstrap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/first-task.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Первая задача
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../control-plane/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Control Plane
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Control Plane
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control-plane/work-model.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Модель работы
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control-plane/task-types.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Типы задач и статусы
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control-plane/goals-and-evidence.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Цели, приёмка и evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control-plane/work-rules.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Правила вывода работы
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control-plane/execution.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Исполнение — claims и runs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control-plane/approvals.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Approvals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control-plane/artifacts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Артефакты и комментарии
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control-plane/events.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    События
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control-plane/event-subscriptions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Подписки на события
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control-plane/harness-protocol.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Харнесс-протокол
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control-plane/context.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Контекст задачи и память
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control-plane/catalog-packages.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Пакеты каталога
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control-plane/authorization.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Авторизация и права
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control-plane/cli-and-mcp.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI и MCP-сервер
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control-plane/api.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control-plane/configuration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Конфигурация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../packages/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Пакеты
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Пакеты
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/quickstart.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Пакет за 10 минут
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/anatomy.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Анатомия пакета
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/work.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Работа: типы задач и роли
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/rules.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Правила в пакете
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/processes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Процессы в пакете
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/agents.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Агенты пакета
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/skills.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Скиллы пакета
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/integrations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Интеграции
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/knowledge.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Знания и онтология
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/notifications.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Уведомления пакета
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/settings.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Настройки пакета
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/testing.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Тесты пакета
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/install-and-release.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Установка и выпуск
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/author-plugin.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Автор пакетов в Claude Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/tutorial.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Пример: претензии клиентов
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/checklist.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Чек-лист готовности
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../processes/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Процессы
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Процессы
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../processes/knowledge.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Процессы и база знаний
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../processes/expressions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Выражения
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../processes/package-tests.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сценарии и план ядра
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../iam/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IAM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IAM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/principals.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tenants и principals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/credentials.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credentials и PAT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/tokens.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Токены, audiences, scopes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/service-accounts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service accounts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/federation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Федерация identity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/keycloak.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Keycloak — внешний IdP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/api.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/configuration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Конфигурация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../memory/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Память
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Память
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memory/knowledge-model.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Модель знаний
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memory/namespaces.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespaces и доступ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memory/ingestion.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Загрузка знаний
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memory/retrieval.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Поиск и сборка контекста
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memory/api.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memory/configuration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Конфигурация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../workplace/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Рабочее место человека
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Рабочее место человека
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workplace/telegram.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ассистент в Telegram
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../notifications/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Уведомления
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_10" id="__nav_10_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Уведомления
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notifications/notification-rules.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Правила уведомлений
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notifications/telegram.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Telegram
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Агенты и runner
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_11" id="__nav_11_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Агенты и runner
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="declarative-agents.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Агенты описанием
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Узлы и fleet
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="fleet.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Узлы и fleet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Архитектура
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Цикл сверки
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Размещение и метки
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Регистрация узла
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Регистрация узла">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Выпустить ключ регистрации
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Положить ключ на узел и запустить его
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#node-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Конфигурация узла node.yaml
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Конфигурация узла node.yaml">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#images" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Образы, которые может назвать агент
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#node-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Секреты узла
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Что получает контейнер агента
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identity-and-pat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Личность агента и доставка PAT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Узел: как приводит контейнеры к желаемому состоянию
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Узел: как приводит контейнеры к желаемому состоянию">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Наблюдаемое состояние
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Отказ узла и контроллера
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Контроллер
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Контроллер">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Запуск
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Учётка контроллера
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Переменные окружения
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API контроллера
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Развёртывание узла
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Типичные проблемы
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        См. также
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="agent-identity.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identity агента
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="installation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Установка исполнителя
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="adapters.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Адаптеры исполнителей
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="execution-workspace.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Рабочие копии
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="trace.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Трасса прогонов
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="configuration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Конфигурация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../operator/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Работа оператора
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_12" id="__nav_12_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Работа оператора
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operator/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Консоль
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operator/assistant.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ассистент
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operator/mcp-plugin.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP-плагин для Claude Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operator/workflows.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Повседневные сценарии
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../sdk/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SDK и интеграции
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_13" id="__nav_13_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SDK и интеграции
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sdk/platform-auth-sdk.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    platform-auth-sdk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sdk/clients.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Клиенты сервисов
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sdk/skill-sdk.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    skill-sdk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sdk/platform-llm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    platform-llm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../operations/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Эксплуатация
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_14" id="__nav_14_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Эксплуатация
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/deployment.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Промышленное развёртывание
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/edge-and-tls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Периметр и TLS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/upgrades.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обновление и миграции
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/secrets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Секреты и ротация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/backup.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Резервное копирование
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/object-storage.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Хранилище объектов (MinIO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/monitoring.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Мониторинг и здоровье
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/capacity.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ресурсы и масштабирование
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/emergency.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Аварийные процедуры
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../troubleshooting/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Диагностика
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_15" id="__nav_15_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Диагностика
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/startup.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Установка и запуск
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/auth.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Аутентификация и доступ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/runner.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Исполнение и runner
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/memory.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Память и контекст
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../reference/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Справочник
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_16" id="__nav_16_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Справочник
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/environment.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Переменные окружения
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/api.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API сервисов ядра
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/services-and-ports.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сервисы и порты
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/permissions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Права и scopes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/package-schema.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Схема пакета
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/package-sdk-cli.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Команды package-sdk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/errors.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Коды ошибок
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/make.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Цели make
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/glossary.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Глоссарий
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Архитектура
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Цикл сверки
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Размещение и метки
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Регистрация узла
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Регистрация узла">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Выпустить ключ регистрации
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Положить ключ на узел и запустить его
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#node-yaml" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Конфигурация узла node.yaml
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Конфигурация узла node.yaml">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#images" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Образы, которые может назвать агент
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#node-secrets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Секреты узла
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#agent-container" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Что получает контейнер агента
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#identity-and-pat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Личность агента и доставка PAT
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Узел: как приводит контейнеры к желаемому состоянию
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Узел: как приводит контейнеры к желаемому состоянию">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Наблюдаемое состояние
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Отказ узла и контроллера
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#controller" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Контроллер
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Контроллер">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Запуск
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Учётка контроллера
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Переменные окружения
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#api" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        API контроллера
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Развёртывание узла
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#troubleshooting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Типичные проблемы
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        См. также
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Навигация" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../index.html" class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Главная
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="index.html" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Агенты и runner
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="fleet">Узлы и fleet<a class="headerlink" href="#fleet" title="Permanent link">&para;</a></h1>
+<p>Сервис <code>fleet</code> решает, <strong>где</strong> работают агенты, описанные видом <code>Agent</code>: знает машины
+(узлы), раскладывает на них экземпляры агентов, заводит агентам личности и доставляет им
+PAT, сообщает фактическое состояние в Control Plane. Статья для инженера эксплуатации,
+который подключает машины к платформе, и для администратора, который разбирается, почему
+агент не запустился. Что писать в описании агента — в статье <a href="declarative-agents.html">Агенты
+описанием</a>. Обоснование — TAI-ADR-0052.</p>
+<h2 id="_1">Архитектура<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<p>Сервис состоит из двух процессов:</p>
+<ul>
+<li><strong>fleet-controller</strong> — работает рядом с Control Plane (профиль compose <code>fleet</code>). Хранит
+  узлы и размещения в SQLite, читает активных агентов из Control Plane, размещает
+  экземпляры по узлам, заводит агентам principal и PAT в IAM, пишет фактическое состояние
+  агентов в Control Plane.</li>
+<li><strong>fleet-node</strong> — агент узла на каждой машине, которая исполняет агентов: сервер,
+  отдельная VM, машина разработчика. Регистрируется одноразовым ключом, тянет своё
+  желаемое состояние, отчитывается о здоровье и запускает контейнеры агентов через
+  Docker socket proxy.</li>
+</ul>
+<pre class="mermaid"><code>flowchart LR
+    subgraph Center["Центр (compose платформы)"]
+        CADDY["caddy&lt;br/&gt;/fleet/*"]
+        FC["fleet-controller:8040&lt;br/&gt;SQLite /data"]
+        CP["control-plane-api"]
+        IAM["iam-service"]
+        CADDY --&gt; FC
+        FC -- "agents.read, agents.status.write" --&gt; CP
+        FC -- "iam:agents" --&gt; IAM
+    end
+    subgraph Node["Узел (любая машина с Docker)"]
+        FN["fleet-node"]
+        PX["docker-socket-proxy&lt;br/&gt;только контейнеры"]
+        A1["fleet-&amp;lt;agent&amp;gt;-0&lt;br/&gt;демон исполнителя"]
+        A2["fleet-&amp;lt;agent&amp;gt;-1"]
+        FN --&gt; PX --&gt; A1 &amp; A2
+    end
+    FN -- "HTTPS, только исходящие:&lt;br/&gt;join, long-poll desired, observed" --&gt; CADDY
+    A1 -- "GET /agents/me, работа" --&gt; CP</code></pre>
+<p>Свойства, на которые можно опираться:</p>
+<ul>
+<li><strong>Соединения только исходящие.</strong> Узел сам ходит к контроллеру; контроллер никогда не
+  вызывает узел и не держит ключей к машинам. Узел за NAT работает.</li>
+<li><strong>Команд с центра нет.</strong> Узел получает только желаемое состояние и сам приводит к нему
+  свои контейнеры.</li>
+<li><strong>Без центра узел продолжает работать.</strong> Последнее полученное желаемое состояние
+  хранится на диске узла; при недоступном контроллере агенты работают, ждут только
+  изменения.</li>
+<li><strong>Значения секретов не покидают машину.</strong> Узел сообщает только имена своих секретов.</li>
+<li><strong>Что запускать, решает узел.</strong> Описание агента называет вид исполнителя
+  (<code>claude-code</code>, <code>codex</code>, <code>skills</code>, <code>observer</code>), а образ вида по умолчанию задаёт
+  конфигурация узла. Описание может назвать свой образ (<code>executor.image</code>), но узел
+  запустит его, только если образ допускает список <code>executors.&lt;вид&gt;.images</code> самого
+  узла (см. <a href="#images">Образы, которые может назвать агент</a>). Никакой другой образ —
+  кто бы его ни назвал — узел не запускает.</li>
+</ul>
+<h2 id="_2">Цикл сверки<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<p>Контроллер выполняет одну процедуру сверки каждые 5 секунд, после регистрации узла и
+после каждого отчёта узла:</p>
+<ol>
+<li>читает активных агентов из Control Plane (<code>GET /api/v1/agents?status=active</code>). Если
+   ядро недоступно, работает с последним известным списком;</li>
+<li>помечает <code>offline</code> узлы, которые не отчитывались дольше <strong>60 секунд</strong>;</li>
+<li>размещает экземпляры агентов (ниже);</li>
+<li>для каждого размещения обеспечивает личность агента и PAT, запечатанный ключом узла;</li>
+<li>пересобирает желаемое состояние каждого узла. Номер поколения (<code>generation</code>) растёт
+   только при изменении, и это будит long-poll узла;</li>
+<li>отзывает PAT, которые больше не нужны;</li>
+<li>сообщает фактическое состояние агентов в ядро (<code>PUT /api/v1/agents/{key}/status</code>) —
+   только если отчёт изменился.</li>
+</ol>
+<p>Всё сделано по уровню, а не по событию: пропущенное событие ничего не ломает, следующая
+сверка приведёт систему к описанию.</p>
+<h2 id="_3">Размещение и метки<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<p>Узел подходит экземпляру агента, если одновременно:</p>
+<table>
+<thead>
+<tr>
+<th>Условие</th>
+<th>Откуда у узла</th>
+<th>Откуда у агента</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>узел <code>online</code></td>
+<td>отчёт не старше 60 с</td>
+<td>—</td>
+</tr>
+<tr>
+<td>узел запускает вид исполнителя</td>
+<td>ключи <code>executors</code> в <code>node.yaml</code></td>
+<td><code>executor.kind</code></td>
+</tr>
+<tr>
+<td>узел допускает образ агента, если агент его назвал</td>
+<td><code>executors.&lt;вид&gt;.images</code> в <code>node.yaml</code></td>
+<td><code>executor.image</code></td>
+</tr>
+<tr>
+<td>у узла есть все метки</td>
+<td><code>labels</code> в <code>node.yaml</code></td>
+<td><code>placement.requires</code></td>
+</tr>
+<tr>
+<td>на узле есть все секреты</td>
+<td>файлы в <code>secretsDir</code></td>
+<td><code>placement.secrets</code></td>
+</tr>
+<tr>
+<td>есть место</td>
+<td><code>capacity.slots</code> и, если заданы с обеих сторон, <code>capacity.cpus</code> и <code>capacity.memoryMb</code></td>
+<td>один слот на экземпляр, <code>placement.resources</code></td>
+</tr>
+</tbody>
+</table>
+<p>Сравнение меток: требование <code>имя</code> выполняет метка <code>имя</code> и любая <code>имя=значение</code>;
+требование <code>имя=значение</code> — только точно такая метка.</p>
+<p>Правила выбора:</p>
+<ul>
+<li><strong>Размещение липкое.</strong> Экземпляр, чей узел по-прежнему подходит, остаётся на нём:
+  агенты не перескакивают между узлами.</li>
+<li><strong>Новый экземпляр</strong> идёт на подходящий узел с наибольшим числом свободных слотов; при
+  равенстве — по имени узла.</li>
+<li><strong>Узел ушёл в <code>offline</code></strong> — его экземпляры переезжают на другой подходящий узел. Если
+  такого нет, экземпляр остаётся за старым узлом (вернётся вместе с ним), а агент
+  получает фазу <code>node_unavailable</code>.</li>
+<li><strong>Подходящего узла нет вовсе</strong> — агент в <code>waiting_for_node</code> с первой причиной, которая
+  исключает все узлы, в таком порядке: <code>no_node</code> (нет ни одного узла <code>online</code>),
+  <code>no_executor_kind</code>, <code>image_not_allowed</code>, <code>no_label</code>, <code>no_secret</code>, <code>no_capacity</code>.
+  Ожидающий агент слота не занимает.</li>
+<li>Размещаются только агенты с <code>state: running</code>, <code>identity.kind: agent</code> и без
+  <code>placement: none</code>; число экземпляров — <code>placement.replicas</code>.</li>
+</ul>
+<p>Посмотреть, куда что размещено:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>curl<span class="w"> </span>-sS<span class="w"> </span>https://platform.example.com/fleet/api/v1/placements<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer </span><span class="nv">$FLEET_TOKEN</span><span class="s2">"</span>
+</span></code></pre></div>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="p">{</span>
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="w">  </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="p">{</span><span class="nt">"agentKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"coder"</span><span class="p">,</span><span class="w"> </span><span class="nt">"revision"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="nt">"nodeId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;node-id&gt;"</span><span class="p">,</span><span class="w"> </span><span class="nt">"replicas"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">     </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"placed"</span><span class="p">,</span><span class="w"> </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">},</span>
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="w">    </span><span class="p">{</span><span class="nt">"agentKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"publisher"</span><span class="p">,</span><span class="w"> </span><span class="nt">"revision"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">"nodeId"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w"> </span><span class="nt">"replicas"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a><span class="w">     </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pending"</span><span class="p">,</span><span class="w"> </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"no_secret"</span><span class="p">}</span>
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a><span class="w">  </span><span class="p">]</span>
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a><span class="p">}</span>
+</span></code></pre></div>
+<h2 id="_4">Регистрация узла<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>sequenceDiagram
+    autonumber
+    participant Adm as Администратор
+    participant FC as fleet-controller
+    participant FN as fleet-node
+    Adm-&gt;&gt;FC: join-key (CLI в контейнере или POST /api/v1/join-keys)
+    FC--&gt;&gt;Adm: одноразовый ключ, срок действия
+    Adm-&gt;&gt;FN: ключ → файл joinKeyFile
+    FN-&gt;&gt;FN: X25519 key pair (закрытый ключ остаётся на узле)
+    FN-&gt;&gt;FC: POST /api/v1/nodes:join {ключ, name, publicKey, labels, executorKinds, capacity, secrets}
+    FC--&gt;&gt;FN: nodeId, nodeToken (один раз; контроллер хранит только хэш)
+    loop
+        FN-&gt;&gt;FC: GET /api/v1/nodes/me/desired?since=&amp;wait=60
+        FN-&gt;&gt;FC: PUT /api/v1/nodes/me/observed (каждые observeSeconds)
+    end</code></pre>
+<h3 id="1">1. Выпустить ключ регистрации<a class="headerlink" href="#1" title="Permanent link">&para;</a></h3>
+<p>Проще всего — командой внутри контейнера контроллера: она пишет ключ прямо в его базу и
+не требует токена.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>tools/compose<span class="w"> </span>--profile<span class="w"> </span>fleet<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>fleet-controller<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">  </span>fleet-controller<span class="w"> </span>join-key<span class="w"> </span>--ttl<span class="w"> </span><span class="m">3600</span><span class="w"> </span>--note<span class="w"> </span><span class="s2">"worker-1"</span>
+</span></code></pre></div>
+<p>Или через API с токеном IAM audience <code>fleet</code> и scope <code>fleet:admin</code>:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>curl<span class="w"> </span>-sS<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>https://platform.example.com/fleet/api/v1/join-keys<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer </span><span class="nv">$FLEET_TOKEN</span><span class="s2">"</span><span class="w"> </span>-H<span class="w"> </span><span class="s1">'Content-Type: application/json'</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">'{"ttlSeconds": 3600, "note": "worker-1"}'</span>
+</span></code></pre></div>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">{</span><span class="nt">"joinKey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;ключ&gt;"</span><span class="p">,</span><span class="w"> </span><span class="nt">"expiresAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-01-15T11:00:00Z"</span><span class="p">}</span>
+</span></code></pre></div>
+<p><code>ttlSeconds</code> — от 60 секунд до 7 суток, по умолчанию 3600. Ключ одноразовый: контроллер
+хранит его хэш и помечает использованным при регистрации.</p>
+<h3 id="2">2. Положить ключ на узел и запустить его<a class="headerlink" href="#2" title="Permanent link">&para;</a></h3>
+<p>Ключ записывается в файл <code>joinKeyFile</code> из <code>node.yaml</code>, затем запускается
+<code>fleet-node --config node.yaml</code>. Узел регистрируется один раз: токен узла, его id и пара
+ключей сохраняются в <code>stateDir</code>, и при следующих запусках ключ регистрации не нужен.</p>
+<table>
+<thead>
+<tr>
+<th>Ответ регистрации</th>
+<th>Причина</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>201</code></td>
+<td>узел зарегистрирован</td>
+</tr>
+<tr>
+<td><code>401 join_key_invalid</code></td>
+<td>ключ неизвестен, уже использован или истёк</td>
+</tr>
+<tr>
+<td><code>409 node_name_taken</code></td>
+<td>узел с таким <code>name</code> уже зарегистрирован</td>
+</tr>
+<tr>
+<td><code>503 not_configured</code></td>
+<td>у контроллера ещё нет service account (см. <a href="#controller">Контроллер</a>)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="node-yaml">Конфигурация узла <code>node.yaml</code><a class="headerlink" href="#node-yaml" title="Permanent link">&para;</a></h2>
+<div class="language-yaml highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">controllerUrl</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://platform.example.com/fleet</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">worker-1</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="nt">labels</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">[</span><span class="nv">claude-subscription</span><span class="p p-Indicator">,</span><span class="w"> </span><span class="nv">repos</span><span class="p p-Indicator">]</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="nt">capacity</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">slots</span><span class="p">:</span><span class="w"> </span><span class="nv">4</span><span class="p p-Indicator">,</span><span class="nt"> cpus</span><span class="p">:</span><span class="w"> </span><span class="nv">8</span><span class="p p-Indicator">,</span><span class="nt"> memoryMb</span><span class="p">:</span><span class="w"> </span><span class="nv">16384</span><span class="p p-Indicator">}</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="nt">executors</span><span class="p">:</span><span class="w">                            </span><span class="c1"># вид исполнителя -&gt; образ по умолчанию и допустимые образы</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="w">  </span><span class="nt">claude-code</span><span class="p">:</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">agent-runner:1.4.0</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="w">    </span><span class="nt">dataPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/runner</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="w">    </span><span class="nt">env</span><span class="p">:</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="w">      </span><span class="nt">CP_TEST_DATABASE_URL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgresql+psycopg://test:test@db-test:5432/test</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="w">  </span><span class="nt">skills</span><span class="p">:</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">agent-runner:1.4.0</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="w">    </span><span class="nt">dataPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/runner</span>
+</span><span id="__span-5-14"><a id="__codelineno-5-14" name="__codelineno-5-14" href="#__codelineno-5-14"></a><span class="w">    </span><span class="nt">env</span><span class="p">:</span><span class="w"> </span><span class="p p-Indicator">{</span><span class="nt">RUNNER_MODE</span><span class="p">:</span><span class="w"> </span><span class="nv">skills</span><span class="p p-Indicator">}</span>
+</span><span id="__span-5-15"><a id="__codelineno-5-15" name="__codelineno-5-15" href="#__codelineno-5-15"></a><span class="w">  </span><span class="nt">observer</span><span class="p">:</span>
+</span><span id="__span-5-16"><a id="__codelineno-5-16" name="__codelineno-5-16" href="#__codelineno-5-16"></a><span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">observer-base:1.0.0</span>
+</span><span id="__span-5-17"><a id="__codelineno-5-17" name="__codelineno-5-17" href="#__codelineno-5-17"></a><span class="w">    </span><span class="nt">dataPath</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/data</span>
+</span><span id="__span-5-18"><a id="__codelineno-5-18" name="__codelineno-5-18" href="#__codelineno-5-18"></a><span class="w">    </span><span class="nt">images</span><span class="p">:</span><span class="w">                           </span><span class="c1"># что ещё может назвать описание агента этого вида</span>
+</span><span id="__span-5-19"><a id="__codelineno-5-19" name="__codelineno-5-19" href="#__codelineno-5-19"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">registry.example.com/observers/mail:1.*</span>
+</span><span id="__span-5-20"><a id="__codelineno-5-20" name="__codelineno-5-20" href="#__codelineno-5-20"></a><span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">registry.example.com/observers/tickets:2.0.3</span>
+</span><span id="__span-5-21"><a id="__codelineno-5-21" name="__codelineno-5-21" href="#__codelineno-5-21"></a><span class="nt">stateDir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/lib/fleet-node</span>
+</span><span id="__span-5-22"><a id="__codelineno-5-22" name="__codelineno-5-22" href="#__codelineno-5-22"></a><span class="nt">secretsDir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/fleet-node/secrets</span>
+</span><span id="__span-5-23"><a id="__codelineno-5-23" name="__codelineno-5-23" href="#__codelineno-5-23"></a><span class="nt">dockerUrl</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tcp://docker-proxy:2375</span>
+</span><span id="__span-5-24"><a id="__codelineno-5-24" name="__codelineno-5-24" href="#__codelineno-5-24"></a><span class="nt">network</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">fleet-agents</span>
+</span><span id="__span-5-25"><a id="__codelineno-5-25" name="__codelineno-5-25" href="#__codelineno-5-25"></a><span class="nt">agentEnv</span><span class="p">:</span><span class="w">                             </span><span class="c1"># каждому контейнеру агента; без секретов</span>
+</span><span id="__span-5-26"><a id="__codelineno-5-26" name="__codelineno-5-26" href="#__codelineno-5-26"></a><span class="w">  </span><span class="nt">CONTROL_PLANE_SERVER</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://platform.example.com</span>
+</span><span id="__span-5-27"><a id="__codelineno-5-27" name="__codelineno-5-27" href="#__codelineno-5-27"></a><span class="w">  </span><span class="nt">CONTROL_PLANE_IAM_URL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://platform.example.com/iam</span>
+</span><span id="__span-5-28"><a id="__codelineno-5-28" name="__codelineno-5-28" href="#__codelineno-5-28"></a><span class="w">  </span><span class="nt">CONTROL_PLANE_IAM_SCOPES</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">control-plane:read control-plane:write</span>
+</span><span id="__span-5-29"><a id="__codelineno-5-29" name="__codelineno-5-29" href="#__codelineno-5-29"></a><span class="nt">joinKeyFile</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/fleet-node/join-key</span>
+</span><span id="__span-5-30"><a id="__codelineno-5-30" name="__codelineno-5-30" href="#__codelineno-5-30"></a><span class="nt">observeSeconds</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">20</span>
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Поле</th>
+<th>По умолчанию</th>
+<th>Значение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>controllerUrl</code></td>
+<td>— (обязательно)</td>
+<td>адрес контроллера; за периметром платформы — <code>https://&lt;хост&gt;/fleet</code></td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>— (обязательно)</td>
+<td>имя узла <code>^[a-z0-9][a-z0-9.-]*$</code>, до 100 символов; уникально в fleet. Попадает в поле <code>node</code> фактического состояния агента</td>
+</tr>
+<tr>
+<td><code>labels</code></td>
+<td><code>[]</code></td>
+<td>метки: <code>имя</code> или <code>имя=значение</code> (<code>^[a-z0-9][a-z0-9.-]*(=[a-zA-Z0-9._-]+)?$</code>)</td>
+</tr>
+<tr>
+<td><code>capacity.slots</code></td>
+<td>— (обязательно)</td>
+<td>сколько экземпляров агентов узел держит, 0–100</td>
+</tr>
+<tr>
+<td><code>capacity.cpus</code></td>
+<td>—</td>
+<td>CPU для агентов; учитывается, если у агента задан <code>resources.cpus</code></td>
+</tr>
+<tr>
+<td><code>capacity.memoryMb</code></td>
+<td>—</td>
+<td>память для агентов, от 64; учитывается, если у агента задан <code>resources.memoryMb</code></td>
+</tr>
+<tr>
+<td><code>executors</code></td>
+<td>— (обязательно)</td>
+<td>вид исполнителя → <code>{image, images, env, dataPath}</code>. Ключи — виды, которые узел объявляет контроллеру</td>
+</tr>
+<tr>
+<td><code>executors.&lt;вид&gt;.image</code></td>
+<td>— (обязательно)</td>
+<td>образ вида по умолчанию — для агентов без <code>executor.image</code>; должен уже быть на машине (см. <a href="#troubleshooting">Типичные проблемы</a>)</td>
+</tr>
+<tr>
+<td><code>executors.&lt;вид&gt;.images</code></td>
+<td><code>[]</code></td>
+<td>до 50 образов, которые может назвать описание агента этого вида: точные ссылки и шаблоны с одной <code>*</code> в теге (см. <a href="#images">ниже</a>). Пусто — только образ по умолчанию</td>
+</tr>
+<tr>
+<td><code>executors.&lt;вид&gt;.env</code></td>
+<td><code>{}</code></td>
+<td>дополнительное окружение контейнеров этого вида, без секретов</td>
+</tr>
+<tr>
+<td><code>executors.&lt;вид&gt;.dataPath</code></td>
+<td>—</td>
+<td>путь внутри контейнера, куда монтируется именованный volume реплики (рабочие копии, зеркала); <code>env</code> и <code>dataPath</code> вида действуют и для образа, названного агентом</td>
+</tr>
+<tr>
+<td><code>stateDir</code></td>
+<td>— (обязательно)</td>
+<td>состояние узла: токен, ключи, последнее желаемое состояние, PAT агентов (каталог <code>0700</code>, файлы <code>0600</code>)</td>
+</tr>
+<tr>
+<td><code>hostStateDir</code></td>
+<td>= <code>stateDir</code></td>
+<td>тот же каталог, как его видит Docker-демон; нужен, когда узел сам работает в контейнере</td>
+</tr>
+<tr>
+<td><code>secretsDir</code></td>
+<td>— (обязательно)</td>
+<td>каталог секретов: по файлу на секрет</td>
+</tr>
+<tr>
+<td><code>hostSecretsDir</code></td>
+<td>= <code>secretsDir</code></td>
+<td>тот же каталог глазами Docker-демона</td>
+</tr>
+<tr>
+<td><code>dockerUrl</code></td>
+<td><code>unix:///var/run/docker.sock</code></td>
+<td>Docker Engine API; <code>unix://…</code> или <code>tcp://…</code> (socket proxy)</td>
+</tr>
+<tr>
+<td><code>network</code></td>
+<td>—</td>
+<td>Docker-сеть контейнеров агентов</td>
+</tr>
+<tr>
+<td><code>agentEnv</code></td>
+<td><code>{}</code></td>
+<td>окружение каждого контейнера агента: адреса Control Plane и IAM, scopes</td>
+</tr>
+<tr>
+<td><code>joinKeyFile</code></td>
+<td>—</td>
+<td>файл одноразового ключа регистрации; после регистрации не нужен</td>
+</tr>
+<tr>
+<td><code>observeSeconds</code></td>
+<td><code>20</code></td>
+<td>период отчёта и локальной сверки, 5–300</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><code>${ИМЯ}</code> в файле подставляется из окружения процесса узла; незаданная переменная —
+  ошибка старта с перечнем имён. Строки-комментарии (<code># …</code>) не проверяются и не
+  подставляются.</li>
+<li>Неизвестное поле — ошибка старта: конфигурация проверяется строго.</li>
+<li>Конфигурация читается при старте. После правки меток, ёмкости или <code>executors</code>
+  перезапустите <code>fleet-node</code>; новые значения уйдут контроллеру со следующим отчётом.</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Узел в контейнере: пути хоста</p>
+<p>PAT агента и секреты монтируются в контейнеры агентов bind-mount'ом <strong>по пути хоста</strong>.
+Если <code>fleet-node</code> сам работает в контейнере, задайте <code>hostStateDir</code> и
+<code>hostSecretsDir</code> так, как эти каталоги видит Docker-демон, или смонтируйте их в
+контейнер узла по тем же путям, что на хосте.</p>
+</div>
+<h3 id="images">Образы, которые может назвать агент<a class="headerlink" href="#images" title="Permanent link">&para;</a></h3>
+<p>Описание агента может назвать образ своего исполнителя — <code>executor.image</code>, ссылку с
+тегом или дайджестом (см. <a href="declarative-agents.html#executor">Агенты описанием</a>). Так
+пакет интеграции приносит образ со своим кодом. Назвать образ — не право его
+запустить: узел запускает его, только если список <code>images</code> этого вида в его
+<code>node.yaml</code> образ допускает. Что исполняется на машине, решает администратор узла.</p>
+<table>
+<thead>
+<tr>
+<th>Запись списка</th>
+<th>Допускает</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>registry.example.com/observers/mail:1.4.2</code></td>
+<td>только эту ссылку</td>
+</tr>
+<tr>
+<td><code>registry.example.com/observers/mail:1.*</code></td>
+<td>любой тег этого репозитория, начинающийся с <code>1.</code></td>
+</tr>
+<tr>
+<td><code>registry.example.com/observers/mail:*</code></td>
+<td>любой тег этого репозитория</td>
+</tr>
+<tr>
+<td><code>registry.example.com/observers/mail@sha256:&lt;hex&gt;</code></td>
+<td>только этот дайджест</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>В записи не больше одной <code>*</code>, и только в теге. Она заменяет любую
+  последовательность символов тега и никогда не допускает другой репозиторий или
+  реестр. Ссылку с дайджестом допускает только точная запись.</li>
+<li>Ссылки сравниваются как написаны, без умолчаний Docker: <code>alpine:3.20</code> и
+  <code>docker.io/library/alpine:3.20</code> — разные записи.</li>
+<li>Образ вида по умолчанию (<code>image</code>) сам в список не входит: если агентам можно
+  называть и его, перечислите его в <code>images</code>.</li>
+<li>Узел сообщает списки контроллеру (<code>executorImages</code>) вместе с метками и именами
+  секретов. Контроллер размещает агента с <code>executor.image</code> только на узле, чей
+  список образ допускает; иначе агент ждёт с причиной <code>image_not_allowed</code>.</li>
+<li>Узел проверяет и то, что ему прислали. Недопущенный образ — например, список
+  сократили, а контроллер ещё не узнал, — не запускается: работающий контейнер с ним
+  останавливается с дренажом, а экземпляр в отчёте — <code>stopped</code> с сообщением,
+  начинающимся с <code>image_not_allowed</code>. Отказ ничего не стоит машине, сколько бы раз
+  желаемое состояние его ни повторило: ни контейнера, ни счётчика перезапусков, ни
+  паузы.</li>
+<li>Узел образы не скачивает: каждый образ, который он может запустить, должен уже
+  лежать на машине (его собирает или загружает compose узла).</li>
+<li>Без <code>executor.image</code> агент работает на образе вида по умолчанию.</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Порядок обновления</p>
+<p>Сначала обновляется контроллер, потом узлы со списками образов: контроллер
+без поддержки списков образов не знает <code>executorImages</code> и отвергает отчёт такого узла. Узел
+без списков ничего нового не отправляет, а агента с <code>executor.image</code> контроллер
+на узел без поддержки списков не размещает.</p>
+</div>
+<h3 id="node-secrets">Секреты узла<a class="headerlink" href="#node-secrets" title="Permanent link">&para;</a></h3>
+<p><code>secretsDir</code> — каталог, где каждый секрет лежит отдельным файлом, имя файла — имя секрета
+из <code>placement.secrets</code> описаний агентов:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>/etc/fleet-node/secrets/          0700
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>├── claude-oauth-token            0600  токен подписки кодового агента
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>└── github-token                  0600  токен forge для публикации веток
+</span></code></pre></div>
+<ul>
+<li>Узел сообщает контроллеру только <strong>имена</strong> файлов, подходящих под
+  <code>^[a-z0-9][a-z0-9-]{0,62}$</code>; остальные файлы (<code>README</code>, <code>agent.pat</code>) не предлагаются.</li>
+<li>Список перечитывается при каждом отчёте: добавленный файл станет виден контроллеру
+  через <code>observeSeconds</code>, перезапуск узла не нужен.</li>
+<li>В контейнер агента попадают только секреты, которые названы в его описании, — по
+  одному файлу, только для чтения, в <code>/run/secrets/&lt;имя&gt;</code>.</li>
+<li>Файлы должны читаться пользователем, под которым работает образ исполнителя
+  (у референсного образа — uid <code>10001</code>).</li>
+</ul>
+<h3 id="agent-container">Что получает контейнер агента<a class="headerlink" href="#agent-container" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Где</th>
+<th>Что</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/run/secrets/agent-pat</code></td>
+<td>PAT агента, открытый из запечатанной формы; только чтение</td>
+</tr>
+<tr>
+<td><code>/run/secrets/&lt;имя&gt;</code></td>
+<td>каждый секрет из <code>placement.secrets</code>; только чтение</td>
+</tr>
+<tr>
+<td><code>CONTROL_PLANE_AGENT_KEY</code></td>
+<td>ключ агента</td>
+</tr>
+<tr>
+<td><code>IAM_PRINCIPAL</code>, <code>CONTROL_PLANE_IAM_TENANT</code></td>
+<td>чья это личность в IAM</td>
+</tr>
+<tr>
+<td><code>FLEET_REPLICA</code></td>
+<td>номер экземпляра</td>
+</tr>
+<tr>
+<td><code>agentEnv</code>, <code>executors.&lt;вид&gt;.env</code></td>
+<td>окружение из <code>node.yaml</code></td>
+</tr>
+<tr>
+<td><code>&lt;dataPath&gt;</code></td>
+<td>именованный volume <code>fleet-&lt;agent&gt;-&lt;replica&gt;-data</code>, чтение и запись; переживает перезапуски и новые ревизии</td>
+</tr>
+</tbody>
+</table>
+<p>Контейнер называется <code>fleet-&lt;agent&gt;-&lt;replica&gt;</code>, помечен <code>fleet.managed=1</code> (узел не
+трогает контейнеры без этой метки), запускается с <code>init</code> и без политики перезапуска
+Docker — перезапускает узел. Лимиты <code>resources.cpus</code> и <code>resources.memoryMb</code> описания
+становятся лимитами контейнера.</p>
+<p>Референсный образ исполнителя (<code>deploy/agent-runner/</code>) по <code>CONTROL_PLANE_AGENT_KEY</code>
+понимает, что запущен узлом: берёт PAT из <code>/run/secrets/agent-pat</code> в окружение процесса
+(<code>IAM_CREDENTIAL_MODE=environment</code>), токен подписки и токен forge — из
+<code>/run/secrets/claude-oauth-token</code> и <code>/run/secrets/github-token</code>, если они смонтированы, и
+запускает демон. Всю остальную конфигурацию демон берёт из ревизии агента (<code>GET
+/agents/me</code>), зеркала репозиториев заводит сам на volume реплики.</p>
+<h2 id="identity-and-pat">Личность агента и доставка PAT<a class="headerlink" href="#identity-and-pat" title="Permanent link">&para;</a></h2>
+<pre class="mermaid"><code>sequenceDiagram
+    autonumber
+    participant FC as fleet-controller
+    participant IAM as IAM
+    participant CP as Control Plane
+    participant FN as fleet-node
+    FC-&gt;&gt;IAM: POST /tenants/{t}/agents (principal вида agent, владелец — контроллер)
+    FC-&gt;&gt;CP: PUT /agents/{key}/identity {issuer, iamTenantId, iamPrincipalId}
+    CP--&gt;&gt;CP: principal CP + связка с permissions ревизии
+    FC-&gt;&gt;IAM: POST /tenants/{t}/agents/{id}/platform-access-tokens (Idempotency-Key)
+    FC-&gt;&gt;FC: seal(PAT, публичный ключ узла) — открытый PAT не хранится
+    FC--&gt;&gt;FN: desired: identity.credential {credentialId, ciphertext, expiresAt}
+    FN-&gt;&gt;FN: открыть закрытым ключом → stateDir/agents/&lt;key&gt;/agent-pat (0600)</code></pre>
+<ul>
+<li><strong>Principal.</strong> Каждому активному агенту вида <code>agent</code> — размещённому или с
+  <code>placement: none</code> — контроллер заводит principal в IAM правом <code>iam:agents</code> и сообщает
+  его ядру. Principal CP и связку с правами выводит само ядро из ревизии; прав выдавать
+  права у контроллера нет. Агенты вида <code>service</code> контроллер не трогает — их учётку
+  выпускает bootstrap.</li>
+<li><strong>PAT на размещение.</strong> Для каждой пары «агент — узел» свой PAT. Он шифруется
+  публичным ключом X25519 этого узла (libsodium sealed box, X25519 + XSalsa20-Poly1305),
+  контроллер хранит только шифротекст. Открыть его может только узел размещения.</li>
+<li><strong>Потолок PAT.</strong> Audience — всегда <code>control-plane</code> и те audiences из
+  <code>skills.audiences</code> и <code>identity.iam.audiences</code> агента, которые перечислены в
+  <code>FLEET_TOKEN_AUDIENCES</code> контроллера;
+  потолок scope — те scopes из <code>FLEET_TOKEN_SCOPES</code>, audience которых PAT получает
+  (IAM отклоняет потолок со scope, которого не допускает ни одна audience токена:
+  <code>422 invalid_scope_ceiling</code>). Scope относится к audience по префиксу
+  (<code>control-plane:read</code> → <code>control-plane</code>); scope другой audience записывается как
+  <code>audience=scope</code>, например <code>notification-service=notifications:send</code>. Если описание
+  агента объявляет <code>identity.iam.scopeCeiling</code>, PAT получает только пересечение с ним.
+  Привилегированный scope (<code>iam:…</code>, например
+  <code>iam:identities.link</code> коннектора CRM) агент получает, только если объявил его в
+  <code>identity.iam.scopeCeiling</code>; поэтому <code>iam</code> и <code>iam=iam:identities.link</code> в настройке
+  контроллера другим агентам ничего не добавляют. IAM сверх того не даст агенту больше, чем
+  держит сам service account контроллера, а <code>iam:agents</code> не делегируется никогда.</li>
+<li><strong>Ротация.</strong> Контроллер запрашивает PAT сроком <code>FLEET_TOKEN_TTL_SECONDS</code> (по умолчанию
+  7 дней — это и потолок IAM для PAT агента, <code>IAM_AGENT_PAT_MAX_TTL_SECONDS</code>; больше —
+  <code>422 expiry_too_long</code>) и за 2 дня до истечения (не больше трети срока) выпускает новый. Узел получает его со следующим желаемым состоянием; контейнер
+  агента пересоздаётся (сменился credential). Прежний PAT отзывается через 10 минут.</li>
+<li><strong>Отзыв.</strong> PAT размещения, которого больше нет (агент переехал, остановлен, выведен из
+  оборота или пропал из списка активных), отзывается на следующей сверке. При переезде
+  новый узел получает новый PAT.</li>
+<li>Пока личность или PAT не готовы (IAM или ядро недоступны), агент остаётся в фазе
+  <code>pending</code> с <code>reason.code: identity_pending</code>, а контроллер повторяет попытку на каждой
+  сверке.</li>
+</ul>
+<h2 id="_5">Узел: как приводит контейнеры к желаемому состоянию<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h2>
+<p>Узел держит два цикла над одним и тем же состоянием:</p>
+<ul>
+<li><strong>pull</strong> — long-poll <code>GET /api/v1/nodes/me/desired?since=&lt;generation&gt;&amp;wait=60</code>. Новое
+  поколение сохраняется в <code>stateDir/desired.json</code> и сразу применяется. При сетевых
+  ошибках — повтор через 2, 5, 10, 30, 60 секунд. Ответ <code>401</code> (контроллер больше не
+  принимает токен узла) останавливает процесс узла;</li>
+<li><strong>report</strong> — каждые <code>observeSeconds</code> локальная сверка контейнеров и <code>PUT
+  /api/v1/nodes/me/observed</code>. Если Docker недоступен, узел сообщает <code>health: degraded</code> и
+  продолжает попытки.</li>
+</ul>
+<p>Правила для контейнеров:</p>
+<table>
+<thead>
+<tr>
+<th>Событие</th>
+<th>Что делает узел</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>экземпляра нет</td>
+<td>создаёт и запускает контейнер</td>
+</tr>
+<tr>
+<td>изменились образ (вида по умолчанию или названный агентом), окружение, секреты, ресурсы, сеть или credential</td>
+<td>останавливает старый контейнер в фоне с таймаутом <code>drainSeconds</code> агента, удаляет, после дренажа создаёт новый; пока старый контейнер на дренаже, имя реплики занято и экземпляр в отчёте — <code>draining</code></td>
+</tr>
+<tr>
+<td>новая ревизия агента</td>
+<td>ничего: контейнер не трогается, исполнитель сам выходит с кодом 75 после прогона</td>
+</tr>
+<tr>
+<td>контейнер вышел с кодом <code>0</code> или <code>75</code></td>
+<td>запускает снова сразу</td>
+</tr>
+<tr>
+<td>контейнер вышел с другим кодом</td>
+<td>перезапуск с паузой 5, 10, 20… до 300 секунд; три сбоя подряд — состояние <code>crashloop</code></td>
+</tr>
+<tr>
+<td>экземпляр больше не нужен (агент остановлен, выведен, переехал, <code>replicas</code> уменьшили)</td>
+<td>останавливает контейнер в фоне и удаляет. Если агент целиком пропал из желаемого состояния, таймаут остановки — 30 секунд</td>
+</tr>
+<tr>
+<td>вид исполнителя не настроен, образ агента не допущен списком (<code>image_not_allowed</code>), секрета нет, PAT не открывается ключом узла</td>
+<td>контейнер не создаётся; в отчёте экземпляр <code>stopped</code> с причиной</td>
+</tr>
+<tr>
+<td>контейнер не создаётся (образа нет на машине, диск полон)</td>
+<td>ждёт, как при сбое: пауза 5, 10, 20… до 300 секунд, в отчёте <code>starting</code>, после трёх неудач — <code>crashloop</code> с ошибкой. Изменённая спецификация (другой образ) пробуется сразу</td>
+</tr>
+</tbody>
+</table>
+<p>Остановка всегда идёт в фоне: долгий дренаж одного агента не задерживает остальные. Узел
+удаляет открытые PAT агентов, которых больше нет в желаемом состоянии.</p>
+<div class="admonition note">
+<p class="admonition-title"><code>drainSeconds</code> и <code>SIGKILL</code></p>
+<p><code>docker stop</code> получает ровно <code>drainSeconds</code> агента. Демон на <code>SIGTERM</code> даёт прогону
+в полёте те же <code>drainSeconds</code> и затем отменяет его (<code>cancelled</code>, причина <code>drained</code>,
+задача возвращается в очередь). Отмене нужно время на опрос прогона (до 30 с), поэтому
+при исчерпании срока <code>SIGKILL</code> может прийти раньше: run останется <code>running</code> до
+истечения аренды и будет закрыт восстановлением (<code>restart_recovery</code>).</p>
+</div>
+<h3 id="_6">Наблюдаемое состояние<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<p>Отчёт узла — <code>PUT /api/v1/nodes/me/observed</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Поле</th>
+<th>Значение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>appliedGeneration</code></td>
+<td>поколение, которое узел применил</td>
+</tr>
+<tr>
+<td><code>health</code></td>
+<td><code>ok</code> или <code>degraded</code> (Docker недоступен)</td>
+</tr>
+<tr>
+<td><code>labels</code>, <code>executorKinds</code>, <code>executorImages</code>, <code>capacity</code>, <code>secrets</code></td>
+<td>текущие метки, виды, допустимые образы видов (только непустые списки), ёмкость и <strong>имена</strong> секретов</td>
+</tr>
+<tr>
+<td><code>replicas[]</code></td>
+<td><code>agentKey</code>, <code>revision</code>, <code>replica</code>, <code>state</code>, <code>restarts</code>, <code>lastExitCode</code>, <code>message</code></td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td>версия пакета <code>fleet</code> на узле</td>
+</tr>
+</tbody>
+</table>
+<p>Состояния экземпляра: <code>starting</code>, <code>running</code>, <code>draining</code>, <code>crashloop</code>, <code>stopped</code>. Из них
+контроллер выводит фазу агента в Control Plane: хотя бы один <code>crashloop</code> — фаза
+<code>crash_looping</code> с сообщением экземпляра; готовых (<code>running</code>) экземпляров не меньше
+желаемого — <code>running</code>; иначе <code>pending</code>. <code>observedRevision</code> — наименьшая ревизия среди
+работающих экземпляров.</p>
+<h2 id="_7">Отказ узла и контроллера<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Что случилось</th>
+<th>Что происходит</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>узел пропал (выключен, сеть)</td>
+<td>через 60 с без отчёта он <code>offline</code>; экземпляры переезжают на подходящие узлы с новыми PAT, старые PAT отзываются. Некуда переехать — <code>node_unavailable</code>, экземпляр ждёт возвращения узла</td>
+</tr>
+<tr>
+<td>контроллер недоступен</td>
+<td>узлы продолжают работать по <code>desired.json</code>; новые ревизии, остановки и переезды ждут контроллера</td>
+</tr>
+<tr>
+<td>Control Plane недоступен контроллеру</td>
+<td>контроллер работает с последним известным списком агентов</td>
+</tr>
+<tr>
+<td>контроллер перезапущен</td>
+<td>узлы, размещения, личности и шифротексты PAT — в SQLite на volume <code>fleet_data</code>; желаемое состояние узлов пересобирается при первом запросе</td>
+</tr>
+<tr>
+<td>узел вернулся после переезда</td>
+<td>его прежние экземпляры отсутствуют в новом желаемом состоянии — узел их останавливает</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title">Отключённый узел продолжает исполнять</p>
+<p>Узел без связи с контроллером не знает, что его агентов перенесли. Пока он
+недоступен, но работает (например, потерял только выход к контроллеру), его
+контейнеры продолжают брать работу со своим прежним PAT, пока контроллер не отзовёт
+его на следующей сверке после переезда. Если нужно гарантированно остановить машину —
+остановите <code>fleet-node</code> и контейнеры <code>fleet-*</code> на ней.</p>
+</div>
+<h2 id="controller">Контроллер<a class="headerlink" href="#controller" title="Permanent link">&para;</a></h2>
+<h3 id="_8">Запуск<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-7-1"><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>tools/compose<span class="w"> </span>--profile<span class="w"> </span>fleet<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>fleet-controller
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Значение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Профиль</td>
+<td><code>fleet</code></td>
+</tr>
+<tr>
+<td>Образ</td>
+<td><code>${IMAGE_PREFIX:-taimen}/fleet-controller:${IMAGE_TAG:-local}</code>, Dockerfile <code>services/fleet/Dockerfile</code>, контекст <code>${FLEET_BUILD_CONTEXT:-.}</code> (корень: <code>platform-auth-sdk</code> подключён соседней папкой)</td>
+</tr>
+<tr>
+<td>Порт</td>
+<td>8040, на хост не публикуется</td>
+</tr>
+<tr>
+<td>Путь в Caddy</td>
+<td><code>/fleet/*</code> (префикс срезается)</td>
+</tr>
+<tr>
+<td>Volume</td>
+<td><code>fleet_data</code> → <code>/data</code> (SQLite <code>fleet.sqlite</code>)</td>
+</tr>
+<tr>
+<td>Healthcheck</td>
+<td><code>GET /healthz</code> на <code>127.0.0.1:8040</code></td>
+</tr>
+<tr>
+<td>Лимит памяти</td>
+<td><code>${FLEET_MEM_LIMIT:-128m}</code></td>
+</tr>
+<tr>
+<td>Зависит от</td>
+<td><code>control-plane-api</code>, <code>iam-service</code> (healthy)</td>
+</tr>
+<tr>
+<td>Пользователь</td>
+<td>uid <code>10001</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_9">Учётка контроллера<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<p>Контроллер — сервис платформы с учёткой вида <code>service</code> (<code>identity.kind: service</code>,
+<code>placement: none</code>, см. <a href="declarative-agents.html#service-agents">Агенты-сервисы</a>); его
+описание и права задаёт bootstrap установки:</p>
+<ul>
+<li>в Control Plane — права <code>agents.read</code> и <code>agents.status.write</code>;</li>
+<li>в IAM — audiences <code>control-plane</code>, <code>iam</code>, <code>notification-service</code> и потолок
+  <code>control-plane:read</code>, <code>control-plane:write</code>, <code>iam:agents</code>, <code>notifications:send</code>.</li>
+</ul>
+<p><code>deploy/bootstrap.py</code> на шаге <strong>5d</strong> выпускает этот service account и пишет
+<code>secrets/fleet-iam.env</code> (<code>FLEET_CLIENT_ID</code>, <code>FLEET_CLIENT_SECRET</code>). После этого контроллер
+нужно пересоздать: <code>tools/compose --profile fleet up -d fleet-controller</code>. Пока файла
+нет, все маршруты, кроме <code>/healthz</code>, отвечают <code>503 not_configured</code>.</p>
+<p>Bootstrap также регистрирует в IAM audience <code>fleet</code> со scopes <code>fleet:read</code> и
+<code>fleet:admin</code> — для администраторских вызовов API контроллера.</p>
+<h3 id="_10">Переменные окружения<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Переменная</th>
+<th>Значение в <code>deploy/local/compose.yml</code></th>
+<th>Смысл</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>FLEET_DATA_DIR</code></td>
+<td><code>/data</code></td>
+<td>каталог базы SQLite</td>
+</tr>
+<tr>
+<td><code>FLEET_CONTROL_PLANE_URL</code></td>
+<td><code>http://control-plane-api:8000</code></td>
+<td>Control Plane внутри сети</td>
+</tr>
+<tr>
+<td><code>FLEET_IAM_URL</code></td>
+<td><code>http://iam-service:8010</code></td>
+<td>IAM внутри сети</td>
+</tr>
+<tr>
+<td><code>FLEET_IAM_ISSUER</code></td>
+<td><code>${TAIMEN_PUBLIC_URL}/iam</code></td>
+<td>публичный issuer IAM; с ним привязываются личности агентов и проверяются административные токены</td>
+</tr>
+<tr>
+<td><code>FLEET_IAM_TENANT</code></td>
+<td><code>${IAM_TENANT_ID}</code></td>
+<td>IAM tenant</td>
+</tr>
+<tr>
+<td><code>FLEET_JWKS_URL</code></td>
+<td><code>http://iam-service:8010/.well-known/jwks.json</code></td>
+<td>JWKS для проверки административных токенов</td>
+</tr>
+<tr>
+<td><code>FLEET_CLIENT_ID</code>, <code>FLEET_CLIENT_SECRET</code></td>
+<td>из <code>secrets/fleet-iam.env</code></td>
+<td>service account контроллера</td>
+</tr>
+<tr>
+<td><code>FLEET_AUDIENCE</code></td>
+<td>не задана, по умолчанию <code>fleet</code></td>
+<td>audience административных токенов</td>
+</tr>
+<tr>
+<td><code>FLEET_TOKEN_AUDIENCES</code></td>
+<td>см. <code>deploy/local/compose.yml</code></td>
+<td>какие audiences может получить PAT агента (через пробел)</td>
+</tr>
+<tr>
+<td><code>FLEET_TOKEN_SCOPES</code></td>
+<td>см. <code>deploy/local/compose.yml</code></td>
+<td>потолок scope PAT агентов (через пробел); scope не своей по префиксу audience — <code>audience=scope</code>; привилегированный (<code>iam:…</code>) — только агенту, объявившему его в <code>identity.iam.scopeCeiling</code></td>
+</tr>
+<tr>
+<td><code>FLEET_TOKEN_TTL_SECONDS</code></td>
+<td>не задана, по умолчанию 7 дней</td>
+<td>срок PAT агента, не больше <code>IAM_AGENT_PAT_MAX_TTL_SECONDS</code></td>
+</tr>
+</tbody>
+</table>
+<p>В <code>.env</code> задаются <code>FLEET_MEM_LIMIT</code>, <code>FLEET_BUILD_CONTEXT</code> и <code>VOLUME_FLEET_DATA</code>
+(см. <a href="../reference/environment.html">Переменные окружения</a>).</p>
+<h3 id="api">API контроллера<a class="headerlink" href="#api" title="Permanent link">&para;</a></h3>
+<p>Публично — под <code>https://&lt;хост&gt;/fleet</code>. Контракт — <code>services/fleet/openapi/fleet.json</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Метод и путь</th>
+<th>Кто</th>
+<th>Что делает</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET /healthz</code></td>
+<td>все</td>
+<td><code>{"status": "ok"}</code></td>
+</tr>
+<tr>
+<td><code>POST /api/v1/join-keys</code></td>
+<td>токен audience <code>fleet</code>, <code>fleet:admin</code></td>
+<td>выпустить одноразовый ключ регистрации</td>
+</tr>
+<tr>
+<td><code>GET /api/v1/nodes</code></td>
+<td><code>fleet:read</code> или <code>fleet:admin</code></td>
+<td>узлы: метки, виды, допустимые образы (<code>executorImages</code>), ёмкость, имена секретов, <code>health</code>, <code>status</code> (<code>online</code>/<code>offline</code>), <code>lastSeenAt</code>, <code>version</code></td>
+</tr>
+<tr>
+<td><code>GET /api/v1/placements</code></td>
+<td><code>fleet:read</code> или <code>fleet:admin</code></td>
+<td>размещения агентов: <code>status</code> (<code>placed</code>, <code>pending</code>, <code>stopped</code>), <code>reason</code></td>
+</tr>
+<tr>
+<td><code>POST /api/v1/nodes:join</code></td>
+<td>одноразовый ключ в теле</td>
+<td>регистрация узла</td>
+</tr>
+<tr>
+<td><code>GET /api/v1/nodes/me/desired</code></td>
+<td>токен узла</td>
+<td>long-poll желаемого состояния (<code>since</code>, <code>wait</code> ≤ 60)</td>
+</tr>
+<tr>
+<td><code>PUT /api/v1/nodes/me/observed</code></td>
+<td>токен узла</td>
+<td>отчёт узла, <code>204</code></td>
+</tr>
+</tbody>
+</table>
+<p>Ошибки административных маршрутов: <code>401 invalid_token</code> (токен не прошёл проверку), <code>403
+insufficient_scope</code>. Маршруты узла: <code>401 node_token_invalid</code>.</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-8-1"><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a>curl<span class="w"> </span>-sS<span class="w"> </span>https://platform.example.com/fleet/api/v1/nodes<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-8-2"><a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer </span><span class="nv">$FLEET_TOKEN</span><span class="s2">"</span>
+</span></code></pre></div>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-9-1"><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="p">{</span>
+</span><span id="__span-9-2"><a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="w">  </span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+</span><span id="__span-9-3"><a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="p">{</span>
+</span><span id="__span-9-4"><a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;node-id&gt;"</span><span class="p">,</span>
+</span><span id="__span-9-5"><a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"worker-1"</span><span class="p">,</span>
+</span><span id="__span-9-6"><a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="w">      </span><span class="nt">"labels"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"claude-subscription"</span><span class="p">,</span><span class="w"> </span><span class="s2">"repos"</span><span class="p">],</span>
+</span><span id="__span-9-7"><a id="__codelineno-9-7" name="__codelineno-9-7" href="#__codelineno-9-7"></a><span class="w">      </span><span class="nt">"executorKinds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"claude-code"</span><span class="p">,</span><span class="w"> </span><span class="s2">"skills"</span><span class="p">],</span>
+</span><span id="__span-9-8"><a id="__codelineno-9-8" name="__codelineno-9-8" href="#__codelineno-9-8"></a><span class="w">      </span><span class="nt">"capacity"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"slots"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="nt">"cpus"</span><span class="p">:</span><span class="w"> </span><span class="mf">8.0</span><span class="p">,</span><span class="w"> </span><span class="nt">"memoryMb"</span><span class="p">:</span><span class="w"> </span><span class="mi">16384</span><span class="p">},</span>
+</span><span id="__span-9-9"><a id="__codelineno-9-9" name="__codelineno-9-9" href="#__codelineno-9-9"></a><span class="w">      </span><span class="nt">"secrets"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"claude-oauth-token"</span><span class="p">,</span><span class="w"> </span><span class="s2">"github-token"</span><span class="p">],</span>
+</span><span id="__span-9-10"><a id="__codelineno-9-10" name="__codelineno-9-10" href="#__codelineno-9-10"></a><span class="w">      </span><span class="nt">"health"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ok"</span><span class="p">,</span>
+</span><span id="__span-9-11"><a id="__codelineno-9-11" name="__codelineno-9-11" href="#__codelineno-9-11"></a><span class="w">      </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"online"</span><span class="p">,</span>
+</span><span id="__span-9-12"><a id="__codelineno-9-12" name="__codelineno-9-12" href="#__codelineno-9-12"></a><span class="w">      </span><span class="nt">"lastSeenAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2026-01-15T10:00:20Z"</span><span class="p">,</span>
+</span><span id="__span-9-13"><a id="__codelineno-9-13" name="__codelineno-9-13" href="#__codelineno-9-13"></a><span class="w">      </span><span class="nt">"version"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.1.0"</span>
+</span><span id="__span-9-14"><a id="__codelineno-9-14" name="__codelineno-9-14" href="#__codelineno-9-14"></a><span class="w">    </span><span class="p">}</span>
+</span><span id="__span-9-15"><a id="__codelineno-9-15" name="__codelineno-9-15" href="#__codelineno-9-15"></a><span class="w">  </span><span class="p">]</span>
+</span><span id="__span-9-16"><a id="__codelineno-9-16" name="__codelineno-9-16" href="#__codelineno-9-16"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Удаления узла и перевыпуска его токена в API нет. Узел, который больше не нужен,
+достаточно выключить: через 60 секунд он <code>offline</code>, и его агенты переедут.</p>
+<h2 id="_11">Развёртывание узла<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h2>
+<p>Узлу нужны Docker, исходящий HTTPS к контроллеру и каталог секретов. Референсная
+раскладка узла — каталог <code>deploy/node/</code> (compose узла и пример <code>node.yaml</code>), образ
+исполнителя — <code>deploy/agent-runner/</code>. Compose узла поднимает:</p>
+<table>
+<thead>
+<tr>
+<th>Сервис</th>
+<th>Зачем</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>сборка образа исполнителя</td>
+<td>только сборка образа из <code>deploy/agent-runner/</code>; контейнеры агентов создаёт узел</td>
+</tr>
+<tr>
+<td><code>docker-proxy</code></td>
+<td><code>tecnativa/docker-socket-proxy</code>: разрешены <code>CONTAINERS</code>, <code>VOLUMES</code>, <code>POST</code>; закрыты <code>EXEC</code>, <code>IMAGES</code>, <code>NETWORKS</code>, <code>BUILD</code></td>
+</tr>
+<tr>
+<td><code>fleet-node</code></td>
+<td>образ <code>services/fleet/Dockerfile</code>, команда <code>fleet-node --config /etc/fleet-node/node.yaml</code>, uid <code>10001</code>; каталоги состояния и секретов смонтированы по путям хоста</td>
+</tr>
+<tr>
+<td>служебные сервисы агентов</td>
+<td>например одноразовые тестовые базы на <code>tmpfs</code> в сети <code>network</code> узла; адреса передаются агентам через <code>executors.&lt;вид&gt;.env</code></td>
+</tr>
+</tbody>
+</table>
+<p>Порядок первого запуска:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-10-1"><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1"># на машине узла</span>
+</span><span id="__span-10-2"><a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>install<span class="w"> </span>-d<span class="w"> </span>-m<span class="w"> </span><span class="m">0700</span><span class="w"> </span>/var/lib/fleet-node<span class="w"> </span>/etc/fleet-node/secrets
+</span><span id="__span-10-3"><a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>install<span class="w"> </span>-m<span class="w"> </span><span class="m">0600</span><span class="w"> </span>/dev/null<span class="w"> </span>/etc/fleet-node/secrets/claude-oauth-token<span class="w">   </span><span class="c1"># и заполнить</span>
+</span><span id="__span-10-4"><a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a><span class="nb">echo</span><span class="w"> </span><span class="s1">'&lt;ключ регистрации&gt;'</span><span class="w"> </span>&gt;<span class="w"> </span>/etc/fleet-node/join-key
+</span><span id="__span-10-5"><a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>&lt;compose<span class="w"> </span>узла&gt;<span class="w"> </span>up<span class="w"> </span>-d<span class="w"> </span>--build
+</span><span id="__span-10-6"><a id="__codelineno-10-6" name="__codelineno-10-6" href="#__codelineno-10-6"></a>docker<span class="w"> </span>compose<span class="w"> </span>-f<span class="w"> </span>&lt;compose<span class="w"> </span>узла&gt;<span class="w"> </span>logs<span class="w"> </span>-f<span class="w"> </span>fleet-node
+</span></code></pre></div>
+<p>В журнале узла появится <code>joined the fleet as &lt;node-id&gt;</code>, затем <code>started fleet-&lt;agent&gt;-0</code>
+для размещённых агентов. Проверка с центра — <code>GET /fleet/api/v1/nodes</code> и
+<code>GET /api/v1/agents/{key}/status</code>.</p>
+<h2 id="troubleshooting">Типичные проблемы<a class="headerlink" href="#troubleshooting" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Симптом</th>
+<th>Причина и решение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>все маршруты контроллера отвечают <code>503 not_configured</code></td>
+<td>нет <code>secrets/fleet-iam.env</code>: выполнить bootstrap (шаг 5d) и пересоздать <code>fleet-controller</code></td>
+</tr>
+<tr>
+<td>узел падает при старте: <code>node is not joined and no join key file is configured</code></td>
+<td>нет токена в <code>stateDir</code> и нет файла <code>joinKeyFile</code> — выпустить ключ и положить в файл</td>
+</tr>
+<tr>
+<td><code>401 join_key_invalid</code></td>
+<td>ключ истёк или уже использован — выпустить новый</td>
+</tr>
+<tr>
+<td><code>409 node_name_taken</code></td>
+<td>имя занято (в том числе прежней регистрацией этой машины с потерянным <code>stateDir</code>) — задать новое <code>name</code></td>
+</tr>
+<tr>
+<td>узел завершился: <code>the controller no longer accepts this node's credential</code></td>
+<td>токен узла не принят (<code>401</code>) — зарегистрировать узел заново с новым именем</td>
+</tr>
+<tr>
+<td><code>unset environment variables …</code> при старте узла</td>
+<td>в <code>node.yaml</code> есть <code>${ИМЯ}</code>, которой нет в окружении процесса узла</td>
+</tr>
+<tr>
+<td>агент <code>waiting_for_node</code>, <code>no_executor_kind</code></td>
+<td>ни один узел <code>online</code> не объявляет <code>executor.kind</code> агента — добавить вид в <code>executors</code> узла</td>
+</tr>
+<tr>
+<td><code>no_label</code> / <code>no_secret</code></td>
+<td>нет метки из <code>placement.requires</code> или файла секрета из <code>placement.secrets</code> в <code>secretsDir</code>. Имя файла должно совпадать с именем секрета</td>
+</tr>
+<tr>
+<td><code>no_capacity</code></td>
+<td>заняты слоты или не хватает <code>cpus</code>/<code>memoryMb</code> — увеличить <code>capacity</code> узла или уменьшить <code>resources</code> агента</td>
+</tr>
+<tr>
+<td>агент <code>pending</code>, <code>identity_pending</code></td>
+<td>контроллер не смог завести principal или выпустить PAT: смотреть журнал <code>fleet-controller</code>. Частые причины — IAM недоступен, у service account нет <code>iam:agents</code>, IAM ограничивает срок PAT агента меньше запрашиваемого контроллером (<code>422 expiry_too_long</code>)</td>
+</tr>
+<tr>
+<td>экземпляр <code>stopped</code>, <code>credential cannot be opened with this node's key</code></td>
+<td><code>stateDir</code> с ключами узла пересоздан после регистрации — зарегистрировать узел заново</td>
+</tr>
+<tr>
+<td>экземпляр <code>starting</code> или <code>crashloop</code>, <code>start failed: …</code></td>
+<td>Docker не создал контейнер; чаще всего образа нет на машине — socket proxy не даёт узлу скачивать образы, соберите или загрузите образ заранее</td>
+</tr>
+<tr>
+<td>агент <code>waiting_for_node</code>, <code>image_not_allowed</code></td>
+<td>ни один узел <code>online</code> с видом агента не допускает его <code>executor.image</code> — добавить образ или шаблон в <code>executors.&lt;вид&gt;.images</code> узла и перезапустить <code>fleet-node</code>, либо убрать поле из описания</td>
+</tr>
+<tr>
+<td>экземпляр <code>stopped</code>, <code>image_not_allowed: image … is not allowed for executor kind …</code></td>
+<td>список образов узла сократили после размещения — вернуть образ в список или дождаться, пока контроллер переразместит агента</td>
+</tr>
+<tr>
+<td>отчёт узла отвергается после добавления <code>images</code></td>
+<td>контроллер без поддержки списков образов не знает <code>executorImages</code> — обновить контроллер</td>
+</tr>
+<tr>
+<td>агент <code>crash_looping</code></td>
+<td>исполнитель падает при старте; причина — в <code>message</code> отчёта и в <code>docker logs fleet-&lt;agent&gt;-&lt;replica&gt;</code>. Выход с кодом 2 — описание агента не исполнимо на этом образе</td>
+</tr>
+<tr>
+<td>новый образ под тем же тегом не подхватывается</td>
+<td>узел сравнивает строку <code>image</code>, а не содержимое: пересборка под тем же тегом не пересоздаёт контейнер, а перезапуск после выхода 75 стартует прежний контейнер. Поменяйте тег в <code>executors.&lt;вид&gt;.image</code> и перезапустите <code>fleet-node</code></td>
+</tr>
+<tr>
+<td>контейнер агента не видит PAT или секрет</td>
+<td>узел работает в контейнере без <code>hostStateDir</code>/<code>hostSecretsDir</code>, либо файлы не читаются uid образа исполнителя</td>
+</tr>
+<tr>
+<td>правка <code>node.yaml</code> не видна контроллеру</td>
+<td>конфигурация читается при старте — перезапустить <code>fleet-node</code></td>
+</tr>
+</tbody>
+</table>
+<h2 id="_12">См. также<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="declarative-agents.html">Агенты описанием</a> — вид исполнителя <code>git-connector</code>, <code>executor.image</code></li>
+<li><a href="../packages/agents.html">Агенты пакета</a> — образ исполнителя в пакете</li>
+<li><a href="../packages/integrations.html#images">Интеграции</a> — сборка образов наблюдателя и хоста скиллов</li>
+<li><a href="configuration.html">Конфигурация исполнителя</a></li>
+<li><a href="installation.html">Установка исполнителя</a></li>
+<li><a href="agent-identity.html">Identity агента</a></li>
+<li><a href="../reference/services-and-ports.html">Сервисы и порты</a></li>
+<li><a href="../getting-started/bootstrap.html">Bootstrap</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Нижний колонтитул" >
+        
+          
+          <a href="declarative-agents.html" class="md-footer__link md-footer__link--prev" aria-label="Назад: Агенты описанием">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Назад
+              </span>
+              <div class="md-ellipsis">
+                Агенты описанием
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="agent-identity.html" class="md-footer__link md-footer__link--next" aria-label="Вперед: Identity агента">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Вперед
+              </span>
+              <div class="md-ellipsis">
+                Identity агента
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "navigation.footer", "navigation.path", "toc.follow", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

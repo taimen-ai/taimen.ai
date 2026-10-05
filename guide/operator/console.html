@@ -1,0 +1,6498 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Technical and operations documentation for the Taimen platform">
+      
+      
+      
+      
+        <link rel="prev" href="index.html">
+      
+      
+        <link rel="next" href="assistant.html">
+      
+      
+        
+          <link rel="alternate" href="console.html" hreflang="en">
+        
+          <link rel="alternate" href="../ru/operator/console.html" hreflang="ru">
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>Console - Taimen Platform Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#console" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Taimen Platform Guide" class="md-header__button md-logo" aria-label="Taimen Platform Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Taimen Platform Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Console
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="console.html" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../ru/operator/console.html" hreflang="ru" class="md-select__link">
+              Русский
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../overview/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Overview
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../getting-started/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Getting started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../control-plane/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Control Plane
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../packages/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Packages
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../processes/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Processes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../iam/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  IAM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../memory/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Memory
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../workplace/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Personal workspace
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../notifications/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Notifications
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../runner/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Agents and runner
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Operator guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../sdk/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SDKs and integrations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../operations/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Operations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../troubleshooting/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Troubleshooting
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../reference/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Taimen Platform Guide" class="md-nav__button md-logo" aria-label="Taimen Platform Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Taimen Platform Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../overview/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Overview
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/what-is-taimen.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    What is Taimen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/architecture.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/concepts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Key concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/components.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Components
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/security-model.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../getting-started/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/requirements.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requirements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/quickstart.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation and first run
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/configuration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    .env configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/bootstrap.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bootstrap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/first-task.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    First task
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../control-plane/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Control Plane
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Control Plane
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control-plane/work-model.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Work model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control-plane/task-types.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Task types and statuses
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control-plane/goals-and-evidence.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Goals, acceptance and evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control-plane/work-rules.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Work rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control-plane/execution.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Execution: claims and runs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control-plane/approvals.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Approvals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control-plane/artifacts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Artifacts and comments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control-plane/events.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Events
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control-plane/event-subscriptions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Event subscriptions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control-plane/harness-protocol.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Harness protocol
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control-plane/context.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Task context and memory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control-plane/catalog-packages.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Catalog packages
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control-plane/authorization.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authorization and permissions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control-plane/cli-and-mcp.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI and MCP server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control-plane/api.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../control-plane/configuration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../packages/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Packages
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Packages
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/quickstart.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A package in 10 minutes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/anatomy.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package anatomy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/work.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Work: task types and roles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/rules.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rules in a package
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/processes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Processes in a package
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/agents.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package agents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/skills.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package skills
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/integrations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/knowledge.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge and ontology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/notifications.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package notifications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/settings.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/testing.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package tests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/install-and-release.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation and release
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/author-plugin.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package author in Claude Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/tutorial.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Example: customer claims
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/checklist.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Readiness checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../processes/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Processes
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Processes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../processes/knowledge.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Processes and the knowledge base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../processes/expressions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Expressions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../processes/package-tests.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scenarios and the core plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../iam/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IAM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IAM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/principals.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tenants and principals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/credentials.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credentials and PATs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/tokens.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tokens, audiences, scopes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/service-accounts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service accounts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/federation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identity federation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/keycloak.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Keycloak as the external IdP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/api.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/configuration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../memory/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memory
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Memory
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memory/knowledge-model.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memory/namespaces.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespaces and access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memory/ingestion.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge ingestion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memory/retrieval.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Retrieval and context assembly
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memory/api.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memory/configuration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../workplace/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Personal workspace
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Personal workspace
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workplace/telegram.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assistant in Telegram
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../notifications/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifications
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_10" id="__nav_10_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Notifications
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notifications/notification-rules.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notification rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notifications/telegram.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Telegram
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../runner/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agents and runner
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_11" id="__nav_11_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Agents and runner
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runner/declarative-agents.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Declarative agents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runner/fleet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nodes and fleet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runner/agent-identity.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent identity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runner/installation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installing executors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runner/adapters.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Executor adapters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runner/execution-workspace.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Execution workspaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runner/trace.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Run trace
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runner/configuration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operator guide
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_12" id="__nav_12_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operator guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="console.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-it-is-and-what-the-console-does-not-have" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What it is and what the console does not have
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#login" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sign-in
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sections
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sections">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#workspace-in-the-header-and-language" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workspace in the header and language
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#today" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Today
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Work
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Work page
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documents-and-viewing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documents and viewing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#knowledge-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Knowledge base
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#journal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Journal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#package-screens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Package screens
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#management-actions-and-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Management actions and permissions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#people" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        People and roles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="People and roles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#people-admin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Who can manage people
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-person" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add person
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#people-disable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disable a person
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#people-enable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable a person
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assistant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assistant
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#if-a-service-is-unavailable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        If a service is unavailable
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limitations-of-the-current-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limitations of the current version
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common problems
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        See also
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="assistant.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assistant
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="mcp-plugin.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP plugin for Claude Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="workflows.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Everyday workflows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../sdk/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SDKs and integrations
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_13" id="__nav_13_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SDKs and integrations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sdk/platform-auth-sdk.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    platform-auth-sdk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sdk/clients.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service clients
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sdk/skill-sdk.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    skill-sdk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sdk/platform-llm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    platform-llm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../operations/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_14" id="__nav_14_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/deployment.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Production deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/edge-and-tls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Edge and TLS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/upgrades.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrades and migrations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/secrets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets and rotation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/backup.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/object-storage.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Object storage (MinIO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/monitoring.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monitoring and health
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/capacity.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capacity and scaling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/emergency.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Emergency procedures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../troubleshooting/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_15" id="__nav_15_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Troubleshooting
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/startup.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation and startup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/auth.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication and access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/runner.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Execution and runner
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/memory.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memory and context
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../reference/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_16" id="__nav_16_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/environment.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/api.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core service APIs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/services-and-ports.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Services and ports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/permissions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permissions and scopes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/package-schema.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/package-sdk-cli.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    package-sdk commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/errors.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Error codes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/make.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Make targets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/glossary.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#what-it-is-and-what-the-console-does-not-have" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What it is and what the console does not have
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#login" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sign-in
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sections
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Sections">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#workspace-in-the-header-and-language" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workspace in the header and language
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#today" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Today
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Work
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#work-page" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Work page
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documents-and-viewing" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documents and viewing
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#knowledge-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Knowledge base
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#journal" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Journal
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#package-screens" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Package screens
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#settings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Settings
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#management-actions-and-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Management actions and permissions
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#people" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        People and roles
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="People and roles">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#people-admin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Who can manage people
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#add-person" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Add person
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#people-disable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Disable a person
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#people-enable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Enable a person
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#assistant" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Assistant
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#if-a-service-is-unavailable" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        If a service is unavailable
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#limitations-of-the-current-version" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Limitations of the current version
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#install" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Installation
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#common-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Common problems
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        See also
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../index.html" class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="index.html" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Operator guide
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="console">Console<a class="headerlink" href="#console" title="Permanent link">&para;</a></h1>
+<p>The console is the platform's web application. It shows how the organization's work is
+going, where a person is needed, and what evidence backs the result. It is also where a
+person makes decisions, assigns work, and configures the organization: rules, packages,
+people. The page is for the owner, administrators, and members of the
+organization. The rationale for the decisions is TAI-ADR-0058.</p>
+<h2 id="what-it-is-and-what-the-console-does-not-have">What it is and what the console does not have<a class="headerlink" href="#what-it-is-and-what-the-console-does-not-have" title="Permanent link">&para;</a></h2>
+<p>The console has no database of its own; it shows platform objects. Work, approvals, rules,
+roles, and package settings are stored in the Control Plane, accounts in IAM, knowledge in
+memory behind the core, and the conversation with the assistant is held by the person's
+personal harness. The console consists of the interface (SPA) in the browser and the
+console server (BFF). The BFF handles sign-in, stores tokens, passes requests to the core
+through an allow-list, and runs multi-step flows such as "Add person".</p>
+<pre class="mermaid"><code>flowchart LR
+    B["Browser&lt;br/&gt;(session cookie)"] -- "/console/*" --&gt; E["Edge"]
+    E --&gt; C["Console server&lt;br/&gt;(BFF + interface)"]
+    C -- "sign-in: Code + PKCE" --&gt; IdP["Organization's&lt;br/&gt;OIDC IdP"]
+    C -- "federation:exchange" --&gt; IAM["IAM"]
+    C -- "person's token" --&gt; CP["Control Plane"]
+    C -- "person's token" --&gt; H["Harness&lt;br/&gt;(assistant)"]</code></pre>
+<p>What the console deliberately does not have:</p>
+<ul>
+<li><strong>A configuration editor.</strong> Work types, rules, processes, agents, and screens are
+  declared by <a href="../control-plane/catalog-packages.html">packages</a> in git and installed by
+  <code>package-sdk</code>. In the console you can edit a package's settings (if the package declares
+  them) and turn rules on or off.</li>
+<li><strong>Execution screens.</strong> There are no separate lists of runs, processes, agents, or nodes.
+  An executor's attempts are visible in the work history, a process case in the related
+  work and on the package screen, and all journal entries in the <a href="#journal">Journal</a>. The
+  rest is in the <a href="mcp-plugin.html">MCP plugin</a> and the CLI.</li>
+<li><strong>Billing, plans, and invitations.</strong> An organization is an IAM tenant and principals
+  together with the core's workspaces, roles, and permissions.</li>
+</ul>
+<h2 id="login">Sign-in<a class="headerlink" href="#login" title="Permanent link">&para;</a></h2>
+<p>The console signs in through the organization's OIDC IdP. A person signs in once and then
+works without a password for as long as the IdP session lives.</p>
+<ol>
+<li>An address under <code>/console/</code> without a session redirects to
+   <code>/console/_auth/login?next=&lt;address&gt;</code> and, after sign-in, returns to the same address.
+   That is why a link to a piece of work from a notification opens exactly that work.</li>
+<li>The BFF performs Authorization Code + PKCE S256 as a confidential client
+   (<code>runtime-console</code> by default). An unfinished sign-in lives for 10 minutes in the
+   encrypted <code>console_login</code> cookie. The BFF passes the <code>login_hint</code> parameter with an
+   e-mail to the provider, which prefills the address in the form.</li>
+<li>The id token is exchanged in IAM (<code>federation:exchange</code>) for short-lived tokens with
+   audience <code>control-plane</code>. As needed, the BFF also obtains <code>human-harness</code> (scope
+   <code>harness:use</code>, for the assistant) and <code>iam</code> (scope <code>iam:people</code>, for managing people).
+   Every request is made on behalf of the signed-in person, and the core and IAM journals
+   record that person as the author.</li>
+</ol>
+<p>Tokens never reach the browser. The browser stores only the <code>console_session</code> cookie with a
+signed random session id (HttpOnly, SameSite=Lax, <code>Path=/console</code>, <code>Secure</code> for a public
+https address). A session lives 12 hours (<code>RUNTIME_CONSOLE_SESSION_TTL_HOURS</code>), with at most
+10 sessions per person: a new one evicts the oldest.</p>
+<p>Sessions survive restarts and rollouts: they are stored in a file in
+<code>CONSOLE_SESSION_STORE_DIR</code>, encrypted with a key derived from the cookie secret (audience
+tokens are not written there). If you change the cookie secret, everyone signs in again.</p>
+<p>"Sign out" closes the session and leads to sign-out from the IdP (the refresh token is
+revoked if there are no other console sessions with the same IdP session). Sign-in failures
+are shown as a page with a "Sign in again" button: "Sign-in provider unavailable",
+"Sign-in attempt expired" (longer than 10 minutes), "No access to the console" (IAM refused
+the exchange), "Account service unavailable".</p>
+<div class="admonition note">
+<p class="admonition-title">Which IdP fits</p>
+<p>Any OIDC IdP registered in IAM as an identity provider will do. The console only knows
+the issuer, client id, secret, and the provider key in IAM. How to register an IdP is
+described in <a href="../iam/federation.html">Identity federation</a>; the console client in
+Keycloak is created by a service script
+(<a href="../iam/keycloak.html#scripts">Keycloak as an external IdP</a>).</p>
+</div>
+<h2 id="sections">Sections<a class="headerlink" href="#sections" title="Permanent link">&para;</a></h2>
+<p>Every screen has a permanent address. Filters, the section, and the workspace are also kept
+in the address, so you can send a link to a colleague or to the assistant.</p>
+<table>
+<thead>
+<tr>
+<th>Address</th>
+<th>Screen</th>
+<th>What it shows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/console/</code></td>
+<td>Today</td>
+<td>The day's summary, decisions waiting for you, what broke, the flow of work, the journal</td>
+</tr>
+<tr>
+<td><code>/console/work</code></td>
+<td>Work</td>
+<td>All of the organization's work, grouped by what it needs</td>
+</tr>
+<tr>
+<td><code>/console/work/new?…</code></td>
+<td>Work</td>
+<td>The "Assign work" form, prefilled from a link</td>
+</tr>
+<tr>
+<td><code>/console/work/&lt;number&gt;</code></td>
+<td>Work</td>
+<td>A single piece of work: decision, materials, details, history</td>
+</tr>
+<tr>
+<td><code>/console/documents/&lt;id&gt;</code></td>
+<td>Document</td>
+<td>A work material with a viewer</td>
+</tr>
+<tr>
+<td><code>/console/knowledge</code></td>
+<td>Knowledge base</td>
+<td>Knowledge kinds, validity periods, sources</td>
+</tr>
+<tr>
+<td><code>/console/journal</code></td>
+<td>Journal</td>
+<td>All entries of the core journal: who, what, when, on what; export</td>
+</tr>
+<tr>
+<td><code>/console/knowledge/entry?kind=…&amp;key=…</code></td>
+<td>Knowledge base document</td>
+<td>A single entry: details, validity, relations</td>
+</tr>
+<tr>
+<td><code>/console/v/&lt;key&gt;</code>, <code>/console/v/&lt;key&gt;/&lt;id&gt;</code></td>
+<td>Package screens</td>
+<td>Screens declared by packages</td>
+</tr>
+<tr>
+<td><code>/console/settings?section=…</code></td>
+<td>Settings</td>
+<td>Packages, Rules, People and roles</td>
+</tr>
+<tr>
+<td><code>/console/settings/people/&lt;id&gt;</code></td>
+<td>Person</td>
+<td>Access, details, permissions, roles, visibility</td>
+</tr>
+</tbody>
+</table>
+<p>The menu on the left (☰, pinned on windows wider than 1280 px): "Today", "Work" with a
+counter of decisions waiting for you, "Knowledge base", "Journal", package screens, and at
+the bottom the language, "Settings", and "Sign out". A chip above the screen shows the
+connection to the core journal and the time of the latest data.</p>
+<h3 id="workspace-in-the-header-and-language">Workspace in the header and language<a class="headerlink" href="#workspace-in-the-header-and-language" title="Permanent link">&para;</a></h3>
+<p>The workspace is chosen in one place, the header, by searching the tree. Console screens
+(except package screens) show only that workspace and its nested workspaces: "Work" and
+"Waiting for you" are filtered in the core (<code>workspaceId</code> and <code>includeDescendants</code>),
+"Today" shows the journal and attempts of that subtree, "Knowledge base" takes its root,
+and "Assign work" offers workspaces inside it. "All workspaces" removes the restriction.
+The choice is read from the address (<code>?ws=&lt;id&gt;</code>, <code>?ws=all</code>) or from the browser; if the
+person has not chosen, the console takes the root where the most work is waiting for them,
+otherwise the first one.</p>
+<p>The interface is available in English and Russian; the set of languages and the default one
+are set by the deployment. The language is the person's saved choice, otherwise the
+browser's language, otherwise the default. The theme follows the system.</p>
+<h3 id="today">Today<a class="headerlink" href="#today" title="Permanent link">&para;</a></h3>
+<p>The screen answers: is the organization working, where am I needed, what has changed, and
+what is the evidence.</p>
+<table>
+<thead>
+<tr>
+<th>Zone</th>
+<th>What it shows</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Summary</td>
+<td>How many pieces of work submitted today are verified, how many decisions are waiting for you, how many are broken; the "Verified today" bar</td>
+</tr>
+<tr>
+<td>Broken / stuck</td>
+<td>Work that keeps failing verification, is stuck, stopped, or reached its due date without being started; decisions nobody can make</td>
+</tr>
+<tr>
+<td>Flow of work</td>
+<td>Created → claimed → executing → submitted → verified, plus "withdrawn"; the share of people, agents, and processes</td>
+</tr>
+<tr>
+<td>What happened</td>
+<td>The latest core journal entries for the day</td>
+</tr>
+<tr>
+<td>Awaiting your signature</td>
+<td>Approvals and acceptances assigned to you or your role: "Approve" / "Reject", "Accept" / "Return"</td>
+</tr>
+<tr>
+<td>In progress now</td>
+<td>Running agent attempts and work claimed by people</td>
+</tr>
+</tbody>
+</table>
+<p>The console computes the numbers from the day's journal; if it is longer than can be read
+at once, there is a note under the summary.</p>
+<h3 id="work">Work<a class="headerlink" href="#work" title="Permanent link">&para;</a></h3>
+<p>A list of all of the organization's work: by people, agents, and processes. A piece of work
+lands in exactly one group, in order of precedence:</p>
+<table>
+<thead>
+<tr>
+<th>Group</th>
+<th>What is in it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Waiting for you</td>
+<td>Your decisions and acceptances (<code>GET /me/attention</code>), with an in-place action: "Decide", "Accept"</td>
+</tr>
+<tr>
+<td>Stuck</td>
+<td>Stopped work (<code>blocked</code>), work with a failed verification, stuck signals</td>
+</tr>
+<tr>
+<td>In progress</td>
+<td>Active work that has already been claimed</td>
+</tr>
+<tr>
+<td>Not started</td>
+<td><code>backlog</code> and active work that has never been claimed</td>
+</tr>
+<tr>
+<td>Done and verified today</td>
+<td>Collapsed, read only when expanded</td>
+</tr>
+</tbody>
+</table>
+<p>A row has the status, title, number, a readiness phrase, and four stamps: where the work
+came from, who is doing it, what proves it, who signs off. Work without an executor gets
+"Assign": it opens the work page with the "Hand over" form (<code>?act=handoff</code>).</p>
+<p>Filters live in the address <code>/work?q=&amp;mine=&amp;type=&amp;exec=&amp;owner=&amp;due=&amp;sort=</code>: search by title
+or number, "Mine only", work type, who executes, who is responsible, due date (<code>overdue</code>,
+<code>today</code>, <code>week</code>), and order (newest first, <code>dueDate</code>, <code>startDate</code>). "Mine only" means: the
+executor is me <strong>or</strong> I am responsible. The core cannot do "or", so each group makes two
+requests, and the console merges them without duplicates. The core returns no counters: the
+number on a group counts the rows shown, and "12+" means not all pages have been read.</p>
+<h4 id="assign-work">Assign work<a class="headerlink" href="#assign-work" title="Permanent link">&para;</a></h4>
+<p>The "Assign work" button opens a form with a "Will be created" preview. Fields: what to do,
+work type (only those allowed in the workspace; the type sets the acceptance criteria;
+without a type the work is free-form), who executes (only those who can claim this type
+here), expected result, who is responsible (you by default), due date, workspace, basis.
+"Create work" becomes active when there is a title, a result, and a due date. The work is
+created with <code>POST /api/v1/tasks</code> with an idempotency key, and its page opens after the
+write. The result and the basis go into the description: the core has no separate fields
+for them.</p>
+<p>The form can be opened prefilled, as a <strong>proposal by link</strong>:</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>/console/work/new?title=…&amp;type=…&amp;exec=…&amp;owner=…&amp;due=…&amp;ws=…&amp;result=…&amp;basis=…
+</span></code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>What</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>title</code></td>
+<td>What to do, required (up to 500 characters)</td>
+</tr>
+<tr>
+<td><code>type</code></td>
+<td>Work type key</td>
+</tr>
+<tr>
+<td><code>exec</code>, <code>owner</code>, <code>ws</code></td>
+<td>id of the executor, the responsible person, and the workspace</td>
+</tr>
+<tr>
+<td><code>due</code></td>
+<td><code>YYYY-MM-DD</code> (by 18:00 on the browser's clock) or an ISO 8601 date-time</td>
+</tr>
+<tr>
+<td><code>result</code>, <code>basis</code></td>
+<td>Expected result and basis (up to 2000 characters)</td>
+</tr>
+</tbody>
+</table>
+<p>An invalid value is discarded, and the person fills it in on the form. In an assistant's
+reply such a link is a "Work will be created" card with "Create work" and "Edit": the work
+is created by the person with a click, not by the assistant.</p>
+<h3 id="work-page">Work page<a class="headerlink" href="#work-page" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Header:</strong> status, title, readiness phrase, and the actions "Hand over", "Withdraw",
+  "Edit". The consequences are visible before the button; after the click, status lines.</li>
+<li><strong>Problem</strong> appears when the last verification failed or the work is stopped: a
+  diagnosis in words and the count of consecutive failures. While there are fewer than
+  three failures, the executor retries on its own. Stopped work can be "Retry as before":
+  the executor will claim it again.</li>
+<li><strong>Awaiting your signature</strong> is the decision, if it is yours, with an explanation of why
+  you.</li>
+<li><strong>Process step</strong> is the step form, if the work was created by a process step involving
+  a person. "Complete step" records the answers and completes the work.</li>
+<li><strong>Materials</strong> are the work's artifacts with a link to the document page.</li>
+<li><strong>Details:</strong> type, who is responsible and who executes, the required role ("nobody holds
+  it", if so), workspace, due date, start.</li>
+<li><strong>Related work:</strong> the process case that created the work, and relations to other work.</li>
+<li><strong>History</strong> in three views: brief, by time, full journal. An agent attempt opens its
+  transcript: messages, tool calls, outcome (thinking is not stored). Below the history is
+  a comment field (⌘/Ctrl+Enter).</li>
+</ul>
+<p><strong>Hand over and withdraw.</strong> While an executor holds the work, the core does not allow it to
+be changed (<code>409 task_claimed</code>). So the console asks the executor to stop the attempt
+(<code>:request-cancel</code>, the transcript is kept), releases the claim (<code>claims/{id}:release</code>,
+permission <code>claims.manage</code>), and changes the work with <code>PATCH</code> and <code>If-Match</code>. "Withdraw"
+requires a reason and moves the work to a status with the <code>terminal_cancelled</code> category.
+What has been done in external systems is not rolled back.</p>
+<p><strong>Assign when there is no role.</strong> The core checks the role when the executor <strong>claims</strong> the
+work (<code>403 not_eligible</code>), not at assignment. So "Hand over" to a candidate without the role
+offers either to <strong>grant the role</strong> in the work's workspace (permission <code>org.manage</code>) or to
+<strong>assign without the role</strong>: the role requirement is removed from the work, and a comment
+is written to the history.</p>
+<h3 id="documents-and-viewing">Documents and viewing<a class="headerlink" href="#documents-and-viewing" title="Permanent link">&para;</a></h3>
+<p>The <code>/console/documents/&lt;id&gt;</code> page shows a material: the document, who added it and when,
+the source, what it proves, "Download", "Open in new tab" (for an external one, "Open in
+source").</p>
+<table>
+<thead>
+<tr>
+<th>Format</th>
+<th>How it is shown</th>
+<th>Limit</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Markdown, text, CSV, JSON, images (except SVG)</td>
+<td>As text or an image</td>
+<td>1 MB</td>
+</tr>
+<tr>
+<td>PDF</td>
+<td>Five pages at a time; text is selectable, "Find in document" searches up to 300 pages</td>
+<td>30 MB</td>
+</tr>
+<tr>
+<td>DOCX, XLSX, PPTX</td>
+<td>As text with tables; XLSX up to 500 rows per sheet; PPTX the slide text</td>
+<td>15 MB</td>
+</tr>
+</tbody>
+</table>
+<p>A larger document or another format can be downloaded or opened in a new tab. The content
+is served with <code>Content-Security-Policy: sandbox</code> and <code>nosniff</code>: the document's scripts do
+not run and cannot see the session.</p>
+<h3 id="knowledge-base">Knowledge base<a class="headerlink" href="#knowledge-base" title="Permanent link">&para;</a></h3>
+<p>The <code>/console/knowledge</code> screen shows contracts, identity documents, counterparties, and
+other knowledge kinds with their source and validity period. The kinds and columns are set
+by the knowledge packages enabled for the workspace root.</p>
+<ul>
+<li><strong>Needs attention</strong> lists entries whose validity expires within the next 30 days or
+  expired within the last 7, and the renewal work, if the expiry rule created it.</li>
+<li><strong>Knowledge</strong> offers search, a kind switcher, and the kind's table. Search covers the
+  title, key, and text attributes among what has been read (up to 2000 entries).</li>
+<li><strong>Where knowledge comes from</strong> and <strong>What changed</strong> show reconciliations with sources and
+  changes from the journal.</li>
+</ul>
+<p>A row opens a <strong>knowledge base document</strong>: all details according to the kind's schema, the
+validity period, a warning if expiry is near and there is no renewal work, and the entry's
+<strong>relations</strong> according to the package's relations, with a link to the other end.</p>
+<h3 id="journal">Journal<a class="headerlink" href="#journal" title="Permanent link">&para;</a></h3>
+<p>A screen for auditors: all core journal entries from newest to oldest: when (to the
+second), who (a person, an agent, a process, or "System"), what happened, on which object,
+and in which workspace. The journal is append-only: the console changes nothing in it.
+The <code>events.read</code> permission is required.</p>
+<table>
+<thead>
+<tr>
+<th>Filter</th>
+<th>How it works</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Event group</td>
+<td>"Work", "Decisions", "People and access", "Rules and processes", "Agents and skills", "Knowledge base", "Configuration": selected by the core by type prefixes</td>
+</tr>
+<tr>
+<td>Who</td>
+<td>The entry's author: selected by the console from what has been read</td>
+</tr>
+<tr>
+<td>From / To</td>
+<td>A period in days, inclusive: the console reads the journal back to the start of the period</td>
+</tr>
+<tr>
+<td>Object</td>
+<td>All entries about one object: the "everything about the object" link in a row or "In the journal" on the work page: selected by the core</td>
+</tr>
+</tbody>
+</table>
+<p>The core does not accept author and period filters, so the console reads the journal back
+by itself, no further than 10,000 entries, and states how far it has read; beyond that,
+"Show earlier". A row expands: the entry's id and number, the ids of the author, object, and
+workspace, the UTC time, and the full payload. Events about access and permissions, keys
+(including the emergency key), reading and deleting content, archiving and truncating the
+journal are marked with a bar. New entries do not shift the feed: "Show N new entries".</p>
+<p>"Export CSV" and "JSON Lines" save what is shown. The CSV has <code>sequence, occurredAt, type,
+actorId, actor, entityType, entityId, workspaceId, payload, id</code>; a cell that starts with
+<code>= + - @</code> gets an apostrophe so that a spreadsheet editor does not take it for a formula.</p>
+<h3 id="package-screens">Package screens<a class="headerlink" href="#package-screens" title="Permanent link">&para;</a></h3>
+<p>A package can declare its own screens (kind <code>View</code>, TAI-ADR-0066). The console draws them
+from the description in the core (<code>GET /api/v1/views</code>) and gets the data with a
+view-specific query (<code>POST /api/v1/views/{key}:query</code>). A list opens at <code>/console/v/&lt;key&gt;</code>,
+a process instance at <code>/console/v/&lt;key&gt;/&lt;id&gt;</code>. The menu item is placed after "Work",
+"Knowledge base", or in the "Packages" group, as the package declares; a screen without a
+menu item opens by link. Blocks: metrics, a table and a list with filters, a board by
+stage, a chart, a header, fields, steps, history, materials, related knowledge base
+entries. A step with work for a person expands with the "Fill in step" button. An unknown
+block is shown as a "requires a newer console" placeholder.</p>
+<h3 id="settings">Settings<a class="headerlink" href="#settings" title="Permanent link">&para;</a></h3>
+<p>The <code>/console/settings</code> screen gathers what an administrator changes. The section is chosen
+on the left and kept in the address: <code>package:&lt;key&gt;</code>, <code>rules</code>, <code>people</code>. By default the first package with settings is open, otherwise "Rules".</p>
+<ul>
+<li><strong>Packages</strong> has a section for each installed package with settings (TAI-ADR-0067). The
+  form is built from the package's schema, and the labels come from the package's
+  dictionary. For each value you can see whether it is the default, saved, or modified.
+  "Save" writes a new version under your name, and any version can be restored in "Change
+  history". If you leave with unsaved changes, the console asks again. Without the
+  <code>packages.settings.manage</code> permission the form is read-only.</li>
+<li><strong>Rules</strong> lists the rules that create work by themselves (excluding archived ones):
+  whether a rule is on, what triggers it, which package installed it. "Turn on" and "Turn
+  off" show the consequences: work already created stays. Permissions <code>rules.read</code> and
+  <code>rules.write</code>.</li>
+<li><strong>People and roles</strong>: see <a href="#people">below</a>.</li>
+</ul>
+<p>The BFF log records only the route template and never request bodies.</p>
+<div class="admonition warning">
+<p class="admonition-title">Core capabilities</p>
+<p>The console opens package settings and the person profile
+according to the accepted core contract. If the core does not support them yet, the
+section says so in words ("The core does not store package settings yet"), and the
+other sections work.</p>
+</div>
+<h2 id="management-actions-and-permissions">Management actions and permissions<a class="headerlink" href="#management-actions-and-permissions" title="Permanent link">&para;</a></h2>
+<p>Permissions are decided by the core using the signed-in person's token and their IAM ↔ core
+binding. The console shows the consequences before the button, sends the request, and
+restates a refusal in words ("you do not have permission to change rules"). The console
+hides in advance only what is impossible by meaning: changing your own permissions and
+visibility, disabling yourself. A package settings form without the permission opens
+read-only.</p>
+<table>
+<thead>
+<tr>
+<th>Action</th>
+<th>Where</th>
+<th>Core permission</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Decide an approval or acceptance</td>
+<td>"Today", work page</td>
+<td>Decided by the core: assignment, role, <code>approvals.decide</code></td>
+</tr>
+<tr>
+<td>Assign, edit, comment on work</td>
+<td>"Work", work page</td>
+<td><code>tasks.write</code></td>
+</tr>
+<tr>
+<td>Hand over, withdraw, retry</td>
+<td>Work page</td>
+<td><code>tasks.write</code>; releasing someone else's claim requires <code>claims.manage</code></td>
+</tr>
+<tr>
+<td>Turn a rule on or off</td>
+<td>"Rules"</td>
+<td><code>rules.write</code></td>
+</tr>
+<tr>
+<td>Change package settings</td>
+<td>"Packages"</td>
+<td><code>packages.settings.manage</code></td>
+</tr>
+<tr>
+<td>Grant, revoke, create a role</td>
+<td>"People and roles", work page</td>
+<td><code>org.manage</code> (reading: <code>org.read</code>)</td>
+</tr>
+<tr>
+<td>People: add, permissions, visibility, disable, enable</td>
+<td>"People and roles"</td>
+<td>See <a href="#people">People and roles</a></td>
+</tr>
+</tbody>
+</table>
+<p>Core calls from the browser are restricted by the BFF allow-list: reads are open on the
+paths of the core API snapshot, changes only through screen actions, and everything else
+gets <code>404 not_found</code> even with the permission. Skills are called only without side effects,
+and a change from a foreign origin gets <code>403 forbidden_origin</code>. A retry after a failure uses
+the same <code>Idempotency-Key</code>; a <code>409 version_conflict</code> response means the object was changed
+in the meantime.</p>
+<div class="admonition warning">
+<p class="admonition-title">The <code>admin</code> permission does not apply in the console</p>
+<p>By default the console requests the scope <code>control-plane:read control-plane:write</code>
+(<code>RUNTIME_CONSOLE_CP_SCOPES</code>). Scope is the ceiling of the binding's permissions, and
+<code>admin</code> does not pass through it without <code>control-plane:admin</code> (see
+<a href="../control-plane/authorization.html">Authorization and permissions</a>). Each console
+section needs explicit permissions in the binding.</p>
+</div>
+<h2 id="people">People and roles<a class="headerlink" href="#people" title="Permanent link">&para;</a></h2>
+<p>The "Settings" → "People and roles" section (<code>/console/settings?section=people</code>):</p>
+<ul>
+<li><strong>People</strong> lists the organization's people (<code>GET /api/v1/principals</code>, kind <code>human</code>), with
+  disabled ones at the bottom. For each person you can see their roles and where each
+  applies: across the whole organization or in a workspace. Search is by name and by role.
+  "Grant role" grants an organization or workspace role (a workspace role also applies in
+  nested workspaces). "×" revokes a role: the person will not claim new work with it, and
+  work already claimed stays.</li>
+<li><strong>Roles</strong> lists the title, key, package, where the role applies, and how many people hold
+  it. "New role" creates a role (the key defaults to one derived from the title), "Edit"
+  changes the title and description. Roles cannot be deleted.</li>
+</ul>
+<p>A role is a rule for selecting an executor: work can require a role, and without it the
+work cannot be claimed. A role grants no authority; that is set by the binding's
+permissions. Reading requires <code>org.read</code>, changing roles <code>org.manage</code>. Agents are not in
+this section: their roles are set by their description in the package.</p>
+<p>A person's name leads to the <strong>person page</strong> <code>/console/settings/people/&lt;id&gt;</code> (TAI-ADR-0068):</p>
+<table>
+<thead>
+<tr>
+<th>Zone</th>
+<th>What is in it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Access</td>
+<td>Whether the person is active and can sign in ("can sign in", "sign-in revoked", "never signed in"); "Disable" or "Enable"</td>
+</tr>
+<tr>
+<td>Details</td>
+<td>Name, job title, work e-mail, phone, note; saved with <code>If-Match</code> on the version</td>
+</tr>
+<tr>
+<td>Permissions</td>
+<td>The "Observes", "Works", or "Manages the organization" set; "custom" if permissions were chosen one by one. "Show individual permissions" expands them by group; before saving you can see what will be added and what will be removed</td>
+</tr>
+<tr>
+<td>Roles</td>
+<td>The person's roles with "Grant role" and revocation</td>
+</tr>
+<tr>
+<td>Visibility</td>
+<td>"Whole organization" or "Own workspaces only"; workspace membership: "Add" and "Remove"</td>
+</tr>
+</tbody>
+</table>
+<p>Permissions are changed by an upsert of the binding
+(<code>POST /api/v1/principals/{id}/iam-bindings</code>, permission <code>principals.write</code>) and take effect
+from the person's next request. The console does not change your own permissions and
+visibility, so that you do not lose access. On the person page the console neither grants
+nor removes <code>admin</code>, and it preserves permissions it does not know when the set changes.
+"Own workspaces only" is a mode for people only: the person sees the workspaces where they
+are a member and the nested ones, and everything else is "not found" for them. Membership
+is changed with the <code>workspaces.manage</code> permission. If the core's response has no profile
+version or visibility mode, these zones are read-only.</p>
+<h3 id="people-admin">Who can manage people<a class="headerlink" href="#people-admin" title="Permanent link">&para;</a></h3>
+<p>Adding, disabling, and enabling people is possible when both conditions hold:</p>
+<ul>
+<li><strong>in IAM</strong>, the scope <code>iam:people</code>. Federation grants it only to a member of the IAM group
+  <code>people-admins</code> and only on an explicit request from the console; a PAT never carries it;</li>
+<li><strong>in the core</strong>, permissions for the flow's steps: <code>principals.write</code>,
+  <code>workspaces.manage</code>, <code>org.manage</code>.</li>
+</ul>
+<p>The "Add person" button is visible to everyone. Without <code>iam:people</code> the flow does not
+start, and the console answers "you are not a people administrator (IAM group
+<code>people-admins</code>)". The group and the owner's membership are created by
+<a href="../getting-started/bootstrap.html">bootstrap</a>.</p>
+<h3 id="add-person">Add person<a class="headerlink" href="#add-person" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Field</th>
+<th>What to enter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name</td>
+<td>Display name</td>
+</tr>
+<tr>
+<td>E-mail</td>
+<td>The address the person uses to sign in to the IdP</td>
+</tr>
+<tr>
+<td>Sign-in provider identifier</td>
+<td><strong>Required</strong> if the console does not create the user. The value of the claim IAM uses to match the sign-in: usually <code>sub</code> from the id token, shown as the user ID in the IdP admin console</td>
+</tr>
+<tr>
+<td>Workspace</td>
+<td>Where the person becomes a member; by default, the one from the header</td>
+</tr>
+<tr>
+<td>Permissions</td>
+<td>"Observation", "Work", "Management", or "Administrator (everything)"</td>
+</tr>
+<tr>
+<td>Roles</td>
+<td>Roles of the organization and of the selected workspace</td>
+</tr>
+</tbody>
+</table>
+<p>The person must already exist at the sign-in provider: in the open distribution the console
+does not create users at the provider; the IdP administrator does (for Keycloak, with
+<a href="../iam/keycloak.html#scripts"><code>deploy/keycloak/keycloak-users.py</code></a>). The identifier is not
+derived from the e-mail, because signing in by an unverified e-mail would allow taking over
+someone else's account. You cannot grant more than your own permissions: the console checks
+permissions before IAM and answers <code>permission_escalation</code> with a list of the missing ones.
+Only an administrator can grant "Administrator".</p>
+<p>The flow runs step by step on behalf of the signed-in administrator:</p>
+<pre class="mermaid"><code>flowchart LR
+    A["1. Account&lt;br/&gt;in IAM"] --&gt; B["2. Provider sign-in&lt;br/&gt;(sub)"]
+    B --&gt; C["3. Core&lt;br/&gt;principal"]
+    C --&gt; D["4. IAM ↔ core binding&lt;br/&gt;and permissions"]
+    D --&gt; E["5. Workspace&lt;br/&gt;member"]
+    E --&gt; F["6. Roles"]</code></pre>
+<p>The flow is idempotent and has no store of its own. If it is interrupted, the window shows
+the completed steps and the step that was refused, and repeating the same form completes the
+flow: what was created is marked "already existed", and the core applies membership and
+roles without duplicates. Unfinished additions are visible in the "Incomplete" block with a
+"Complete" button. A people administrator also sees there the people who exist only in IAM.</p>
+<p>The output is a <strong>first sign-in link</strong>
+(<code>&lt;public address&gt;/console/_auth/login?login_hint=&lt;e-mail&gt;</code>). The person signs in with it
+through the IdP and immediately works with the assigned permissions.</p>
+<p>The flow stops with an explanation if the provider sign-in already belongs to another
+principal or is disabled in IAM, if the person signs in under a different identifier, if a
+person with this e-mail is disabled, if IAM does not allow reading the IdP links, or if
+there are too many core principals to check them all (<code>lookup_incomplete</code>). In the last two
+cases the console refuses rather than risk creating a duplicate.</p>
+<div class="admonition note">
+<p class="admonition-title">A disabled person is not added again</p>
+<p>They are brought back with the "Enable" button (<a href="#people-enable">Enable a person</a>),
+together with their history.</p>
+</div>
+<h3 id="people-disable">Disable a person<a class="headerlink" href="#people-disable" title="Permanent link">&para;</a></h3>
+<p>The "Disable" and "Enable" buttons are on the person page in the "Access" zone; you cannot
+disable yourself. The window shows the consequences and an optional "Why" field that goes
+into the journal. Disabling closes sign-in in IAM and revokes tokens and PATs, revokes
+bindings and delegations, closes sessions (including the assistant's and the plugins'),
+releases claimed work, and fails the runs in progress on it. The work stays assigned to the
+person and needs to be handed over. The person, their roles, history, and authorship remain.
+The flow goes through the BFF (<code>POST /console/api/org/people/{id}:disable</code>):</p>
+<ol>
+<li><strong>Core gate.</strong> An agent is not disabled; it is retired from its package
+   (<code>use_agent_retire</code>), and the same applies to a service account
+   (<code>principal_kind_not_disableable</code>). Then <code>POST /api/v1/authz:check</code> with the <code>disable</code>
+   action: permission <code>principals.write</code>, "not yourself" (<code>cannot_disable_self</code>), "only an
+   administrator disables an administrator" (<code>permission_escalation</code>). The core sees
+   <code>admin</code> both in the target's bindings and in its unrevoked API keys. If the gate refuses,
+   IAM is not called.</li>
+<li><strong>IAM</strong>: <code>:disable</code> on the IAM account closes sign-in and revokes tokens and PATs.</li>
+<li><strong>Core</strong>: <code>POST /api/v1/principals/{principal_id}:disable</code> (CP-ADR-0077): bindings,
+   delegations, sessions, claims, and runs.</li>
+</ol>
+<p>If the core refuses after IAM, the person can no longer sign in, and the window says where
+the flow stopped; a retry completes the disabling. IAM itself refuses for a member of the
+<code>people-admins</code> group (<code>people_admin_protected</code>): such a person can be disabled only by IAM
+bootstrap. Without <code>iam:people</code> the console disables the person only in the core and says
+that the IAM account remains open; without permissions in the core it grants nothing.</p>
+<h3 id="people-enable">Enable a person<a class="headerlink" href="#people-enable" title="Permanent link">&para;</a></h3>
+<p>"Enable" brings back a disabled person (CP-ADR-0077, the "Enabling" amendment). The core
+principal stays the same, so work, the journal, and decisions refer to the same principal.
+Only a people administrator (scope <code>iam:people</code>) can enable.</p>
+<table>
+<thead>
+<tr>
+<th>Window field</th>
+<th>What to enter</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Permissions after enabling</td>
+<td>"Previous permissions" of the revoked binding (the default, if there was one) or "Observation", "Work", "Management". You cannot grant more than your own permissions</td>
+</tr>
+<tr>
+<td>Why</td>
+<td>Optional, goes into the journal</td>
+</tr>
+</tbody>
+</table>
+<p>The flow goes through the BFF (<code>POST /console/api/org/people/{id}:enable</code>): after the core
+gate, IAM reopens sign-in, <code>POST /api/v1/principals/{principal_id}:enable</code> returns the
+principal to the <code>active</code> status, and then a new binding with the chosen permissions is
+created.</p>
+<p><strong>Bindings are not restored automatically.</strong> The core returns only the status. Bindings,
+delegations, sessions, released work, and interrupted runs stay closed, and previous tokens
+and PATs do not come back: the person signs in again. Live (unrevoked and unexpired) API
+keys work again together with the status: disabling does not revoke them.</p>
+<p>Before IAM the console checks:</p>
+<ul>
+<li><strong>the core gate</strong> (<code>authz:check</code>, action <code>enable</code>): permission <code>principals.write</code>
+  (<code>permission_denied</code>), the target's kind (<code>principal_kind_not_enableable</code>; an agent is
+  brought back by publishing it in its package, <code>use_agent_publish</code>), and escalation: the
+  permissions of the target's live API keys and unrevoked bindings must be held by the person
+  enabling, otherwise <code>permission_escalation</code> with a <code>missing</code> list;</li>
+<li><strong>the chosen permissions</strong>: you cannot issue a binding with permissions you do not have.</li>
+</ul>
+<p>The new binding is created only for an IAM account from the person's previous bindings. If
+there are none, the person has never signed in, and there is nothing to enable
+(<code>iam_principal_unknown</code>). IAM may refuse on its own as well: the person was disabled by HR
+synchronization (<code>principal_provisioned</code>), the person is paused in IAM
+(<code>principal_paused</code>), or belongs to a privilege group you are not a member of
+(<code>people_admin_protected</code>).</p>
+<p><strong>Partial disabling.</strong> If sign-in in IAM is already closed but the core principal is still
+active (the core refused after IAM), the core is not called, and only an administrator
+(<code>admin</code>) can reopen sign-in. Everyone else gets <code>iam_login_closed</code> from the console:
+otherwise a non-administrator could reopen sign-in for, say, an administrator.</p>
+<p>A retry after a failure completes the enabling and does not repeat what was done: the steps'
+idempotency keys are derived from the confirmation key. If the principal is enabled but the
+binding was not issued, the person cannot sign in until the enabling is retried. The refusal
+codes are in the <a href="../reference/errors.html#console-people">Error codes</a> reference.</p>
+<h2 id="assistant">Assistant<a class="headerlink" href="#assistant" title="Permanent link">&para;</a></h2>
+<p>The "Assistant" button (⌘J / Ctrl+J) opens a panel on the right. The screen's data goes
+with the question: the BFF collects it from the core by the screen's address, and search
+text is not included. The conversation is the same as in Telegram; the assistant performs
+actions only after "Allow". <code>?assistant=open</code> opens the console with the panel, and
+<code>/harness/</code> leads there too. Details: <a href="assistant.html">Assistant</a>.</p>
+<h2 id="if-a-service-is-unavailable">If a service is unavailable<a class="headerlink" href="#if-a-service-is-unavailable" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>The core does not respond</strong>: the zone says "no connection to the core", the connection
+  chip shows the time of the latest data, and everything else works; if the whole screen
+  did not load, "Core unavailable".</li>
+<li><strong>No access</strong>: "You do not have access to this screen" instead of an empty page.</li>
+<li><strong>A service did not accept the console's token</strong> (<code>502 upstream_unauthorized</code>): signing
+  in again will not help; check the audience and scope in IAM.</li>
+<li><strong>The session expired</strong>: the console leads to sign-in and returns to the same address.</li>
+<li><strong>The console server is unavailable</strong>: "Console unavailable: no connection to the
+  server".</li>
+</ul>
+<h2 id="limitations-of-the-current-version">Limitations of the current version<a class="headerlink" href="#limitations-of-the-current-version" title="Permanent link">&para;</a></h2>
+<ul>
+<li>The numbers on "Work" groups are approximate ("12+"): the core has no counters. The
+  console knows the limit of consecutive verification failures (three) by itself: the core
+  does not return it.</li>
+<li>Old office formats (DOC, XLS) can only be downloaded; PDF search does not find a match
+  across a page boundary.</li>
+<li>The knowledge base has no "Add document", search covers only what has been read (up to
+  2000 entries), there is no change history for a single entry, kind profiles are not taken
+  into account when loading the table, and kind names are available only in the package's
+  language.</li>
+<li>Package screens are not narrowed by the workspace in the header, and actions in their
+  header are not shown.</li>
+<li>A person's workspace membership is read for each workspace of the tree: on a large tree
+  this is slow.</li>
+<li>The console does not create the user at the sign-in provider.</li>
+<li>The assistant's proactive messages carry no source label. Each replica has its own
+  sessions file: there is no shared store for several replicas.</li>
+</ul>
+<h2 id="install">Installation<a class="headerlink" href="#install" title="Permanent link">&para;</a></h2>
+<p>The console is the compose service <code>console</code> of the profile of the same name: an image from
+<code>apps/console</code>, uid 10001, a 128 MB memory limit. Sign-in to the console goes through
+Keycloak, so the <code>console</code> profile also brings up the services of the <code>idp</code> profile
+(<a href="../iam/keycloak.html">Keycloak as an external IdP</a>):</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>make<span class="w"> </span>secrets
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>make<span class="w"> </span>up<span class="w"> </span><span class="nv">PROFILES</span><span class="o">=</span><span class="s2">"core edge console"</span>
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>make<span class="w"> </span>bootstrap
+</span></code></pre></div>
+<p>There are no external ports: the edge serves the console at <code>/console/*</code>, and the site root
+leads to <code>/console/</code> (see <a href="../operations/edge-and-tls.html">Edge and TLS</a>). You need:</p>
+<ol>
+<li><strong>The OIDC client</strong> <code>runtime-console</code> in the realm: confidential, Authorization Code +
+   PKCE S256, redirect <code>&lt;public address&gt;/console/_auth/callback</code>. A new installation gets
+   it from the realm template on first import; in a realm that is already live it is
+   created by <code>deploy/keycloak/keycloak-runtime-console-client.py</code> (see <a href="../iam/keycloak.html#scripts">Service
+   scripts</a>).</li>
+<li><strong>Secrets</strong> in <code>secrets/</code>: <code>runtime-console-oidc-secret</code> (the same as the client's in the
+   IdP) and <code>runtime-console-cookie-secret</code> (at least 32 bytes). They are created by
+   <code>make secrets</code> with mode <code>0600</code>; on Linux the owner is uid 10001. Without them compose
+   will not create the container (see <a href="../operations/secrets.html">Secrets and rotation</a>).</li>
+<li><strong>IAM</strong>: an identity provider for the IdP, the audiences <code>control-plane</code>, <code>iam</code> (scope
+   <code>iam:people</code>) and <code>human-harness</code> (scope <code>harness:use</code>), and the <code>people-admins</code> group;
+   they are created by <code>deploy/bootstrap.py</code>. <code>.env</code> needs <code>IAM_TENANT_ID</code>; without it the
+   console does not start.</li>
+<li><strong>The sessions volume</strong> <code>console_sessions</code> at <code>/data/sessions</code>: the image sets
+   <code>CONSOLE_SESSION_STORE_DIR=/data/sessions</code>, and with this volume sessions survive a
+   rollout.</li>
+<li><strong>People in Keycloak.</strong> The console does not create users at the sign-in provider: they
+   are created by <code>deploy/keycloak/keycloak-users.py</code>, and the user's <code>sub</code> is entered in
+   the "Add person" form (see <a href="../iam/keycloak.html#onboarding">Onboarding a person</a>).</li>
+</ol>
+<p>The assistant in the console panel is a separate profile, <code>harness</code> (see
+<a href="assistant.html">Assistant</a>).</p>
+<p>Compose passes the <code>.env</code> keys to the container as <code>CONSOLE_*</code>:</p>
+<table>
+<thead>
+<tr>
+<th><code>.env</code> key</th>
+<th>Container variable</th>
+<th>Default</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>TAIMEN_PUBLIC_URL</code></td>
+<td><code>CONSOLE_PUBLIC_URL</code></td>
+<td>required; <code>https://</code> enables <code>Secure</code> on the cookie</td>
+</tr>
+<tr>
+<td><code>IAM_TENANT_ID</code></td>
+<td><code>CONSOLE_IAM_TENANT</code></td>
+<td>required</td>
+</tr>
+<tr>
+<td><code>RUNTIME_CONSOLE_OIDC_ISSUER</code></td>
+<td><code>CONSOLE_OIDC_ISSUER</code></td>
+<td><code>${TAIMEN_PUBLIC_URL}/auth/realms/platform</code></td>
+</tr>
+<tr>
+<td><code>RUNTIME_CONSOLE_OIDC_CLIENT_ID</code></td>
+<td><code>CONSOLE_OIDC_CLIENT_ID</code></td>
+<td><code>runtime-console</code></td>
+</tr>
+<tr>
+<td><code>RUNTIME_CONSOLE_OIDC_SCOPES</code></td>
+<td><code>CONSOLE_OIDC_SCOPES</code></td>
+<td><code>openid profile email</code></td>
+</tr>
+<tr>
+<td><code>RUNTIME_CONSOLE_IDENTITY_PROVIDER</code></td>
+<td><code>CONSOLE_IDENTITY_PROVIDER</code></td>
+<td><code>keycloak</code>, the provider key in IAM</td>
+</tr>
+<tr>
+<td><code>RUNTIME_CONSOLE_CP_SCOPES</code></td>
+<td><code>CONSOLE_CP_SCOPES</code></td>
+<td><code>control-plane:read control-plane:write</code></td>
+</tr>
+<tr>
+<td><code>RUNTIME_CONSOLE_SESSION_TTL_HOURS</code></td>
+<td><code>CONSOLE_SESSION_TTL_HOURS</code></td>
+<td><code>12</code></td>
+</tr>
+<tr>
+<td><code>RUNTIME_CONSOLE_PRODUCT_NAME</code></td>
+<td><code>CONSOLE_PRODUCT_NAME</code></td>
+<td><code>Console</code>, the title of the tab and the sign-in page</td>
+</tr>
+<tr>
+<td><code>RUNTIME_CONSOLE_ORG_NAME</code></td>
+<td><code>CONSOLE_ORG_NAME</code></td>
+<td>empty; the organization name until the core provides it</td>
+</tr>
+<tr>
+<td><code>RUNTIME_CONSOLE_LOCALES</code></td>
+<td><code>CONSOLE_LOCALES</code></td>
+<td><code>en,ru</code></td>
+</tr>
+<tr>
+<td><code>RUNTIME_CONSOLE_DEFAULT_LOCALE</code></td>
+<td><code>CONSOLE_DEFAULT_LOCALE</code></td>
+<td><code>en</code>; must be in <code>CONSOLE_LOCALES</code></td>
+</tr>
+</tbody>
+</table>
+<p>The paths to the secret files are set by <code>RUNTIME_CONSOLE_OIDC_SECRET_FILE</code> and
+<code>RUNTIME_CONSOLE_COOKIE_SECRET_FILE</code>. Compose sets the rest itself: <code>CONSOLE_BASE_PATH=/console</code>,
+port <code>8090</code>, and the internal addresses of IAM, the Control Plane, and the harness launcher.
+The BFF gives the brand and languages to the interface at startup
+(<code>GET /console/api/config</code>); the console code contains no product name. An invalid variable
+stops startup with a reason. Checks: <code>GET /console/healthz</code> (liveness, no session) and
+<code>GET /console/readyz</code> (<code>503 idp_unavailable</code> if the IdP does not answer discovery).
+Reference: <a href="../reference/environment.html">Environment variables</a>.</p>
+<div class="admonition danger">
+<p class="admonition-title">Rollout order</p>
+<p>The IAM version must issue <code>iam:people</code> only to members of the <code>people-admins</code> group.
+Update IAM first, and only then run bootstrap, which adds this scope to the audience.
+Otherwise federation will issue the privileged scope to everyone who signs in.</p>
+</div>
+<h2 id="common-problems">Common problems<a class="headerlink" href="#common-problems" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Symptom</th>
+<th>Cause</th>
+<th>What to do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The <code>console</code> container is not created</td>
+<td>The <code>secrets/runtime-console-*-secret</code> files are missing</td>
+<td><code>make secrets</code>, <code>chown 10001:10001</code>, then <code>tools/compose up -d console</code></td>
+</tr>
+<tr>
+<td>The <code>console</code> container keeps restarting</td>
+<td>Empty <code>IAM_TENANT_ID</code>, a cookie secret shorter than 32 bytes, or an invalid variable</td>
+<td>The reason is in the container log; fix <code>.env</code> or the secret</td>
+</tr>
+<tr>
+<td>Error at <code>/console/_auth/callback</code></td>
+<td>The client's redirect URI does not match the public address, or the secret in the IdP differs</td>
+<td>Rerun the client script with the correct address, compare the secret</td>
+</tr>
+<tr>
+<td>"No access to the console" after sign-in</td>
+<td>IAM refused the exchange: the IdP is not registered, the person is not linked, or the audience is not granted</td>
+<td>Check <code>RUNTIME_CONSOLE_IDENTITY_PROVIDER</code> and the audiences, run bootstrap</td>
+</tr>
+<tr>
+<td>Everyone has to sign in again after a rollout</td>
+<td>The cookie secret changed or the container has no <code>console_sessions</code> volume</td>
+<td>Restore the secret and the volume</td>
+</tr>
+<tr>
+<td>A section says "no permission…" although the person has <code>admin</code></td>
+<td><code>admin</code> does not pass the console's scope ceiling</td>
+<td>Grant the binding the section's explicit permissions</td>
+</tr>
+<tr>
+<td>"Add person": "you are not a people administrator"</td>
+<td>The person is not in the IAM group <code>people-admins</code></td>
+<td>Add them to the group and sign in again</td>
+</tr>
+<tr>
+<td>An added person cannot sign in</td>
+<td>The IdP identifier was entered incorrectly</td>
+<td>Compare the <code>sub</code> in the IdP; an IAM administrator fixes the link</td>
+</tr>
+<tr>
+<td>"Enable" answers <code>iam_login_closed</code></td>
+<td>Partial disabling: the principal is active, sign-in in IAM is closed</td>
+<td>Ask an administrator to repeat "Enable"</td>
+</tr>
+</tbody>
+</table>
+<h2 id="see-also">See also<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="assistant.html">Assistant</a></li>
+<li><a href="index.html">Operator guide</a></li>
+<li><a href="../control-plane/catalog-packages.html">Catalog packages</a></li>
+<li><a href="../control-plane/authorization.html">Authorization and permissions</a></li>
+<li><a href="../iam/keycloak.html">Keycloak as an external IdP</a></li>
+<li><a href="../reference/errors.html#console-people">Error codes</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="index.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Operator guide">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Operator guide
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="assistant.html" class="md-footer__link md-footer__link--next" aria-label="Next: Assistant">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Assistant
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "navigation.footer", "navigation.path", "toc.follow", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,7382 @@
+
+<!doctype html>
+<html lang="ru" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Техническая и эксплуатационная документация платформы Taimen">
+      
+      
+      
+      
+        <link rel="prev" href="cli-and-mcp.html">
+      
+      
+        <link rel="next" href="configuration.html">
+      
+      
+        
+          <link rel="alternate" href="../../control-plane/api.html" hreflang="en">
+        
+          <link rel="alternate" href="api.html" hreflang="ru">
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>API - Taimen — руководство по платформе</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#api" class="md-skip">
+          Перейти к содержанию
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Верхний колонтитул">
+    <a href="../index.html" title="Taimen — руководство по платформе" class="md-header__button md-logo" aria-label="Taimen — руководство по платформе" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Taimen — руководство по платформе
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              API
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Выберите язык">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="../../control-plane/api.html" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="api.html" hreflang="ru" class="md-select__link">
+              Русский
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Поиск" placeholder="Поиск" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Поиск">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Очистить" aria-label="Очистить" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Инициализация поиска
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Вкладки" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Главная
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../overview/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Обзор
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../getting-started/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Быстрый старт
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Control Plane
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../packages/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Пакеты
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../processes/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Процессы
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../iam/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  IAM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../memory/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Память
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../workplace/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Рабочее место человека
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../notifications/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Уведомления
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../runner/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Агенты и runner
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../operator/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Работа оператора
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../sdk/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SDK и интеграции
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../operations/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Эксплуатация
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../troubleshooting/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Диагностика
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../reference/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Справочник
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Навигация" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Taimen — руководство по платформе" class="md-nav__button md-logo" aria-label="Taimen — руководство по платформе" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Taimen — руководство по платформе
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Главная
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../overview/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обзор
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Обзор
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/what-is-taimen.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Что такое Taimen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/architecture.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Архитектура
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/concepts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ключевые понятия
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/components.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Состав поставки
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/security-model.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Модель безопасности
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../getting-started/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Быстрый старт
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Быстрый старт
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/requirements.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Требования
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/quickstart.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Установка и первый запуск
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/configuration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Конфигурация .env
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/bootstrap.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bootstrap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/first-task.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Первая задача
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Control Plane
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Control Plane
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="work-model.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Модель работы
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="task-types.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Типы задач и статусы
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="goals-and-evidence.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Цели, приёмка и evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="work-rules.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Правила вывода работы
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="execution.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Исполнение — claims и runs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="approvals.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Approvals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="artifacts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Артефакты и комментарии
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="events.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    События
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="event-subscriptions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Подписки на события
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="harness-protocol.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Харнесс-протокол
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="context.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Контекст задачи и память
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="catalog-packages.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Пакеты каталога
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authorization.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Авторизация и права
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cli-and-mcp.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI и MCP-сервер
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="api.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Базовый адрес
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Аутентификация
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Заголовки протокола
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Пагинация
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Пагинация">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        События
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#query-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Неизвестные query-параметры
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idempotency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Идемпотентность
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Формат ошибок
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Служебные endpoints
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#endpoints_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Справочник endpoints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Справочник endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bootstrap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bootstrap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#principals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Principals, ключи, привязки, делегирование
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Сессии и харнесс
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Типы задач
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Задачи
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Цели
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Комментарии к задаче
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claims" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claims
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Прогоны (runs)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Артефакты
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approvals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approvals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        События и наблюдения
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Контекст и знания
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workspaces-workspace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workspaces и типы workspace
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Проекты и шаблоны
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Внешние ссылки
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Организационная модель
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Скиллы и вызовы
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Операции
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#events-pagination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Пагинация событий
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SDK
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        См. также
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="configuration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Конфигурация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../packages/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Пакеты
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Пакеты
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/quickstart.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Пакет за 10 минут
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/anatomy.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Анатомия пакета
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/work.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Работа: типы задач и роли
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/rules.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Правила в пакете
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/processes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Процессы в пакете
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/agents.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Агенты пакета
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/skills.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Скиллы пакета
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/integrations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Интеграции
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/knowledge.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Знания и онтология
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/notifications.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Уведомления пакета
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/settings.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Настройки пакета
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/testing.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Тесты пакета
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/install-and-release.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Установка и выпуск
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/author-plugin.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Автор пакетов в Claude Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/tutorial.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Пример: претензии клиентов
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/checklist.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Чек-лист готовности
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../processes/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Процессы
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Процессы
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../processes/knowledge.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Процессы и база знаний
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../processes/expressions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Выражения
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../processes/package-tests.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сценарии и план ядра
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../iam/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IAM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IAM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/principals.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tenants и principals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/credentials.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credentials и PAT
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/tokens.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Токены, audiences, scopes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/service-accounts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service accounts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/federation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Федерация identity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/keycloak.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Keycloak — внешний IdP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/api.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/configuration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Конфигурация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../memory/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Память
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Память
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memory/knowledge-model.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Модель знаний
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memory/namespaces.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespaces и доступ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memory/ingestion.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Загрузка знаний
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memory/retrieval.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Поиск и сборка контекста
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memory/api.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memory/configuration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Конфигурация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../workplace/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Рабочее место человека
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Рабочее место человека
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workplace/telegram.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ассистент в Telegram
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../notifications/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Уведомления
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_10" id="__nav_10_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Уведомления
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notifications/notification-rules.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Правила уведомлений
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notifications/telegram.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Telegram
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../runner/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Агенты и runner
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_11" id="__nav_11_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Агенты и runner
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runner/declarative-agents.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Агенты описанием
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runner/fleet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Узлы и fleet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runner/agent-identity.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identity агента
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runner/installation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Установка исполнителя
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runner/adapters.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Адаптеры исполнителей
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runner/execution-workspace.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Рабочие копии
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runner/trace.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Трасса прогонов
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runner/configuration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Конфигурация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../operator/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Работа оператора
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_12" id="__nav_12_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Работа оператора
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operator/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Консоль
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operator/assistant.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ассистент
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operator/mcp-plugin.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP-плагин для Claude Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operator/workflows.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Повседневные сценарии
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../sdk/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SDK и интеграции
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_13" id="__nav_13_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SDK и интеграции
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sdk/platform-auth-sdk.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    platform-auth-sdk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sdk/clients.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Клиенты сервисов
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sdk/skill-sdk.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    skill-sdk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sdk/platform-llm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    platform-llm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../operations/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Эксплуатация
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_14" id="__nav_14_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Эксплуатация
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/deployment.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Промышленное развёртывание
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/edge-and-tls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Периметр и TLS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/upgrades.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Обновление и миграции
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/secrets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Секреты и ротация
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/backup.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Резервное копирование
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/object-storage.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Хранилище объектов (MinIO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/monitoring.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Мониторинг и здоровье
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/capacity.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Ресурсы и масштабирование
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/emergency.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Аварийные процедуры
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../troubleshooting/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Диагностика
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_15" id="__nav_15_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Диагностика
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/startup.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Установка и запуск
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/auth.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Аутентификация и доступ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/runner.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Исполнение и runner
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/memory.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Память и контекст
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../reference/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Справочник
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_16" id="__nav_16_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Справочник
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/environment.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Переменные окружения
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/api.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API сервисов ядра
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/services-and-ports.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Сервисы и порты
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/permissions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Права и scopes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/package-schema.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Схема пакета
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/package-sdk-cli.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Команды package-sdk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/errors.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Коды ошибок
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/make.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Цели make
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/glossary.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Глоссарий
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Содержание">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Содержание
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Базовый адрес
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Аутентификация
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Заголовки протокола
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Пагинация
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Пагинация">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        События
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#query-" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Неизвестные query-параметры
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idempotency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Идемпотентность
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Формат ошибок
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Служебные endpoints
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#endpoints_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Справочник endpoints
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Справочник endpoints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bootstrap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bootstrap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#principals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Principals, ключи, привязки, делегирование
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Сессии и харнесс
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Типы задач
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Задачи
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Цели
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Комментарии к задаче
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claims" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claims
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Прогоны (runs)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_11" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Артефакты
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approvals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approvals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_12" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        События и наблюдения
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_13" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Контекст и знания
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workspaces-workspace" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workspaces и типы workspace
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_14" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Проекты и шаблоны
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Внешние ссылки
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Организационная модель
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Скиллы и вызовы
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Операции
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#events-pagination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Пагинация событий
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SDK
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_17" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        См. также
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Навигация" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../index.html" class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Главная
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="index.html" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Control Plane
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="api">API<a class="headerlink" href="#api" title="Permanent link">&para;</a></h1>
+<p>Справочник HTTP API Control Plane. Все endpoints живут под <code>/api/v1</code>, поля
+тела и ответа в camelCase. Статья описывает общие правила (аутентификация,
+заголовки, пагинация, идемпотентность, формат ошибок) и перечисляет каждый
+endpoint с правом и назначением, сгруппировав их по ресурсам. Справочник для
+разработчиков интеграций и харнессов.</p>
+<div class="admonition tip">
+<p class="admonition-title">Машинная схема</p>
+<p>Полная схема OpenAPI отдаётся самим сервисом: <code>GET /openapi.json</code>,
+Swagger UI — <code>GET /docs</code>. Справочник ниже составлен по той же схеме и по
+коду команд, которые проверяют права.</p>
+</div>
+<h2 id="_1">Базовый адрес<a class="headerlink" href="#_1" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Где</th>
+<th>Адрес</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Внутри сети compose</td>
+<td><code>http://control-plane-api:8000</code></td>
+</tr>
+<tr>
+<td>С хоста (по умолчанию только loopback)</td>
+<td><code>http://127.0.0.1:${CP_HOST_PORT:-18000}</code></td>
+</tr>
+<tr>
+<td>Снаружи через периметр</td>
+<td><code>https://platform.example.com</code> (маршруты <code>/api/v1/*</code>, <code>/health/*</code>, <code>/metrics</code>, <code>/docs*</code>, <code>/openapi.json</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>Схема периметра описана в статье <a href="../operations/edge-and-tls.html">Периметр и TLS</a>.</p>
+<h2 id="_2">Аутентификация<a class="headerlink" href="#_2" title="Permanent link">&para;</a></h2>
+<div class="language-http highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="err">Authorization: Bearer &lt;access-token IAM audience control-plane&gt;</span>
+</span></code></pre></div>
+<ul>
+<li>IAM access token: права берутся из привязки identity к principal и
+  сужаются scopes токена (<code>control-plane:read</code>, <code>control-plane:write</code>,
+  <code>control-plane:admin</code>).</li>
+<li>Legacy-ключ <code>cp_&lt;prefix&gt;_&lt;secret&gt;</code> принимается только при
+  <code>CP_LEGACY_API_KEYS_ENABLED=true</code>.</li>
+<li><code>POST /api/v1/bootstrap</code> принимает только <code>Bearer &lt;CP_BOOTSTRAP_TOKEN&gt;</code>.</li>
+<li><code>/health/live</code>, <code>/health/ready</code> и <code>/metrics</code> открыты без аутентификации.</li>
+</ul>
+<p>Actor всегда вычисляется из credential. Подробности — в статье
+<a href="authorization.html">Авторизация и права</a>.</p>
+<h2 id="_3">Заголовки протокола<a class="headerlink" href="#_3" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Заголовок</th>
+<th>Направление</th>
+<th>Семантика</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Idempotency-Key</code></td>
+<td>запрос, мутации</td>
+<td>идемпотентное выполнение, см. раздел <a href="#idempotency">Идемпотентность</a></td>
+</tr>
+<tr>
+<td><code>Idempotency-Replayed: true</code></td>
+<td>ответ</td>
+<td>ответ взят из сохранённого, команда не выполнялась повторно</td>
+</tr>
+<tr>
+<td><code>If-Match: "&lt;entity&gt;-&lt;version&gt;"</code></td>
+<td>запрос</td>
+<td>оптимистичная блокировка: PATCH задачи, workspace, типа workspace, проекта, роли, скилла, цели и комментария; <code>:complete</code> задачи; <code>:transition</code> проекта; <code>config-revisions/{n}:activate</code></td>
+</tr>
+<tr>
+<td><code>ETag</code></td>
+<td>ответ</td>
+<td><code>"&lt;entity&gt;-&lt;version&gt;"</code> у GET задачи (<code>task-</code>), workspace (<code>workspace-</code>), типа workspace (<code>workspace_type-</code>), проекта (<code>project-</code>), роли (<code>role-</code>), скилла (<code>skill-&lt;rowVersion&gt;</code>), цели (<code>goal-</code>), комментария (<code>comment-</code>); у <code>GET /tools</code> — <code>viewHash</code></td>
+</tr>
+<tr>
+<td><code>If-None-Match</code></td>
+<td>запрос</td>
+<td>для <code>GET /tools</code>: <code>304</code>, пока ревизии каталога и политики не изменились</td>
+</tr>
+<tr>
+<td><code>X-Request-ID</code></td>
+<td>оба</td>
+<td>принимается или генерируется; возвращается в ответе и в <code>error.requestId</code></td>
+</tr>
+<tr>
+<td><code>X-Correlation-ID</code></td>
+<td>запрос</td>
+<td>попадает в <code>correlationId</code> событий</td>
+</tr>
+<tr>
+<td><code>X-Run-Id</code></td>
+<td>оба</td>
+<td>сквозной trace-коррелятор (<code>^[A-Za-z0-9._:-]{1,128}$</code>, иначе генерируется); пишется в <code>traceRunId</code> событий, outbox, логи и заголовок к memory-service. Это <strong>не</strong> сущность Run</td>
+</tr>
+</tbody>
+</table>
+<p>Ошибки <code>If-Match</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Ситуация</th>
+<th>Ответ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>заголовка нет</td>
+<td><code>428 if_match_required</code></td>
+</tr>
+<tr>
+<td>заголовок нельзя разобрать</td>
+<td><code>400 invalid_if_match</code></td>
+</tr>
+<tr>
+<td>версия не совпала</td>
+<td><code>409 version_conflict</code>, в <code>details.currentVersion</code> — текущая версия</td>
+</tr>
+</tbody>
+</table>
+<h2 id="_4">Пагинация<a class="headerlink" href="#_4" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>GET /api/v1/tasks?limit=50&amp;cursor=&lt;opaque&gt;
+</span></code></pre></div>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="nt">"nextCursor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">}</span>
+</span></code></pre></div>
+<ul>
+<li><code>limit</code>: по умолчанию 50, максимум 200. Значение вне диапазона даёт
+  <code>422 invalid_limit</code>.</li>
+<li>Курсор непрозрачен. Чужой курсор или курсор от другого порядка сортировки
+  даёт <code>422 invalid_cursor</code>.</li>
+<li>Списки сущностей сортируются стабильно по <code>(created_at, id)</code>, новые первыми.</li>
+<li>Журналы прогона (<code>/runs/{id}/checkpoints</code>, <code>/runs/{id}/actions</code>) идут по
+  <code>seq</code>, старые первыми, курсор привязан к прогону. Без <code>limit</code> и <code>cursor</code>
+  журнал отдаётся целиком одной страницей (<code>nextCursor: null</code>).</li>
+<li>Комментарии задачи — единственная сущностная выборка от старых к новым. Её
+  курсор имеет собственный формат.</li>
+<li><code>GET /tasks?sort=startDate|dueDate</code>: ближайшие первыми, задачи без даты — в
+  конце. Неизвестный <code>sort</code> даёт <code>422 invalid_sort</code>.</li>
+<li><code>GET /work/available</code> может вернуть страницу короче <code>limit</code> при непустом
+  <code>nextCursor</code>.</li>
+</ul>
+<h3 id="_5">События<a class="headerlink" href="#_5" title="Permanent link">&para;</a></h3>
+<p><code>GET /events</code> — отдельный контракт:</p>
+<table>
+<thead>
+<tr>
+<th>Параметр</th>
+<th>Смысл</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cursor</code></td>
+<td>непрозрачный курсор <code>ec1_…</code></td>
+</tr>
+<tr>
+<td><code>after</code></td>
+<td>целочисленный <code>sequence</code> старого формата; адаптируется сервером</td>
+</tr>
+<tr>
+<td><code>tail=N</code></td>
+<td>последние N стабильных событий</td>
+</tr>
+<tr>
+<td><code>entityType</code>, <code>entityId</code></td>
+<td>фильтр по сущности</td>
+</tr>
+<tr>
+<td><code>types</code></td>
+<td>префиксы типа событий, до 20</td>
+</tr>
+<tr>
+<td><code>workspaceId</code></td>
+<td>поддерево workspace; <code>events.read</code> проверяется на нём</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td>размер страницы</td>
+</tr>
+</tbody>
+</table>
+<p>Ответ: <code>{items[], nextCursor, hasMore}</code>, у каждого события есть своё поле
+<code>cursor</code>. При пустой странице <code>nextCursor</code> повторяет переданный.
+Малформированный курсор даёт <code>422 invalid_cursor</code>, курсор будущей версии —
+<code>422 unsupported_cursor_version</code>.</p>
+<p>WebSocket: <code>WS /api/v1/events/ws?after=&lt;cursor&gt;</code>, право <code>events.read</code>. Коды
+закрытия: <code>4401</code> — нет credentials, <code>4403</code> — нет права, <code>4404</code> — нет workspace
+фильтра, <code>4400</code> — плохой курсор или фильтр, <code>4503</code> — PDP недоступен. Фильтры
+и SDK потребителя — в статье <a href="event-subscriptions.html">Подписки на события</a>.</p>
+<h2 id="query-">Неизвестные query-параметры<a class="headerlink" href="#query-" title="Permanent link">&para;</a></h2>
+<p>Сервер не игнорирует query-параметры молча. Параметр, которого endpoint не
+объявляет, даёт <code>400 invalid_request</code>, и выборка не выполняется:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid_request"</span><span class="p">,</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Request does not match the API contract"</span><span class="p">,</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nt">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="nt">"loc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"query.assignedToMee"</span><span class="p">,</span><span class="w"> </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unknown query parameter: ..."</span><span class="p">}]},</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="nt">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req_..."</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Правило действует на всех endpoints <code>/api/v1</code>, кроме WebSocket. Не добавляйте
+служебные параметры вроде cache-buster <code>_=</code>: они тоже будут отклонены.
+Неизвестные поля в JSON-теле также отклоняются (<code>extra="forbid"</code>), кроме тела
+компиляции манифеста.</p>
+<h2 id="idempotency">Идемпотентность<a class="headerlink" href="#idempotency" title="Permanent link">&para;</a></h2>
+<p>Любая мутация (POST-команда или PATCH) принимает заголовок <code>Idempotency-Key</code>
+длиной 1–200 символов, иначе <code>422 invalid_idempotency_key</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Ситуация</th>
+<th>Результат</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>первый запрос</td>
+<td>выполняется, ответ сохраняется на <code>CP_IDEMPOTENCY_TTL_SECONDS</code> (сутки)</td>
+</tr>
+<tr>
+<td>повтор с тем же ключом, методом, путём, телом и principal</td>
+<td>сохранённый ответ и <code>Idempotency-Replayed: true</code></td>
+</tr>
+<tr>
+<td>тот же ключ с другим телом <strong>или другим principal</strong></td>
+<td><code>409 idempotency_key_reused</code></td>
+</tr>
+<tr>
+<td>параллельный дубль, пока первый не завершился</td>
+<td>ждёт до <code>CP_IDEMPOTENCY_WAIT_TIMEOUT_SECONDS</code> (10 с), затем <code>409 idempotency_in_flight</code></td>
+</tr>
+<tr>
+<td>исполнитель упал на полпути</td>
+<td>незавершённая запись живёт не дольше <code>CP_IDEMPOTENCY_PENDING_TTL_SECONDS</code> (60 с)</td>
+</tr>
+</tbody>
+</table>
+<p>Одноразовые секреты не сохраняются: повтор выпуска API-ключа вернёт
+<code>key: null</code>. Для двух команд ключ обязателен: <code>POST /runs/{id}/control-messages</code>
+и <code>POST /runs/{id}/child-handles</code> (без него <code>422 idempotency_key_required</code>).
+Для <code>:handoff</code> и <code>:revoke</code> дочернего handle ключ настоятельно рекомендуется:
+повтор без него после неоднозначного ответа становится новой командой.</p>
+<div class="admonition tip">
+<p class="admonition-title">Правило клиента</p>
+<p>Один логический вызов — один ключ на все транспортные повторы. Повтор
+HTTP-запроса не должен превращаться во вторую бизнес-команду. SDK
+<code>control_plane_client</code> делает это сам.</p>
+</div>
+<h2 id="errors">Формат ошибок<a class="headerlink" href="#errors" title="Permanent link">&para;</a></h2>
+<p>Единый конверт с честными HTTP-кодами. Ответа <code>200</code> с ошибкой внутри не
+бывает.</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">{</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"task_already_claimed"</span><span class="p">,</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Task already has an active claim"</span><span class="p">,</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="nt">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"taskId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w"> </span><span class="nt">"claimId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w"> </span><span class="nt">"expiresAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">},</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="nt">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req_..."</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Клиенту следует опираться на <code>code</code> и <code>details</code>, а не на текст <code>message</code>.</p>
+<table>
+<thead>
+<tr>
+<th>HTTP</th>
+<th>Типичные <code>error.code</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>400</td>
+<td><code>invalid_request</code> (нарушение контракта, в т.ч. неизвестный параметр; <code>details.errors[].loc</code>), <code>invalid_if_match</code>, <code>invalid_skill_inputs</code>, <code>idempotency_key_required</code></td>
+</tr>
+<tr>
+<td>401</td>
+<td><code>invalid_credentials</code></td>
+</tr>
+<tr>
+<td>403</td>
+<td><code>permission_denied</code> (<code>details.required</code>), <code>principal_not_active</code>, <code>delegation_required</code>, <code>claim_holder_mismatch</code>, <code>session_owner_mismatch</code>, <code>bootstrap_disabled</code>, <code>permission_escalation</code>, <code>not_eligible</code>, <code>run_holder_mismatch</code>, <code>tool_not_authorized</code>, <code>child_grant_exceeded</code>, <code>skill_permission_denied</code>, <code>skill_side_effect_not_authorized</code>, <code>run_owner_mismatch</code>, <code>run_id_required</code>, <code>scope_not_granted</code></td>
+</tr>
+<tr>
+<td>404</td>
+<td><code>not_found</code>, <code>tool_not_found</code> (объект чужого tenant'а тоже даёт 404: существование не раскрывается)</td>
+</tr>
+<tr>
+<td>409</td>
+<td><code>version_conflict</code>, <code>stale_claim</code>, <code>task_already_claimed</code>, <code>task_claimed</code>, <code>session_expired</code>, <code>session_not_active</code>, <code>claim_expired</code>, <code>claim_not_active</code>, <code>claim_not_expired</code>, <code>idempotency_key_reused</code>, <code>idempotency_in_flight</code>, <code>already_bootstrapped</code>, <code>task_already_completed</code>, <code>task_not_ready</code>, <code>run_already_active</code>, <code>run_not_active</code>, <code>run_in_progress</code>, <code>approval_required</code>, <code>approval_already_decided</code>, <code>budget_exceeded</code>, <code>action_already_finished</code>, <code>skill_not_invocable</code>, <code>stale_invocation_lease</code>, <code>outcome_not_replayable</code>, <code>snapshot_stale</code>, <code>pack_version_conflict</code>, <code>retention_blocked_by_consumer</code>, конфликты уникальности (<code>*_exists</code>, <code>*_conflict</code>)</td>
+</tr>
+<tr>
+<td>413</td>
+<td><code>request_too_large</code> — тело больше <code>CP_MAX_BODY_BYTES</code></td>
+</tr>
+<tr>
+<td>422</td>
+<td>доменная валидация: <code>invalid_*</code>, <code>task_not_claimable</code>, <code>task_cancelled</code>, <code>empty_update</code>, <code>dependency_cycle</code>, <code>workspace_cycle</code>, <code>workspace_archived</code>, <code>unsupported_protocol_version</code>, <code>server_authoritative_section</code>, <code>secret_material_rejected</code>, <code>child_grant_exceeds_parent</code>, <code>child_result_too_large</code>, <code>cursor_must_not_advance</code>, <code>workspace_not_root</code>, <code>pack_*</code>, <code>snapshot_invalid</code> и др.</td>
+</tr>
+<tr>
+<td>428</td>
+<td><code>if_match_required</code></td>
+</tr>
+<tr>
+<td>500</td>
+<td><code>internal_error</code> — без стектрейса, подробности в логе по <code>requestId</code></td>
+</tr>
+<tr>
+<td>502</td>
+<td><code>memory_unavailable</code> — memory-service не обработал проксируемый запрос (<code>details.memoryStatus</code>, <code>details.retryable</code>)</td>
+</tr>
+<tr>
+<td>503</td>
+<td><code>policy_unavailable</code>, <code>memory_disabled</code>; readiness — БД недоступна или миграции не применены</td>
+</tr>
+</tbody>
+</table>
+<p>Полный реестр кодов всех сервисов — в <a href="../reference/errors.html">Коды ошибок</a>.</p>
+<h2 id="endpoints">Служебные endpoints<a class="headerlink" href="#endpoints" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Метод и путь</th>
+<th>Аутентификация</th>
+<th>Ответ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET /health/live</code></td>
+<td>нет</td>
+<td><code>{"status": "alive"}</code></td>
+</tr>
+<tr>
+<td><code>GET /health/ready</code></td>
+<td>нет</td>
+<td><code>200 {"status": "ready", "revision": "&lt;alembic&gt;"}</code>; <code>503</code> с <code>reason: database_unreachable</code> или <code>migrations_pending</code> (<code>dbRevision</code>, <code>headRevision</code>)</td>
+</tr>
+<tr>
+<td><code>GET /metrics</code></td>
+<td>нет</td>
+<td>метрики в формате Prometheus: <code>http_requests_total</code>, <code>active_harness_sessions</code>, <code>active_claims</code>, <code>active_runs</code>, <code>context_adapter_*</code>, <code>stale_fencing_rejections_total</code>, <code>authz_*</code> и др.</td>
+</tr>
+<tr>
+<td><code>GET /openapi.json</code>, <code>GET /docs</code></td>
+<td>нет</td>
+<td>схема OpenAPI и Swagger UI</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title"><code>/metrics</code> открыт</p>
+<p>Эндпоинт не аутентифицирован. Закрывайте его на уровне периметра, см.
+<a href="../operations/monitoring.html">Мониторинг и здоровье</a>.</p>
+</div>
+<h2 id="endpoints_1">Справочник endpoints<a class="headerlink" href="#endpoints_1" title="Permanent link">&para;</a></h2>
+<p>Колонка «Право» перечисляет permission, которое проверяет сервер. «Владелец»
+означает держателя сессии, claim или прогона. <code>{ref}</code> у задачи — это UUID или
+<code>publicId</code> (<code>TASK-000123</code>).</p>
+<h3 id="bootstrap">Bootstrap<a class="headerlink" href="#bootstrap" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Метод</th>
+<th>Путь</th>
+<th>Право</th>
+<th>Назначение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/bootstrap</code></td>
+<td><code>Bearer &lt;CP_BOOTSTRAP_TOKEN&gt;</code></td>
+<td>один раз создать tenant, admin-principal, admin API-ключ и (с <code>iamBinding</code>) IAM-привязку администратора</td>
+</tr>
+</tbody>
+</table>
+<p>Тело: <code>tenantSlug</code> (<code>^[a-z0-9][a-z0-9-]*$</code>, 2–63), <code>tenantName</code>,
+<code>adminDisplayName</code>, <code>tenantId?</code> (UUID tenant'а, общий с IAM),
+<code>iamBinding? {issuer, iamTenantId, iamPrincipalId}</code>. Ответ <code>201</code>:
+<code>{tenant, adminPrincipal, apiKey (с полным key), iamBinding}</code>.</p>
+<h3 id="principals">Principals, ключи, привязки, делегирование<a class="headerlink" href="#principals" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Метод</th>
+<th>Путь</th>
+<th>Право</th>
+<th>Назначение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/principals</code></td>
+<td><code>principals.write</code></td>
+<td>создать principal (<code>kind</code>: <code>human</code>, <code>agent</code>, <code>service</code>; <code>displayName</code>, <code>status</code>, <code>metadata</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/principals</code></td>
+<td><code>principals.read</code></td>
+<td>список (<code>?kind=</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/principals/{id}</code></td>
+<td><code>principals.read</code></td>
+<td>principal</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/principals/{id}/api-keys</code></td>
+<td><code>principals.write</code></td>
+<td>выпустить legacy-ключ <code>{permissions, expiresAt?}</code>; полный ключ — только в этом ответе</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/api-keys/{id}:revoke</code></td>
+<td><code>principals.write</code></td>
+<td>отозвать ключ</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/principals/{id}/iam-bindings</code></td>
+<td><code>principals.read</code></td>
+<td>IAM-привязки principal, включая отозванные (без пагинации)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/principals/{id}/iam-bindings</code></td>
+<td><code>principals.write</code></td>
+<td>upsert привязки <code>{issuer, iamTenantId, iamPrincipalId, permissions}</code>; <code>201</code> / <code>200</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/iam-bindings/{id}:revoke</code></td>
+<td><code>principals.write</code></td>
+<td>закрыть вход identity</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/delegations</code></td>
+<td><code>delegations.manage</code></td>
+<td>делегирование человек → агент</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/delegations</code></td>
+<td><code>delegations.manage</code></td>
+<td>список</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/delegations/{id}:revoke</code></td>
+<td><code>delegations.manage</code></td>
+<td>отозвать</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_6">Сессии и харнесс<a class="headerlink" href="#_6" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Метод</th>
+<th>Путь</th>
+<th>Право</th>
+<th>Назначение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/sessions</code></td>
+<td><code>sessions.open</code></td>
+<td>открыть сессию; блок <code>harness</code>, <code>onBehalfOf</code> требует delegation</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/sessions</code></td>
+<td><code>sessions.manage</code></td>
+<td>список (<code>?status=</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/sessions/{id}</code></td>
+<td>владелец или <code>sessions.manage</code></td>
+<td>сессия</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/sessions/{id}:heartbeat</code></td>
+<td>владелец или <code>sessions.manage</code></td>
+<td>продлить аренду (<code>ttlSeconds?</code>)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/sessions/{id}:close</code></td>
+<td>владелец или <code>sessions.manage</code></td>
+<td>закрыть и снять claims сессии</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/harness/context</code></td>
+<td>аутентификация</td>
+<td>self-контекст харнесса (<code>?sessionId=</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/work/available</code></td>
+<td><code>tasks.read</code></td>
+<td>доступная работа (<code>workspaceId</code>, <code>includeDescendants</code>, <code>projectId</code>, <code>includeSubprojects</code>, <code>assigneeId</code>, <code>assignedToMe</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/tools</code></td>
+<td><code>tasks.read</code></td>
+<td>поиск инструментов (<code>query</code>, <code>runId</code>); ETag, <code>If-None-Match</code></td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/tools/{ref}</code></td>
+<td><code>tasks.read</code></td>
+<td>инструмент по <code>uuid</code>, <code>name</code> или <code>name@version</code> (<code>?runId=</code>); вне политики — <code>404 tool_not_found</code></td>
+</tr>
+</tbody>
+</table>
+<p>Протокол подробно описан в статье <a href="harness-protocol.html">Харнесс-протокол</a>.</p>
+<h3 id="_7">Типы задач<a class="headerlink" href="#_7" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Метод</th>
+<th>Путь</th>
+<th>Право</th>
+<th>Назначение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/task-types</code></td>
+<td><code>task_types.manage</code></td>
+<td>следующая неизменяемая версия ключа (<code>lifecycleSchema</code>, <code>fieldSchema</code>, <code>approvalSchema</code>, <code>execution</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/task-types</code></td>
+<td><code>task_types.read</code></td>
+<td>список (<code>?key=&amp;status=</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/task-types/{id}</code></td>
+<td><code>task_types.read</code></td>
+<td>версия типа</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/task-types/{id}:deprecate</code></td>
+<td><code>task_types.manage</code></td>
+<td>вывести версию из оборота (идемпотентно)</td>
+</tr>
+</tbody>
+</table>
+<p>См. <a href="task-types.html">Типы задач и статусы</a> и <a href="catalog-packages.html">Пакеты каталога</a>.</p>
+<h3 id="_8">Задачи<a class="headerlink" href="#_8" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Метод</th>
+<th>Путь</th>
+<th>Право</th>
+<th>Назначение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/tasks</code></td>
+<td><code>tasks.write</code></td>
+<td>создать задачу</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/tasks</code></td>
+<td><code>tasks.read</code></td>
+<td>список: <code>status</code>, <code>systemStatusCategory</code>, <code>typeKey</code>, <code>priority</code>, <code>ownerId</code>, <code>assigneeId</code>, <code>workspaceId</code>, <code>includeDescendants</code>, <code>projectId</code>, <code>includeSubprojects</code>, <code>startFrom</code>, <code>startTo</code>, <code>dueFrom</code>, <code>dueTo</code>, <code>sort</code> (<code>createdAt</code>, <code>startDate</code>, <code>dueDate</code>), <code>goalId</code></td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/tasks/{ref}</code></td>
+<td><code>tasks.read</code></td>
+<td>задача (+ETag)</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td><code>/tasks/{ref}</code></td>
+<td><code>tasks.write</code></td>
+<td>изменить (<code>If-Match</code>; при живом claim — <code>claimId</code> и <code>fencingToken</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/tasks/{ref}/claimability</code></td>
+<td><code>tasks.read</code></td>
+<td>можно ли взять и почему нет</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/tasks/{ref}/transitions</code></td>
+<td><code>tasks.read</code></td>
+<td>куда можно перейти из текущего статуса (<code>route</code>: <code>update</code> или <code>complete</code>)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/tasks/{ref}:claim</code></td>
+<td><code>tasks.claim</code></td>
+<td>атомарный claim <code>{sessionId, ttlSeconds?, intent?}</code> → fencing token</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/tasks/{ref}:complete</code></td>
+<td><code>tasks.write</code></td>
+<td>завершить (<code>If-Match</code>; при живом claim — <code>claimId</code> и <code>fencingToken</code>)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/tasks/{ref}:start-run</code></td>
+<td><code>tasks.claim</code></td>
+<td>прогон под живым claim <code>{claimId, fencingToken, input?, maxDurationSeconds?, maxActions?, agentRevisionId?}</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/tasks/{ref}/relations</code></td>
+<td><code>tasks.write</code></td>
+<td>связь <code>{toTask, type}</code>: <code>parent</code>, <code>blocks</code>, <code>depends_on</code>, <code>spawned_by</code>, <code>related_to</code>; циклы — <code>422</code></td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/tasks/{ref}/relations</code></td>
+<td><code>tasks.read</code></td>
+<td>связи в обе стороны</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td><code>/tasks/{ref}/relations/{relationId}</code></td>
+<td><code>tasks.write</code></td>
+<td>удалить связь</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/tasks/{ref}/requirements</code></td>
+<td><code>tasks.read</code></td>
+<td>требования (roles, capabilities, skills)</td>
+</tr>
+</tbody>
+</table>
+<p>Пример создания задачи:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>https://platform.example.com/api/v1/tasks<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Idempotency-Key: </span><span class="k">$(</span>uuidgen<span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">'{</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="s1">    "title": "Добавить индекс на events(tenant_id, tx_id)",</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="s1">    "description": "Запросы журнала упираются в seq scan",</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="s1">    "priority": "high",</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="s1">    "typeKey": "coding-task",</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="s1">    "workspaceId": "&lt;workspace-id&gt;",</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="s1">    "requirements": {"skills": ["git.merge@1"]},</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="s1">    "acceptance": [{"key": "tests", "kind": "deterministic", "description": "make test проходит"}]</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="s1">  }'</span>
+</span></code></pre></div>
+<p>Поля <code>POST /tasks</code>: <code>title</code> (1–500), <code>description</code>, <code>priority</code> (<code>critical</code>,
+<code>high</code>, <code>medium</code>, <code>low</code>; по умолчанию <code>medium</code>), <code>status</code> (по умолчанию
+<code>initialStatus</code> типа), <code>typeId</code>, <code>typeKey</code>, <code>typeVersion</code> (по умолчанию
+системный тип <code>task</code>), <code>ownerId</code>, <code>assigneeId</code>, <code>workspaceId</code>, <code>customFields</code>
+(проверяются по <code>fieldSchema</code> версии типа), <code>startDate</code>, <code>dueDate</code>,
+<code>parentTask</code> (связь <code>parent</code> создаётся атомарно), <code>requirements</code>, <code>goalId</code>,
+<code>origin</code> (неизменяем; без него ядро выводит <code>parent</code>, <code>human</code> или <code>harness</code>),
+<code>acceptance[]</code>, <code>evidence[]</code>. Семантика — в статьях <a href="work-model.html">Модель работы</a>
+и <a href="goals-and-evidence.html">Цели, приёмка и evidence</a>.</p>
+<h3 id="_9">Цели<a class="headerlink" href="#_9" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Метод</th>
+<th>Путь</th>
+<th>Право</th>
+<th>Назначение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/goals</code></td>
+<td><code>goals.write</code></td>
+<td>цель (<code>title</code>, <code>desiredState</code>, <code>criteria[]</code>, <code>ownerId</code>, <code>workspaceId</code>, <code>parentGoalId</code>, <code>createdFrom</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/goals</code></td>
+<td><code>goals.read</code></td>
+<td>список (<code>status</code>, <code>workspaceId</code>, <code>ownerId</code>, <code>parentGoalId</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/goals/{id}</code></td>
+<td><code>goals.read</code></td>
+<td>цель (+ETag <code>goal-&lt;v&gt;</code>)</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td><code>/goals/{id}</code></td>
+<td><code>goals.write</code></td>
+<td>изменить (<code>If-Match</code>); <code>status</code>: <code>active</code>, <code>achieved</code>, <code>abandoned</code>; цикл — <code>422 goal_cycle</code></td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/goals/{id}/work</code></td>
+<td><code>goals.read</code> + <code>tasks.read</code></td>
+<td>задачи цели, новые сверху (<code>includeSubgoals</code>, <code>systemStatusCategory</code>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_10">Комментарии к задаче<a class="headerlink" href="#_10" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Метод</th>
+<th>Путь</th>
+<th>Право</th>
+<th>Назначение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/tasks/{ref}/comments</code></td>
+<td><code>tasks.write</code></td>
+<td>добавить <code>{body, runId?, artifactId?}</code>; автор — вызывающий</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/tasks/{ref}/comments</code></td>
+<td><code>tasks.read</code></td>
+<td>тред, от старых к новым</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/tasks/{ref}/comments/{id}</code></td>
+<td><code>tasks.read</code></td>
+<td>комментарий (+ETag <code>comment-&lt;v&gt;</code>)</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td><code>/tasks/{ref}/comments/{id}</code></td>
+<td><code>tasks.write</code>, только автор</td>
+<td>исправить (<code>If-Match</code>); прежний текст — ревизия</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/tasks/{ref}/comments/{id}/revisions</code></td>
+<td><code>tasks.read</code></td>
+<td>история правок (append-only)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="claims">Claims<a class="headerlink" href="#claims" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Метод</th>
+<th>Путь</th>
+<th>Право</th>
+<th>Назначение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><code>/claims</code></td>
+<td><code>tasks.read</code></td>
+<td>список (<code>taskId</code>, <code>sessionId</code>, <code>status</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/claims/{id}</code></td>
+<td><code>tasks.read</code></td>
+<td>claim</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/claims/{id}:heartbeat</code></td>
+<td>держатель или <code>claims.manage</code></td>
+<td>продлить аренду</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/claims/{id}:release</code></td>
+<td>держатель или <code>claims.manage</code></td>
+<td>освободить; задача → <code>releaseStatus</code> типа, если ребро объявлено</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/claims/{id}:reclaim</code></td>
+<td><code>tasks.claim</code></td>
+<td>перехватить <strong>истёкший</strong> claim (новый token)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="runs">Прогоны (runs)<a class="headerlink" href="#runs" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Метод</th>
+<th>Путь</th>
+<th>Право</th>
+<th>Назначение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><code>/runs</code></td>
+<td><code>tasks.read</code></td>
+<td>список (<code>taskId</code>, <code>claimId</code>, <code>status</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/runs/{id}</code></td>
+<td><code>tasks.read</code></td>
+<td>прогон</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/runs/{id}/context</code></td>
+<td><code>tasks.read</code></td>
+<td>Run Context</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/runs/{id}:succeed</code></td>
+<td><code>tasks.claim</code>, владелец</td>
+<td>успех <code>{output?, completeTask=true}</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/runs/{id}:fail</code></td>
+<td>владелец или <code>claims.manage</code></td>
+<td>неудача (задачу не трогает)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/runs/{id}:cancel</code></td>
+<td>владелец или <code>claims.manage</code></td>
+<td>отмена</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/runs/{id}:suspend</code></td>
+<td><code>tasks.claim</code>, владелец живого claim</td>
+<td>приостановить <code>{reason, waitingForApprovalId?}</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/runs/{id}:handoff</code></td>
+<td><code>tasks.claim</code></td>
+<td>передать другому харнессу (рекомендуется <code>Idempotency-Key</code>)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/runs/{id}:request-cancel</code></td>
+<td><code>tasks.write</code> или <code>claims.manage</code></td>
+<td>кооперативный сигнал отмены</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/runs/{id}/checkpoints</code></td>
+<td><code>tasks.claim</code>, владелец живого claim</td>
+<td>checkpoint <code>{kind, data}</code></td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/runs/{id}/checkpoints</code></td>
+<td><code>tasks.read</code></td>
+<td>checkpoints по <code>seq</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/runs/{id}/actions</code></td>
+<td><code>tasks.claim</code>, владелец живого claim</td>
+<td>действие <code>{action, status, skill?, externalReference?, metadata}</code>; бюджет → <code>409 budget_exceeded</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/runs/{id}/actions/{actionId}:finish</code></td>
+<td><code>tasks.claim</code></td>
+<td>завершить <code>started</code>-действие</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/runs/{id}/actions</code></td>
+<td><code>tasks.read</code></td>
+<td>журнал действий по <code>seq</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/runs/{id}/control-messages</code></td>
+<td><code>tasks.write</code>; <code>force_cancel</code> — <code>claims.manage</code></td>
+<td>control-сообщение (<code>Idempotency-Key</code>, <code>expectedRunVersion</code> обязательны)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/runs/{id}/control-messages</code></td>
+<td><code>tasks.read</code></td>
+<td>сообщения, курсор <code>rc1_…</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/runs/{id}/control-messages/{messageId}:acknowledge</code></td>
+<td><code>tasks.claim</code>, держатель живого claim</td>
+<td>подтвердить <code>applied</code>, <code>rejected</code> или <code>superseded</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/runs/{id}/child-handles</code></td>
+<td><code>tasks.claim</code> + <code>tasks.write</code>, владелец живого claim</td>
+<td>запустить дочерний прогон; <code>201</code> новый, <code>200</code> повтор <code>correlationId</code></td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/runs/{id}/child-handles</code></td>
+<td><code>tasks.read</code></td>
+<td>handles прогона (<code>?active=true</code>, курсор <code>cd1_…</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/child-handles/{idOrToken}</code></td>
+<td><code>tasks.read</code></td>
+<td>статус и результат по id или <code>ch1_…</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/child-handles/{id}:revoke</code></td>
+<td>держатель родительского прогона или <code>claims.manage</code></td>
+<td>отозвать <code>{reason, cancelChild}</code></td>
+</tr>
+</tbody>
+</table>
+<p>Прогон называет ревизию агента, по которой идёт (CP-ADR-0073): исполнитель,
+чей principal привязан к агенту, передаёт в <code>:start-run</code> поле <code>agentRevisionId</code>
+(без него — <code>422 agent_revision_required</code>, ревизия чужого агента —
+<code>422 agent_revision_mismatch</code>), сервер записывает его на run и в событие
+<code>run.started</code>. Свою текущую ревизию исполнитель читает через <code>GET /agents/me</code>.
+Отдельного снимка конфигурации на каждый прогон нет (см.
+<a href="harness-protocol.html#agent-revision">Ревизия агента на прогоне</a>).</p>
+<p>См. <a href="execution.html">Исполнение — claims и runs</a> и <a href="harness-protocol.html">Харнесс-протокол</a>.</p>
+<h3 id="_11">Артефакты<a class="headerlink" href="#_11" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Метод</th>
+<th>Путь</th>
+<th>Право</th>
+<th>Назначение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/artifacts</code></td>
+<td><code>artifacts.write</code></td>
+<td>append-only ссылка на результат: <code>type</code>, <code>name</code>, <code>task?</code>, <code>runId?</code>, <code>workspaceId?</code>, <code>uri?</code>, <code>content?</code>, <code>metadata</code>, <code>supersedesArtifactId?</code></td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/artifacts</code></td>
+<td><code>artifacts.read</code></td>
+<td>список (<code>taskId</code>, <code>runId</code>, <code>workspaceId</code>, <code>type</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/artifacts/{id}</code></td>
+<td><code>artifacts.read</code></td>
+<td>артефакт</td>
+</tr>
+</tbody>
+</table>
+<h3 id="approvals">Approvals<a class="headerlink" href="#approvals" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Метод</th>
+<th>Путь</th>
+<th>Право</th>
+<th>Назначение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/approvals</code></td>
+<td><code>approvals.manage</code></td>
+<td>запрос; ровно одно из <code>requiredRoleId</code> / <code>assignedPrincipalId</code>; <code>gate: true</code> требует <code>task</code> и блокирует claim и complete</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/approvals</code></td>
+<td><code>approvals.read</code></td>
+<td>список (<code>status</code>, <code>taskId</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/approvals/{id}</code></td>
+<td><code>approvals.read</code></td>
+<td>approval</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/approvals/{id}:approve</code></td>
+<td><code>approvals.decide</code> + eligibility</td>
+<td>одобрить</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/approvals/{id}:reject</code></td>
+<td><code>approvals.decide</code> + eligibility</td>
+<td>отклонить</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/approvals/{id}:cancel</code></td>
+<td><code>approvals.manage</code>; для gate — автор или eligible-решатель</td>
+<td>отменить</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/approvals/{id}/outcome</code></td>
+<td><code>approvals.read</code></td>
+<td>объявленный исход решения и статус каждого действия</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/approvals/{id}:replay-outcome</code></td>
+<td><code>approvals.decide</code> (решивший или admin)</td>
+<td>продолжить упавший или зависший исход с первого невыполненного действия; иначе <code>409 outcome_not_replayable</code></td>
+</tr>
+</tbody>
+</table>
+<p>См. <a href="approvals.html">Approvals</a>.</p>
+<h3 id="_12">События и наблюдения<a class="headerlink" href="#_12" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Метод</th>
+<th>Путь</th>
+<th>Право</th>
+<th>Назначение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><code>/events</code></td>
+<td><code>events.read</code></td>
+<td>журнал (см. раздел <a href="#events-pagination">Пагинация событий</a>)</td>
+</tr>
+<tr>
+<td>WS</td>
+<td><code>/events/ws?after=&lt;cursor&gt;</code></td>
+<td><code>events.read</code></td>
+<td>поток событий</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/observations</code></td>
+<td><code>observations.write</code></td>
+<td>явная запись знания; повтор (<code>source</code>, <code>dedupKey</code>) → <code>200 deduplicated</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_13">Контекст и знания<a class="headerlink" href="#_13" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Метод</th>
+<th>Путь</th>
+<th>Право</th>
+<th>Назначение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/context</code></td>
+<td>аутентификация (<code>task</code>/<code>runId</code> — <code>tasks.read</code>, <code>projectId</code> — <code>projects.read</code>, память — <code>events.read</code>)</td>
+<td>operational-контекст и пакет памяти</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/knowledge/snapshots</code></td>
+<td><code>observations.write</code> на <code>workspace:&lt;workspaceId&gt;</code></td>
+<td>снимок источника → memory-service (тело до 8 МиБ)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/knowledge/packs</code></td>
+<td>principal из <code>CP_KNOWLEDGE_PACK_ADMINS</code></td>
+<td>регистрация пакета знаний</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td><code>/workspaces/{id}/knowledge-packs</code></td>
+<td><code>workspaces.manage</code> на <code>workspace:&lt;id&gt;</code></td>
+<td>пакеты и <code>strict</code> namespace дерева (только корень)</td>
+</tr>
+</tbody>
+</table>
+<p>См. <a href="context.html">Контекст задачи и память</a>.</p>
+<h3 id="workspaces-workspace">Workspaces и типы workspace<a class="headerlink" href="#workspaces-workspace" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Метод</th>
+<th>Путь</th>
+<th>Право</th>
+<th>Назначение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/workspace-types</code></td>
+<td><code>workspaces.manage</code></td>
+<td>тип workspace</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/workspace-types</code></td>
+<td><code>workspaces.read</code></td>
+<td>список (<code>status</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/workspace-types/{id}</code></td>
+<td><code>workspaces.read</code></td>
+<td>тип (+ETag)</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td><code>/workspace-types/{id}</code></td>
+<td><code>workspaces.manage</code></td>
+<td>изменить (<code>If-Match</code>)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/workspace-types/{id}:archive</code></td>
+<td><code>workspaces.manage</code></td>
+<td>архивировать; используется — <code>422 workspace_type_in_use</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/workspaces</code></td>
+<td><code>workspaces.manage</code></td>
+<td>workspace (<code>typeId</code> или <code>typeKey</code>, <code>customFields</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/workspaces</code></td>
+<td><code>workspaces.read</code></td>
+<td>список (<code>parentId</code>, <code>rootsOnly</code>, <code>status</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/workspaces/tree</code></td>
+<td><code>workspaces.read</code></td>
+<td>дерево (<code>rootId</code>, <code>depth</code>, <code>includeArchived</code>, <code>includeProjects</code>) → <code>{roots: [...]}</code></td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/workspaces/{id}</code></td>
+<td><code>workspaces.read</code></td>
+<td>workspace (+ETag)</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td><code>/workspaces/{id}</code></td>
+<td><code>workspaces.manage</code></td>
+<td>изменить (<code>If-Match</code>)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/workspaces/{id}:archive</code></td>
+<td><code>workspaces.manage</code></td>
+<td>архивировать (без активных детей)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/workspaces/{id}:move</code></td>
+<td><code>workspaces.manage</code></td>
+<td>перенести <code>{newParentId}</code> (<code>null</code> — в корень); цикл или ослабление governance — <code>422</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/workspaces/{id}/members</code></td>
+<td><code>workspaces.manage</code></td>
+<td>добавить участника</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/workspaces/{id}/members</code></td>
+<td><code>workspaces.read</code></td>
+<td>участники</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/workspaces/{id}/members/{principalId}:remove</code></td>
+<td><code>workspaces.manage</code></td>
+<td>удалить участника</td>
+</tr>
+</tbody>
+</table>
+<h3 id="_14">Проекты и шаблоны<a class="headerlink" href="#_14" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Метод</th>
+<th>Путь</th>
+<th>Право</th>
+<th>Назначение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/project-templates</code></td>
+<td><code>project_templates.manage</code></td>
+<td>следующая неизменяемая версия шаблона</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/project-templates</code></td>
+<td><code>project_templates.read</code></td>
+<td>список (<code>key</code>, <code>status</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/project-templates/{id}</code></td>
+<td><code>project_templates.read</code></td>
+<td>шаблон</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/project-templates/{id}:deprecate</code></td>
+<td><code>project_templates.manage</code></td>
+<td>вывести из оборота</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/projects</code></td>
+<td><code>projects.manage</code></td>
+<td>проект: <code>workspaceId</code> или <code>workspaceSlug</code> (workspace и профиль создаются атомарно); второй профиль — <code>409 project_exists</code></td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/projects</code></td>
+<td><code>projects.read</code></td>
+<td>список (<code>workspaceId</code>, <code>status</code>, <code>statusKey</code>, <code>systemStatusCategory</code>, <code>templateKey</code>, <code>externalSystem</code>, <code>externalType</code>, <code>externalId</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/projects/{id}</code></td>
+<td><code>projects.read</code></td>
+<td>проект (+ETag)</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td><code>/projects/{id}</code></td>
+<td><code>projects.manage</code></td>
+<td>изменить (<code>If-Match</code>)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/projects/{id}:archive</code></td>
+<td><code>projects.manage</code></td>
+<td>архивировать (идемпотентно)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/projects/{id}:transition</code></td>
+<td><code>projects.manage</code></td>
+<td>переход статуса (<code>If-Match</code>; только объявленные)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/projects/{id}/effective-config</code></td>
+<td><code>projects.read</code></td>
+<td>конфигурация и provenance по слоям</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/projects/{id}/config-revisions</code></td>
+<td><code>projects.read</code></td>
+<td>ревизии конфигурации</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/projects/{id}/config-revisions</code></td>
+<td><code>projects.manage</code></td>
+<td>новая ревизия (не активирует)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/projects/{id}/config-revisions/{revision}:activate</code></td>
+<td><code>projects.manage</code></td>
+<td>активировать ревизию (<code>If-Match</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/projects/{id}/external-references</code></td>
+<td><code>projects.read</code></td>
+<td>внешние ссылки проекта</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/projects/{id}/external-references</code></td>
+<td><code>projects.manage</code></td>
+<td>добавить (<code>201</code>) или обновить metadata (<code>200</code>); чужая сущность — <code>409</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_15">Внешние ссылки<a class="headerlink" href="#_15" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Метод</th>
+<th>Путь</th>
+<th>Право</th>
+<th>Назначение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/external-references</code></td>
+<td>по <code>entityType</code>: <code>project</code> → <code>projects.manage</code>, <code>task</code> → <code>tasks.write</code></td>
+<td>зарегистрировать ссылку; <code>201</code> новая, <code>200</code> тот же ключ, <code>409 external_reference_conflict</code></td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/external-references</code></td>
+<td>право чтения типа</td>
+<td>прямой поиск <code>?entityType=&amp;entityId=</code> или обратный <code>?externalSystem=&amp;externalType=&amp;externalId=</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_16">Организационная модель<a class="headerlink" href="#_16" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Метод</th>
+<th>Путь</th>
+<th>Право</th>
+<th>Назначение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/roles</code></td>
+<td><code>org.manage</code></td>
+<td>роль (<code>slug</code> уникален в scope; <code>workspaceId?</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/roles</code></td>
+<td><code>org.read</code></td>
+<td>список (<code>workspaceId</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/roles/{id}</code></td>
+<td><code>org.read</code></td>
+<td>роль (+ETag)</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td><code>/roles/{id}</code></td>
+<td><code>org.manage</code></td>
+<td>изменить (<code>If-Match</code>)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/capabilities</code></td>
+<td><code>org.manage</code></td>
+<td>capability</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/capabilities</code></td>
+<td><code>org.read</code></td>
+<td>список</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/capabilities/{id}</code></td>
+<td><code>org.read</code></td>
+<td>capability</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/principals/{id}/roles</code></td>
+<td><code>org.manage</code></td>
+<td>назначить <code>{roleId, workspaceId?}</code></td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/principals/{id}/roles</code></td>
+<td><code>org.read</code> или <code>principals.read</code></td>
+<td>роли principal</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/principals/{id}/roles/{roleId}:revoke</code></td>
+<td><code>org.manage</code></td>
+<td>снять</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/principals/{id}/capabilities</code></td>
+<td><code>org.manage</code></td>
+<td>назначить</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/principals/{id}/capabilities</code></td>
+<td><code>org.read</code> или <code>principals.read</code></td>
+<td>capabilities principal</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/principals/{id}/capabilities/{capabilityId}:revoke</code></td>
+<td><code>org.manage</code></td>
+<td>снять</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/principals/{id}/skills</code></td>
+<td><code>org.manage</code></td>
+<td>назначить скилл</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/principals/{id}/skills</code></td>
+<td><code>org.read</code> или <code>principals.read</code></td>
+<td>скиллы principal</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/principals/{id}/skills/{skillId}:revoke</code></td>
+<td><code>org.manage</code></td>
+<td>снять</td>
+</tr>
+</tbody>
+</table>
+<h3 id="skills">Скиллы и вызовы<a class="headerlink" href="#skills" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Метод</th>
+<th>Путь</th>
+<th>Право</th>
+<th>Назначение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/skills</code></td>
+<td><code>org.manage</code></td>
+<td>опубликовать версию (<code>name</code> + <code>version</code> уникальны; <code>contract</code>, <code>sideEffects</code>, <code>riskLevel</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/skills</code></td>
+<td><code>org.read</code></td>
+<td>список (<code>name</code>, <code>status</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/skills/{ref}</code></td>
+<td><code>org.read</code>, <code>skills.invoke</code> или <code>skills.execute</code></td>
+<td>версия по <code>id</code>, <code>name@version</code> или <code>name</code> (+ETag <code>skill-&lt;rowVersion&gt;</code>)</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td><code>/skills/{id}</code></td>
+<td><code>org.manage</code></td>
+<td><code>If-Match</code>; меняются только <code>description</code> и <code>status</code> вперёд (<code>active</code> → <code>deprecated</code> → <code>disabled</code>). <code>config</code>, <code>inputSchema</code>, <code>outputSchema</code> допустимы, только если совпадают с сохранёнными, иначе <code>409 skill_version_immutable</code>; обратный переход статуса — <code>invalid_status_transition</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/skills/{ref}:invoke</code></td>
+<td><code>skills.invoke</code></td>
+<td>вызов <code>{inputs, idempotencyKey?, taskId?, runId?, approvalId?}</code> → <code>201</code> новый, <code>200</code> повтор ключа</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/skill-invocations/{id}</code></td>
+<td><code>skills.invoke</code> или <code>skills.execute</code></td>
+<td>вызов (видит authority и исполнитель)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/skill-invocations:claim</code></td>
+<td><code>skills.execute</code></td>
+<td>взять вызов <code>{protocols, localEntrypoints, httpOrigins, mcpEndpoints, audiences, sessionId?, leaseSeconds?, invocationId?}</code> → <code>200 {invocation, skill}</code> или <code>204</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/skill-invocations/{id}:heartbeat</code></td>
+<td><code>skills.execute</code></td>
+<td>продлить lease <code>{fencingToken, leaseSeconds?}</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/skill-invocations/{id}:complete</code></td>
+<td><code>skills.execute</code></td>
+<td>результат <code>{fencingToken, output, cost?}</code>; <code>output</code> перепроверяется по схеме</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/skill-invocations/{id}:fail</code></td>
+<td><code>skills.execute</code></td>
+<td>неудача <code>{fencingToken, error: {code, message?, retryable?, details?}}</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/skill-invocations/{id}:cancel</code></td>
+<td>authority вызова или <code>org.manage</code></td>
+<td>отменить <code>{reason?}</code></td>
+</tr>
+</tbody>
+</table>
+<p>Порядок проверок <code>:invoke</code>:</p>
+<ol>
+<li>право <code>skills.invoke</code>, версия существует;</li>
+<li>повтор <code>idempotencyKey</code> с теми же <code>inputs</code> от того же principal возвращает
+   существующий вызов, иначе <code>409 idempotency_key_reuse</code>;</li>
+<li>версия вызываема (<code>409 skill_not_invocable</code>, <code>details.reason</code>: <code>disabled</code>,
+   <code>no_contract</code>, <code>protocol_not_invocable</code>);</li>
+<li>при <code>idempotency: required</code> ключ обязателен
+   (<code>400 idempotency_key_required</code>);</li>
+<li><code>inputs</code> проверяются по схеме (<code>400 invalid_skill_inputs</code>,
+   <code>details.errors[].path</code>);</li>
+<li><code>runId</code> должен принадлежать вызывающему и быть в статусе <code>running</code>;</li>
+<li><code>requiredPermissions</code> контракта проверяются на workspace задачи
+   (<code>403 skill_permission_denied</code>), эффективная политика инструментов прогона —
+   <code>403 tool_not_authorized</code> или <code>403 child_grant_exceeded</code>;</li>
+<li><code>external_write</code> требует одобренного gate-approval на той же
+   нетерминальной задаче, который ещё не использовался для этой версии
+   (<code>409 approval_already_used</code>), или основания <code>execution</code> (тип задачи
+   закрепил эту версию, прогон в статусе <code>running</code>).</li>
+</ol>
+<p>Успешный <code>:complete</code> при <code>taskId</code> создаёт артефакт <code>skill_result</code>. Подробнее
+о контракте скилла — в <a href="../sdk/skill-sdk.html">skill-sdk</a>.</p>
+<h3 id="operations">Операции<a class="headerlink" href="#operations" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Метод</th>
+<th>Путь</th>
+<th>Право</th>
+<th>Назначение</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><code>/operations/context-adapter</code></td>
+<td><code>operations.read</code></td>
+<td>состояние доставки в память своего tenant'а</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/operations/context-adapter/{tenantId}:redrive</code></td>
+<td><code>operations.manage</code></td>
+<td>снять парковку и повторить ту же позицию <code>{reason}</code>; чужой tenant — <code>404</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/operations/context-adapter/{tenantId}:rebuild</code></td>
+<td><code>operations.manage</code></td>
+<td>отмотать курсор <code>{cursor?, reason}</code>; только назад, иначе <code>422 cursor_must_not_advance</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/operations/journal:archive</code></td>
+<td><code>operations.manage</code></td>
+<td>перенести подтверждённую историю в архив <code>{beforeSeconds?, maxEvents?}</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/operations/journal:prune</code></td>
+<td><code>operations.manage</code></td>
+<td>физически удалить архив <code>{beforeSeconds?, maxEvents?}</code> — <strong>данные теряются</strong></td>
+</tr>
+</tbody>
+</table>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>https://platform.example.com/api/v1/operations/journal:archive<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">'{"beforeSeconds": 2592000, "maxEvents": 50000}'</span>
+</span></code></pre></div>
+<p>Горизонт архивации ограничен минимумом consumer-курсоров и самым старым
+недоставленным outbox-событием. Если consumer-курсоров нет совсем, ответ —
+<code>409 retention_blocked_by_consumer</code>. Минимальный возраст события задаёт
+<code>CP_JOURNAL_RETENTION_MIN_AGE_SECONDS</code> (30 суток). Процедуры описаны в
+<a href="../operations/backup.html">Резервное копирование</a> и
+<a href="../operations/monitoring.html">Мониторинг и здоровье</a>.</p>
+<h2 id="events-pagination">Пагинация событий<a class="headerlink" href="#events-pagination" title="Permanent link">&para;</a></h2>
+<p>Курсор журнала непрозрачен (<code>ec1_…</code>) и выдаётся в порядке <code>(tx_id, sequence)</code>
+под стабильным горизонтом. Подписка с выданного курсора получит всё, что
+закоммитится позже: незавершённые транзакции сортируются строго после любой
+выданной позиции. Каждое событие несёт <code>sequence</code>, <code>type</code>, <code>entityType</code>,
+<code>entityId</code>, <code>actorId</code>, <code>sessionId</code>, <code>correlationId</code>, <code>requestId</code>,
+<code>traceRunId</code>, <code>payload</code>, <code>occurredAt</code> и <code>cursor</code>. Каталог типов событий — в
+статье <a href="events.html">События</a>.</p>
+<h2 id="sdk">SDK<a class="headerlink" href="#sdk" title="Permanent link">&para;</a></h2>
+<p>Официальный клиент — пакет <code>control-plane-client</code> (модуль
+<code>control_plane_client</code>, класс <code>ControlPlaneClient</code>). Он сам выставляет
+<code>Idempotency-Key</code> на логический вызов, обновляет IAM-токен и разбирает
+конверт ошибок в исключения. См. <a href="../sdk/clients.html">Клиенты сервисов</a>.</p>
+<h2 id="_17">См. также<a class="headerlink" href="#_17" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="authorization.html">Авторизация и права</a></li>
+<li><a href="harness-protocol.html">Харнесс-протокол</a></li>
+<li><a href="configuration.html">Конфигурация</a></li>
+<li><a href="../reference/errors.html">Коды ошибок</a></li>
+<li><a href="../reference/permissions.html">Права и scopes</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  К началу
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Нижний колонтитул" >
+        
+          
+          <a href="cli-and-mcp.html" class="md-footer__link md-footer__link--prev" aria-label="Назад: CLI и MCP-сервер">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Назад
+              </span>
+              <div class="md-ellipsis">
+                CLI и MCP-сервер
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="configuration.html" class="md-footer__link md-footer__link--next" aria-label="Вперед: Конфигурация">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Вперед
+              </span>
+              <div class="md-ellipsis">
+                Конфигурация
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "navigation.footer", "navigation.path", "toc.follow", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0421\u043a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u043d\u043e \u0432 \u0431\u0443\u0444\u0435\u0440", "clipboard.copy": "\u041a\u043e\u043f\u0438\u0440\u043e\u0432\u0430\u0442\u044c \u0432 \u0431\u0443\u0444\u0435\u0440", "search.result.more.one": "\u0415\u0449\u0451 1 \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.more.other": "\u0415\u0449\u0451 # \u043d\u0430 \u044d\u0442\u043e\u0439 \u0441\u0442\u0440\u0430\u043d\u0438\u0446\u0435", "search.result.none": "\u0421\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439 \u043d\u0435 \u043d\u0430\u0439\u0434\u0435\u043d\u043e", "search.result.one": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e 1 \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0435", "search.result.other": "\u041d\u0430\u0439\u0434\u0435\u043d\u043e \u0441\u043e\u0432\u043f\u0430\u0434\u0435\u043d\u0438\u0439: #", "search.result.placeholder": "\u041d\u0430\u0447\u043d\u0438\u0442\u0435 \u043f\u0435\u0447\u0430\u0442\u0430\u0442\u044c \u0434\u043b\u044f \u043f\u043e\u0438\u0441\u043a\u0430", "search.result.term.missing": "\u041e\u0442\u0441\u0443\u0442\u0441\u0442\u0432\u0443\u0435\u0442", "select.version": "\u0412\u044b\u0431\u0435\u0440\u0438\u0442\u0435 \u0432\u0435\u0440\u0441\u0438\u044e"}, "version": null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>

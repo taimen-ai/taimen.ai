@@ -1,0 +1,7384 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Technical and operations documentation for the Taimen platform">
+      
+      
+      
+      
+        <link rel="prev" href="cli-and-mcp.html">
+      
+      
+        <link rel="next" href="configuration.html">
+      
+      
+        
+          <link rel="alternate" href="api.html" hreflang="en">
+        
+          <link rel="alternate" href="../ru/control-plane/api.html" hreflang="ru">
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.7">
+    
+    
+      
+        <title>API - Taimen Platform Guide</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.ec1eaa64.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#api" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="Taimen Platform Guide" class="md-header__button md-logo" aria-label="Taimen Platform Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Taimen Platform Guide
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              API
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="blue-grey" data-md-color-accent="teal"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+      <div class="md-header__option">
+  <div class="md-select">
+    
+    <button class="md-header__button md-icon" aria-label="Select language">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.5 17.5 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11zM18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2zm-2.62 7 1.62-4.33L19.12 17z"/></svg>
+    </button>
+    <div class="md-select__inner">
+      <ul class="md-select__list">
+        
+          <li class="md-select__item">
+            <a href="api.html" hreflang="en" class="md-select__link">
+              English
+            </a>
+          </li>
+        
+          <li class="md-select__item">
+            <a href="../ru/control-plane/api.html" hreflang="ru" class="md-select__link">
+              Русский
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../index.html" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../overview/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Overview
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../getting-started/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Getting started
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Control Plane
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../packages/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Packages
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../processes/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Processes
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../iam/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  IAM
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../memory/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Memory
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../workplace/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Personal workspace
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../notifications/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Notifications
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../runner/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Agents and runner
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../operator/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Operator guide
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../sdk/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  SDKs and integrations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../operations/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Operations
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../troubleshooting/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Troubleshooting
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../reference/index.html" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Reference
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="Taimen Platform Guide" class="md-nav__button md-logo" aria-label="Taimen Platform Guide" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    Taimen Platform Guide
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../overview/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Overview
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Overview
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/what-is-taimen.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    What is Taimen
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/architecture.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Architecture
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/concepts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Key concepts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/components.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Components
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/security-model.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../getting-started/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Getting started
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Getting started
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/requirements.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Requirements
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/quickstart.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation and first run
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/configuration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    .env configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/bootstrap.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bootstrap
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../getting-started/first-task.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    First task
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Control Plane
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Control Plane
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="work-model.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Work model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="task-types.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Task types and statuses
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="goals-and-evidence.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Goals, acceptance and evidence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="work-rules.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Work rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="execution.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Execution: claims and runs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="approvals.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Approvals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="artifacts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Artifacts and comments
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="events.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Events
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="event-subscriptions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Event subscriptions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="harness-protocol.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Harness protocol
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="context.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Task context and memory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="catalog-packages.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Catalog packages
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="authorization.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authorization and permissions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="cli-and-mcp.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    CLI and MCP server
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="api.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#base-address" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Base address
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protocol-headers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protocol headers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pagination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pagination
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pagination">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Events
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unknown-query-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unknown query parameters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idempotency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Idempotency
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error format
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service endpoints
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#endpoint-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Endpoint reference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Endpoint reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bootstrap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bootstrap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#principals-keys-bindings-delegation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Principals, keys, bindings, delegation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sessions-and-harness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sessions and harness
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tasks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Goals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-comments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task comments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claims" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claims
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#artifacts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artifacts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approvals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approvals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#events-and-observations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Events and observations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#context-and-knowledge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context and knowledge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workspaces-and-workspace-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workspaces and workspace types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#projects-and-templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Projects and templates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#external-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External references
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#organizational-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Organizational model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Skills and invocations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#events-pagination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event pagination
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SDK
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        See also
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="configuration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../packages/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Packages
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Packages
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/quickstart.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A package in 10 minutes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/anatomy.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package anatomy
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/work.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Work: task types and roles
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/rules.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Rules in a package
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/processes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Processes in a package
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/agents.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package agents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/skills.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package skills
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/integrations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Integrations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/knowledge.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge and ontology
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/notifications.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package notifications
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/settings.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package settings
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/testing.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package tests
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/install-and-release.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation and release
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/author-plugin.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package author in Claude Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/tutorial.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Example: customer claims
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../packages/checklist.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Readiness checklist
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../processes/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Processes
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Processes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../processes/knowledge.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Processes and the knowledge base
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../processes/expressions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Expressions
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../processes/package-tests.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Scenarios and the core plan
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../iam/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    IAM
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_7" id="__nav_7_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    IAM
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/principals.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tenants and principals
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/credentials.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Credentials and PATs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/tokens.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tokens, audiences, scopes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/service-accounts.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service accounts
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/federation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Identity federation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/keycloak.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Keycloak as the external IdP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/api.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../iam/configuration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../memory/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memory
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_8" id="__nav_8_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Memory
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memory/knowledge-model.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge model
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memory/namespaces.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Namespaces and access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memory/ingestion.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Knowledge ingestion
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memory/retrieval.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Retrieval and context assembly
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memory/api.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    API
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../memory/configuration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_9" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../workplace/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Personal workspace
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_9" id="__nav_9_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Personal workspace
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../workplace/telegram.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assistant in Telegram
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_10" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../notifications/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notifications
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_10" id="__nav_10_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Notifications
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notifications/notification-rules.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Notification rules
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../notifications/telegram.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Telegram
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_11" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../runner/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agents and runner
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_11" id="__nav_11_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Agents and runner
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runner/declarative-agents.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Declarative agents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runner/fleet.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Nodes and fleet
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runner/agent-identity.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Agent identity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runner/installation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installing executors
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runner/adapters.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Executor adapters
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runner/execution-workspace.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Execution workspaces
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runner/trace.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Run trace
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../runner/configuration.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Configuration
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_12" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../operator/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operator guide
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_12" id="__nav_12_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operator guide
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operator/console.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Console
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operator/assistant.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Assistant
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operator/mcp-plugin.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MCP plugin for Claude Code
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operator/workflows.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Everyday workflows
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_13" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../sdk/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SDKs and integrations
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_13" id="__nav_13_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_13_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_13">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    SDKs and integrations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sdk/platform-auth-sdk.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    platform-auth-sdk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sdk/clients.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Service clients
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sdk/skill-sdk.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    skill-sdk
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sdk/platform-llm.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    platform-llm
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_14" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../operations/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operations
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_14" id="__nav_14_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_14_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_14">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Operations
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/deployment.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Production deployment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/edge-and-tls.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Edge and TLS
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/upgrades.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Upgrades and migrations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/secrets.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Secrets and rotation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/backup.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Backup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/object-storage.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Object storage (MinIO)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/monitoring.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Monitoring and health
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/capacity.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Capacity and scaling
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operations/emergency.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Emergency procedures
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_15" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../troubleshooting/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Troubleshooting
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_15" id="__nav_15_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_15_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_15">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Troubleshooting
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/startup.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Installation and startup
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/auth.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Authentication and access
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/runner.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Execution and runner
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../troubleshooting/memory.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Memory and context
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_16" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../reference/index.html" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Reference
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_16" id="__nav_16_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_16_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_16">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Reference
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/environment.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environment variables
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/api.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Core service APIs
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/services-and-ports.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Services and ports
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/permissions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Permissions and scopes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/package-schema.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Package schema
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/package-sdk-cli.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    package-sdk commands
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/errors.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Error codes
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/make.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Make targets
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reference/glossary.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#base-address" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Base address
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#authentication" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Authentication
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#protocol-headers" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Protocol headers
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pagination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pagination
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Pagination">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#events" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Events
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#unknown-query-parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Unknown query parameters
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#idempotency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Idempotency
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#errors" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Error format
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#service-endpoints" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Service endpoints
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#endpoint-reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Endpoint reference
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Endpoint reference">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#bootstrap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bootstrap
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#principals-keys-bindings-delegation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Principals, keys, bindings, delegation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sessions-and-harness" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Sessions and harness
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tasks
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#goals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Goals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#task-comments" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Task comments
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#claims" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Claims
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#runs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Runs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#artifacts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Artifacts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#approvals" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Approvals
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#events-and-observations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Events and observations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#context-and-knowledge" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Context and knowledge
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#workspaces-and-workspace-types" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Workspaces and workspace types
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#projects-and-templates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Projects and templates
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#external-references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External references
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#organizational-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Organizational model
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#skills" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Skills and invocations
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#operations" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Operations
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#events-pagination" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Event pagination
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sdk" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        SDK
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#see-also" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        See also
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+                
+
+
+
+  
+
+
+  <nav class="md-path" aria-label="Navigation" >
+    <ol class="md-path__list">
+      
+        
+  
+  
+    <li class="md-path__item">
+      <a href="../index.html" class="md-path__link">
+        
+  <span class="md-ellipsis">
+    Home
+  </span>
+
+      </a>
+    </li>
+  
+
+      
+      
+        
+  
+  
+    
+    
+      <li class="md-path__item">
+        <a href="index.html" class="md-path__link">
+          
+  <span class="md-ellipsis">
+    Control Plane
+  </span>
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ol>
+  </nav>
+
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="api">API<a class="headerlink" href="#api" title="Permanent link">&para;</a></h1>
+<p>Reference for the Control Plane HTTP API. All endpoints live under <code>/api/v1</code>,
+and request and response body fields use camelCase. This page describes the
+common rules (authentication, headers, pagination, idempotency, error format)
+and lists every endpoint with its permission and purpose, grouped by resource.
+It is a reference for developers of integrations and harnesses.</p>
+<div class="admonition tip">
+<p class="admonition-title">Machine-readable schema</p>
+<p>The service itself serves the full OpenAPI schema: <code>GET /openapi.json</code>,
+Swagger UI at <code>GET /docs</code>. The reference below is built from the same schema
+and from the command code that checks permissions.</p>
+</div>
+<h2 id="base-address">Base address<a class="headerlink" href="#base-address" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Where</th>
+<th>Address</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Inside the compose network</td>
+<td><code>http://control-plane-api:8000</code></td>
+</tr>
+<tr>
+<td>From the host (loopback only by default)</td>
+<td><code>http://127.0.0.1:${CP_HOST_PORT:-18000}</code></td>
+</tr>
+<tr>
+<td>From outside through the edge</td>
+<td><code>https://platform.example.com</code> (routes <code>/api/v1/*</code>, <code>/health/*</code>, <code>/metrics</code>, <code>/docs*</code>, <code>/openapi.json</code>)</td>
+</tr>
+</tbody>
+</table>
+<p>The edge layout is described in <a href="../operations/edge-and-tls.html">Edge and TLS</a>.</p>
+<h2 id="authentication">Authentication<a class="headerlink" href="#authentication" title="Permanent link">&para;</a></h2>
+<div class="language-http highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="err">Authorization: Bearer &lt;access-token IAM audience control-plane&gt;</span>
+</span></code></pre></div>
+<ul>
+<li>IAM access token: permissions come from the binding of the identity to a
+  principal and are narrowed by the token scopes (<code>control-plane:read</code>,
+  <code>control-plane:write</code>, <code>control-plane:admin</code>).</li>
+<li>A legacy key <code>cp_&lt;prefix&gt;_&lt;secret&gt;</code> is accepted only when
+  <code>CP_LEGACY_API_KEYS_ENABLED=true</code>.</li>
+<li><code>POST /api/v1/bootstrap</code> accepts only <code>Bearer &lt;CP_BOOTSTRAP_TOKEN&gt;</code>.</li>
+<li><code>/health/live</code>, <code>/health/ready</code>, and <code>/metrics</code> are open without authentication.</li>
+</ul>
+<p>The actor is always derived from the credential. Details are in
+<a href="authorization.html">Authorization and permissions</a>.</p>
+<h2 id="protocol-headers">Protocol headers<a class="headerlink" href="#protocol-headers" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Header</th>
+<th>Direction</th>
+<th>Semantics</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Idempotency-Key</code></td>
+<td>request, mutations</td>
+<td>idempotent execution, see <a href="#idempotency">Idempotency</a></td>
+</tr>
+<tr>
+<td><code>Idempotency-Replayed: true</code></td>
+<td>response</td>
+<td>the response comes from storage; the command was not executed again</td>
+</tr>
+<tr>
+<td><code>If-Match: "&lt;entity&gt;-&lt;version&gt;"</code></td>
+<td>request</td>
+<td>optimistic locking: PATCH of a task, workspace, workspace type, project, role, skill, goal, and comment; task <code>:complete</code>; project <code>:transition</code>; <code>config-revisions/{n}:activate</code></td>
+</tr>
+<tr>
+<td><code>ETag</code></td>
+<td>response</td>
+<td><code>"&lt;entity&gt;-&lt;version&gt;"</code> on GET of a task (<code>task-</code>), workspace (<code>workspace-</code>), workspace type (<code>workspace_type-</code>), project (<code>project-</code>), role (<code>role-</code>), skill (<code>skill-&lt;rowVersion&gt;</code>), goal (<code>goal-</code>), comment (<code>comment-</code>); on <code>GET /tools</code> it is the <code>viewHash</code></td>
+</tr>
+<tr>
+<td><code>If-None-Match</code></td>
+<td>request</td>
+<td>for <code>GET /tools</code>: <code>304</code> while the catalog and policy revisions are unchanged</td>
+</tr>
+<tr>
+<td><code>X-Request-ID</code></td>
+<td>both</td>
+<td>accepted or generated; returned in the response and in <code>error.requestId</code></td>
+</tr>
+<tr>
+<td><code>X-Correlation-ID</code></td>
+<td>request</td>
+<td>goes into the <code>correlationId</code> of events</td>
+</tr>
+<tr>
+<td><code>X-Run-Id</code></td>
+<td>both</td>
+<td>end-to-end trace correlator (<code>^[A-Za-z0-9._:-]{1,128}$</code>, otherwise generated); written to the <code>traceRunId</code> of events, the outbox, logs, and the header sent to memory-service. It is <strong>not</strong> the Run entity</td>
+</tr>
+</tbody>
+</table>
+<p><code>If-Match</code> errors:</p>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>header missing</td>
+<td><code>428 if_match_required</code></td>
+</tr>
+<tr>
+<td>header cannot be parsed</td>
+<td><code>400 invalid_if_match</code></td>
+</tr>
+<tr>
+<td>version mismatch</td>
+<td><code>409 version_conflict</code>, <code>details.currentVersion</code> holds the current version</td>
+</tr>
+</tbody>
+</table>
+<h2 id="pagination">Pagination<a class="headerlink" href="#pagination" title="Permanent link">&para;</a></h2>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>GET /api/v1/tasks?limit=50&amp;cursor=&lt;opaque&gt;
+</span></code></pre></div>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">{</span><span class="nt">"items"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="err">...</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="nt">"nextCursor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">}</span>
+</span></code></pre></div>
+<ul>
+<li><code>limit</code>: 50 by default, 200 maximum. A value out of range returns
+  <code>422 invalid_limit</code>.</li>
+<li>The cursor is opaque. A foreign cursor or a cursor from a different sort
+  order returns <code>422 invalid_cursor</code>.</li>
+<li>Entity lists are sorted stably by <code>(created_at, id)</code>, newest first.</li>
+<li>Run logs (<code>/runs/{id}/checkpoints</code>, <code>/runs/{id}/actions</code>) are ordered by
+  <code>seq</code>, oldest first, and the cursor is bound to the run. Without <code>limit</code> and
+  <code>cursor</code> the whole log is returned as a single page (<code>nextCursor: null</code>).</li>
+<li>Task comments are the only entity listing ordered from oldest to newest. Its
+  cursor has its own format.</li>
+<li><code>GET /tasks?sort=startDate|dueDate</code>: nearest first, tasks without a date at
+  the end. An unknown <code>sort</code> returns <code>422 invalid_sort</code>.</li>
+<li><code>GET /work/available</code> can return a page shorter than <code>limit</code> with a non-empty
+  <code>nextCursor</code>.</li>
+</ul>
+<h3 id="events">Events<a class="headerlink" href="#events" title="Permanent link">&para;</a></h3>
+<p><code>GET /events</code> has its own contract:</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>cursor</code></td>
+<td>opaque cursor <code>ec1_…</code></td>
+</tr>
+<tr>
+<td><code>after</code></td>
+<td>integer <code>sequence</code> in the old format; the server adapts it</td>
+</tr>
+<tr>
+<td><code>tail=N</code></td>
+<td>the last N stable events</td>
+</tr>
+<tr>
+<td><code>entityType</code>, <code>entityId</code></td>
+<td>filter by entity</td>
+</tr>
+<tr>
+<td><code>types</code></td>
+<td>event type prefixes, up to 20</td>
+</tr>
+<tr>
+<td><code>workspaceId</code></td>
+<td>workspace subtree; <code>events.read</code> is checked on it</td>
+</tr>
+<tr>
+<td><code>limit</code></td>
+<td>page size</td>
+</tr>
+</tbody>
+</table>
+<p>Response: <code>{items[], nextCursor, hasMore}</code>; each event has its own <code>cursor</code>
+field. On an empty page <code>nextCursor</code> repeats the one you passed. A malformed
+cursor returns <code>422 invalid_cursor</code>, a cursor from a future version returns
+<code>422 unsupported_cursor_version</code>.</p>
+<p>WebSocket: <code>WS /api/v1/events/ws?after=&lt;cursor&gt;</code>, permission <code>events.read</code>.
+Close codes: <code>4401</code> — no credentials, <code>4403</code> — no permission, <code>4404</code> — no
+workspace for the filter, <code>4400</code> — bad cursor or filter, <code>4503</code> — PDP
+unavailable. Filters and the consumer SDK are covered in
+<a href="event-subscriptions.html">Event subscriptions</a>.</p>
+<h2 id="unknown-query-parameters">Unknown query parameters<a class="headerlink" href="#unknown-query-parameters" title="Permanent link">&para;</a></h2>
+<p>The server does not silently ignore query parameters. A parameter the endpoint
+does not declare returns <code>400 invalid_request</code>, and the query is not executed:</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="p">{</span>
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="w">  </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"invalid_request"</span><span class="p">,</span>
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Request does not match the API contract"</span><span class="p">,</span>
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="w">    </span><span class="nt">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="nt">"loc"</span><span class="p">:</span><span class="w"> </span><span class="s2">"query.assignedToMee"</span><span class="p">,</span><span class="w"> </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unknown query parameter: ..."</span><span class="p">}]},</span>
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a><span class="w">    </span><span class="nt">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req_..."</span>
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>The rule applies to all <code>/api/v1</code> endpoints except the WebSocket. Do not add
+auxiliary parameters such as a cache-buster <code>_=</code>: they are rejected too.
+Unknown fields in a JSON body are also rejected (<code>extra="forbid"</code>), except in
+the manifest compilation body.</p>
+<h2 id="idempotency">Idempotency<a class="headerlink" href="#idempotency" title="Permanent link">&para;</a></h2>
+<p>Any mutation (a POST command or PATCH) accepts an <code>Idempotency-Key</code> header of
+1–200 characters, otherwise <code>422 invalid_idempotency_key</code>.</p>
+<table>
+<thead>
+<tr>
+<th>Situation</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>first request</td>
+<td>executed, the response is stored for <code>CP_IDEMPOTENCY_TTL_SECONDS</code> (one day)</td>
+</tr>
+<tr>
+<td>repeat with the same key, method, path, body, and principal</td>
+<td>the stored response and <code>Idempotency-Replayed: true</code></td>
+</tr>
+<tr>
+<td>the same key with a different body <strong>or a different principal</strong></td>
+<td><code>409 idempotency_key_reused</code></td>
+</tr>
+<tr>
+<td>parallel duplicate while the first one has not finished</td>
+<td>waits up to <code>CP_IDEMPOTENCY_WAIT_TIMEOUT_SECONDS</code> (10 s), then <code>409 idempotency_in_flight</code></td>
+</tr>
+<tr>
+<td>the executor crashed halfway</td>
+<td>the unfinished record lives no longer than <code>CP_IDEMPOTENCY_PENDING_TTL_SECONDS</code> (60 s)</td>
+</tr>
+</tbody>
+</table>
+<p>One-time secrets are not stored: repeating an API key issuance returns
+<code>key: null</code>. Two commands require the key: <code>POST /runs/{id}/control-messages</code>
+and <code>POST /runs/{id}/child-handles</code> (without it, <code>422 idempotency_key_required</code>).
+For <code>:handoff</code> and <code>:revoke</code> of a child handle the key is strongly
+recommended: a repeat without it after an ambiguous response becomes a new
+command.</p>
+<div class="admonition tip">
+<p class="admonition-title">Client rule</p>
+<p>One logical call, one key for all transport retries. A retried HTTP request
+must not turn into a second business command. The <code>control_plane_client</code>
+SDK does this for you.</p>
+</div>
+<h2 id="errors">Error format<a class="headerlink" href="#errors" title="Permanent link">&para;</a></h2>
+<p>A single envelope with honest HTTP codes. There is never a <code>200</code> response with
+an error inside.</p>
+<div class="language-json highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="p">{</span>
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="w">  </span><span class="nt">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="w">    </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"task_already_claimed"</span><span class="p">,</span>
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="w">    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Task already has an active claim"</span><span class="p">,</span>
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="w">    </span><span class="nt">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="nt">"taskId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w"> </span><span class="nt">"claimId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w"> </span><span class="nt">"expiresAt"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">},</span>
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a><span class="w">    </span><span class="nt">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"req_..."</span>
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a><span class="w">  </span><span class="p">}</span>
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a><span class="p">}</span>
+</span></code></pre></div>
+<p>Clients should rely on <code>code</code> and <code>details</code>, not on the <code>message</code> text.</p>
+<table>
+<thead>
+<tr>
+<th>HTTP</th>
+<th>Typical <code>error.code</code></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>400</td>
+<td><code>invalid_request</code> (contract violation, including an unknown parameter; <code>details.errors[].loc</code>), <code>invalid_if_match</code>, <code>invalid_skill_inputs</code>, <code>idempotency_key_required</code></td>
+</tr>
+<tr>
+<td>401</td>
+<td><code>invalid_credentials</code></td>
+</tr>
+<tr>
+<td>403</td>
+<td><code>permission_denied</code> (<code>details.required</code>), <code>principal_not_active</code>, <code>delegation_required</code>, <code>claim_holder_mismatch</code>, <code>session_owner_mismatch</code>, <code>bootstrap_disabled</code>, <code>permission_escalation</code>, <code>not_eligible</code>, <code>run_holder_mismatch</code>, <code>tool_not_authorized</code>, <code>child_grant_exceeded</code>, <code>skill_permission_denied</code>, <code>skill_side_effect_not_authorized</code>, <code>run_owner_mismatch</code>, <code>run_id_required</code>, <code>scope_not_granted</code></td>
+</tr>
+<tr>
+<td>404</td>
+<td><code>not_found</code>, <code>tool_not_found</code> (an object of another tenant also returns 404: existence is not disclosed)</td>
+</tr>
+<tr>
+<td>409</td>
+<td><code>version_conflict</code>, <code>stale_claim</code>, <code>task_already_claimed</code>, <code>task_claimed</code>, <code>session_expired</code>, <code>session_not_active</code>, <code>claim_expired</code>, <code>claim_not_active</code>, <code>claim_not_expired</code>, <code>idempotency_key_reused</code>, <code>idempotency_in_flight</code>, <code>already_bootstrapped</code>, <code>task_already_completed</code>, <code>task_not_ready</code>, <code>run_already_active</code>, <code>run_not_active</code>, <code>run_in_progress</code>, <code>approval_required</code>, <code>approval_already_decided</code>, <code>budget_exceeded</code>, <code>action_already_finished</code>, <code>skill_not_invocable</code>, <code>stale_invocation_lease</code>, <code>outcome_not_replayable</code>, <code>snapshot_stale</code>, <code>pack_version_conflict</code>, <code>retention_blocked_by_consumer</code>, uniqueness conflicts (<code>*_exists</code>, <code>*_conflict</code>)</td>
+</tr>
+<tr>
+<td>413</td>
+<td><code>request_too_large</code> — body larger than <code>CP_MAX_BODY_BYTES</code></td>
+</tr>
+<tr>
+<td>422</td>
+<td>domain validation: <code>invalid_*</code>, <code>task_not_claimable</code>, <code>task_cancelled</code>, <code>empty_update</code>, <code>dependency_cycle</code>, <code>workspace_cycle</code>, <code>workspace_archived</code>, <code>unsupported_protocol_version</code>, <code>server_authoritative_section</code>, <code>secret_material_rejected</code>, <code>child_grant_exceeds_parent</code>, <code>child_result_too_large</code>, <code>cursor_must_not_advance</code>, <code>workspace_not_root</code>, <code>pack_*</code>, <code>snapshot_invalid</code>, and others</td>
+</tr>
+<tr>
+<td>428</td>
+<td><code>if_match_required</code></td>
+</tr>
+<tr>
+<td>500</td>
+<td><code>internal_error</code> — no stack trace; details are in the log by <code>requestId</code></td>
+</tr>
+<tr>
+<td>502</td>
+<td><code>memory_unavailable</code> — memory-service did not process the proxied request (<code>details.memoryStatus</code>, <code>details.retryable</code>)</td>
+</tr>
+<tr>
+<td>503</td>
+<td><code>policy_unavailable</code>, <code>memory_disabled</code>; readiness — the database is unreachable or migrations are not applied</td>
+</tr>
+</tbody>
+</table>
+<p>The full registry of codes for all services is in <a href="../reference/errors.html">Error codes</a>.</p>
+<h2 id="service-endpoints">Service endpoints<a class="headerlink" href="#service-endpoints" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Method and path</th>
+<th>Authentication</th>
+<th>Response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET /health/live</code></td>
+<td>none</td>
+<td><code>{"status": "alive"}</code></td>
+</tr>
+<tr>
+<td><code>GET /health/ready</code></td>
+<td>none</td>
+<td><code>200 {"status": "ready", "revision": "&lt;alembic&gt;"}</code>; <code>503</code> with <code>reason: database_unreachable</code> or <code>migrations_pending</code> (<code>dbRevision</code>, <code>headRevision</code>)</td>
+</tr>
+<tr>
+<td><code>GET /metrics</code></td>
+<td>none</td>
+<td>Prometheus metrics: <code>http_requests_total</code>, <code>active_harness_sessions</code>, <code>active_claims</code>, <code>active_runs</code>, <code>context_adapter_*</code>, <code>stale_fencing_rejections_total</code>, <code>authz_*</code>, and others</td>
+</tr>
+<tr>
+<td><code>GET /openapi.json</code>, <code>GET /docs</code></td>
+<td>none</td>
+<td>OpenAPI schema and Swagger UI</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition warning">
+<p class="admonition-title"><code>/metrics</code> is open</p>
+<p>The endpoint is not authenticated. Close it at the edge, see
+<a href="../operations/monitoring.html">Monitoring and health</a>.</p>
+</div>
+<h2 id="endpoint-reference">Endpoint reference<a class="headerlink" href="#endpoint-reference" title="Permanent link">&para;</a></h2>
+<p>The "Permission" column lists the permission the server checks. "Owner" means
+the holder of the session, claim, or run. <code>{ref}</code> for a task is a UUID or a
+<code>publicId</code> (<code>TASK-000123</code>).</p>
+<h3 id="bootstrap">Bootstrap<a class="headerlink" href="#bootstrap" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Permission</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/bootstrap</code></td>
+<td><code>Bearer &lt;CP_BOOTSTRAP_TOKEN&gt;</code></td>
+<td>create, once, the tenant, the admin principal, the admin API key, and (with <code>iamBinding</code>) the administrator's IAM binding</td>
+</tr>
+</tbody>
+</table>
+<p>Body: <code>tenantSlug</code> (<code>^[a-z0-9][a-z0-9-]*$</code>, 2–63), <code>tenantName</code>,
+<code>adminDisplayName</code>, <code>tenantId?</code> (tenant UUID shared with IAM),
+<code>iamBinding? {issuer, iamTenantId, iamPrincipalId}</code>. Response <code>201</code>:
+<code>{tenant, adminPrincipal, apiKey (with the full key), iamBinding}</code>.</p>
+<h3 id="principals-keys-bindings-delegation">Principals, keys, bindings, delegation<a class="headerlink" href="#principals-keys-bindings-delegation" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Permission</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/principals</code></td>
+<td><code>principals.write</code></td>
+<td>create a principal (<code>kind</code>: <code>human</code>, <code>agent</code>, <code>service</code>; <code>displayName</code>, <code>status</code>, <code>metadata</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/principals</code></td>
+<td><code>principals.read</code></td>
+<td>list (<code>?kind=</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/principals/{id}</code></td>
+<td><code>principals.read</code></td>
+<td>principal</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/principals/{id}/api-keys</code></td>
+<td><code>principals.write</code></td>
+<td>issue a legacy key <code>{permissions, expiresAt?}</code>; the full key appears only in this response</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/api-keys/{id}:revoke</code></td>
+<td><code>principals.write</code></td>
+<td>revoke a key</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/principals/{id}/iam-bindings</code></td>
+<td><code>principals.read</code></td>
+<td>IAM bindings of the principal, including revoked ones (no pagination)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/principals/{id}/iam-bindings</code></td>
+<td><code>principals.write</code></td>
+<td>upsert a binding <code>{issuer, iamTenantId, iamPrincipalId, permissions}</code>; <code>201</code> / <code>200</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/iam-bindings/{id}:revoke</code></td>
+<td><code>principals.write</code></td>
+<td>close sign-in for the identity</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/delegations</code></td>
+<td><code>delegations.manage</code></td>
+<td>delegation from a human to an agent</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/delegations</code></td>
+<td><code>delegations.manage</code></td>
+<td>list</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/delegations/{id}:revoke</code></td>
+<td><code>delegations.manage</code></td>
+<td>revoke</td>
+</tr>
+</tbody>
+</table>
+<h3 id="sessions-and-harness">Sessions and harness<a class="headerlink" href="#sessions-and-harness" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Permission</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/sessions</code></td>
+<td><code>sessions.open</code></td>
+<td>open a session; <code>harness</code> block; <code>onBehalfOf</code> requires a delegation</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/sessions</code></td>
+<td><code>sessions.manage</code></td>
+<td>list (<code>?status=</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/sessions/{id}</code></td>
+<td>owner or <code>sessions.manage</code></td>
+<td>session</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/sessions/{id}:heartbeat</code></td>
+<td>owner or <code>sessions.manage</code></td>
+<td>extend the lease (<code>ttlSeconds?</code>)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/sessions/{id}:close</code></td>
+<td>owner or <code>sessions.manage</code></td>
+<td>close and release the session's claims</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/harness/context</code></td>
+<td>authentication</td>
+<td>harness self-context (<code>?sessionId=</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/work/available</code></td>
+<td><code>tasks.read</code></td>
+<td>available work (<code>workspaceId</code>, <code>includeDescendants</code>, <code>projectId</code>, <code>includeSubprojects</code>, <code>assigneeId</code>, <code>assignedToMe</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/tools</code></td>
+<td><code>tasks.read</code></td>
+<td>tool search (<code>query</code>, <code>runId</code>); ETag, <code>If-None-Match</code></td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/tools/{ref}</code></td>
+<td><code>tasks.read</code></td>
+<td>tool by <code>uuid</code>, <code>name</code>, or <code>name@version</code> (<code>?runId=</code>); outside the policy — <code>404 tool_not_found</code></td>
+</tr>
+</tbody>
+</table>
+<p>The protocol is described in detail in <a href="harness-protocol.html">Harness protocol</a>.</p>
+<h3 id="task-types">Task types<a class="headerlink" href="#task-types" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Permission</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/task-types</code></td>
+<td><code>task_types.manage</code></td>
+<td>the next immutable version of a key (<code>lifecycleSchema</code>, <code>fieldSchema</code>, <code>approvalSchema</code>, <code>execution</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/task-types</code></td>
+<td><code>task_types.read</code></td>
+<td>list (<code>?key=&amp;status=</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/task-types/{id}</code></td>
+<td><code>task_types.read</code></td>
+<td>type version</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/task-types/{id}:deprecate</code></td>
+<td><code>task_types.manage</code></td>
+<td>retire a version (idempotent)</td>
+</tr>
+</tbody>
+</table>
+<p>See <a href="task-types.html">Task types and statuses</a> and <a href="catalog-packages.html">Catalog packages</a>.</p>
+<h3 id="tasks">Tasks<a class="headerlink" href="#tasks" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Permission</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/tasks</code></td>
+<td><code>tasks.write</code></td>
+<td>create a task</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/tasks</code></td>
+<td><code>tasks.read</code></td>
+<td>list: <code>status</code>, <code>systemStatusCategory</code>, <code>typeKey</code>, <code>priority</code>, <code>ownerId</code>, <code>assigneeId</code>, <code>workspaceId</code>, <code>includeDescendants</code>, <code>projectId</code>, <code>includeSubprojects</code>, <code>startFrom</code>, <code>startTo</code>, <code>dueFrom</code>, <code>dueTo</code>, <code>sort</code> (<code>createdAt</code>, <code>startDate</code>, <code>dueDate</code>), <code>goalId</code></td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/tasks/{ref}</code></td>
+<td><code>tasks.read</code></td>
+<td>task (+ETag)</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td><code>/tasks/{ref}</code></td>
+<td><code>tasks.write</code></td>
+<td>update (<code>If-Match</code>; with a live claim — <code>claimId</code> and <code>fencingToken</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/tasks/{ref}/claimability</code></td>
+<td><code>tasks.read</code></td>
+<td>whether the task can be claimed and why not</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/tasks/{ref}/transitions</code></td>
+<td><code>tasks.read</code></td>
+<td>where the task can move from the current status (<code>route</code>: <code>update</code> or <code>complete</code>)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/tasks/{ref}:claim</code></td>
+<td><code>tasks.claim</code></td>
+<td>atomic claim <code>{sessionId, ttlSeconds?, intent?}</code> → fencing token</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/tasks/{ref}:complete</code></td>
+<td><code>tasks.write</code></td>
+<td>complete (<code>If-Match</code>; with a live claim — <code>claimId</code> and <code>fencingToken</code>)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/tasks/{ref}:start-run</code></td>
+<td><code>tasks.claim</code></td>
+<td>run under a live claim <code>{claimId, fencingToken, input?, maxDurationSeconds?, maxActions?, agentRevisionId?}</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/tasks/{ref}/relations</code></td>
+<td><code>tasks.write</code></td>
+<td>relation <code>{toTask, type}</code>: <code>parent</code>, <code>blocks</code>, <code>depends_on</code>, <code>spawned_by</code>, <code>related_to</code>; cycles — <code>422</code></td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/tasks/{ref}/relations</code></td>
+<td><code>tasks.read</code></td>
+<td>relations in both directions</td>
+</tr>
+<tr>
+<td>DELETE</td>
+<td><code>/tasks/{ref}/relations/{relationId}</code></td>
+<td><code>tasks.write</code></td>
+<td>delete a relation</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/tasks/{ref}/requirements</code></td>
+<td><code>tasks.read</code></td>
+<td>requirements (roles, capabilities, skills)</td>
+</tr>
+</tbody>
+</table>
+<p>Example of creating a task:</p>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>https://platform.example.com/api/v1/tasks<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Idempotency-Key: </span><span class="k">$(</span>uuidgen<span class="k">)</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">'{</span>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a><span class="s1">    "title": "Add an index on events(tenant_id, tx_id)",</span>
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a><span class="s1">    "description": "Event log queries hit a seq scan",</span>
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a><span class="s1">    "priority": "high",</span>
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a><span class="s1">    "typeKey": "coding-task",</span>
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a><span class="s1">    "workspaceId": "&lt;workspace-id&gt;",</span>
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a><span class="s1">    "requirements": {"skills": ["git.merge@1"]},</span>
+</span><span id="__span-5-12"><a id="__codelineno-5-12" name="__codelineno-5-12" href="#__codelineno-5-12"></a><span class="s1">    "acceptance": [{"key": "tests", "kind": "deterministic", "description": "make test passes"}]</span>
+</span><span id="__span-5-13"><a id="__codelineno-5-13" name="__codelineno-5-13" href="#__codelineno-5-13"></a><span class="s1">  }'</span>
+</span></code></pre></div>
+<p><code>POST /tasks</code> fields: <code>title</code> (1–500), <code>description</code>, <code>priority</code> (<code>critical</code>,
+<code>high</code>, <code>medium</code>, <code>low</code>; <code>medium</code> by default), <code>status</code> (the type's
+<code>initialStatus</code> by default), <code>typeId</code>, <code>typeKey</code>, <code>typeVersion</code> (the system
+type <code>task</code> by default), <code>ownerId</code>, <code>assigneeId</code>, <code>workspaceId</code>, <code>customFields</code>
+(validated against the type version's <code>fieldSchema</code>), <code>startDate</code>, <code>dueDate</code>,
+<code>parentTask</code> (the <code>parent</code> relation is created atomically), <code>requirements</code>,
+<code>goalId</code>, <code>origin</code> (immutable; without it the core derives <code>parent</code>, <code>human</code>,
+or <code>harness</code>), <code>acceptance[]</code>, <code>evidence[]</code>. Semantics are covered in
+<a href="work-model.html">Work model</a> and <a href="goals-and-evidence.html">Goals, acceptance, and evidence</a>.</p>
+<h3 id="goals">Goals<a class="headerlink" href="#goals" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Permission</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/goals</code></td>
+<td><code>goals.write</code></td>
+<td>goal (<code>title</code>, <code>desiredState</code>, <code>criteria[]</code>, <code>ownerId</code>, <code>workspaceId</code>, <code>parentGoalId</code>, <code>createdFrom</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/goals</code></td>
+<td><code>goals.read</code></td>
+<td>list (<code>status</code>, <code>workspaceId</code>, <code>ownerId</code>, <code>parentGoalId</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/goals/{id}</code></td>
+<td><code>goals.read</code></td>
+<td>goal (+ETag <code>goal-&lt;v&gt;</code>)</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td><code>/goals/{id}</code></td>
+<td><code>goals.write</code></td>
+<td>update (<code>If-Match</code>); <code>status</code>: <code>active</code>, <code>achieved</code>, <code>abandoned</code>; a cycle — <code>422 goal_cycle</code></td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/goals/{id}/work</code></td>
+<td><code>goals.read</code> + <code>tasks.read</code></td>
+<td>tasks of the goal, newest first (<code>includeSubgoals</code>, <code>systemStatusCategory</code>)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="task-comments">Task comments<a class="headerlink" href="#task-comments" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Permission</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/tasks/{ref}/comments</code></td>
+<td><code>tasks.write</code></td>
+<td>add <code>{body, runId?, artifactId?}</code>; the author is the caller</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/tasks/{ref}/comments</code></td>
+<td><code>tasks.read</code></td>
+<td>thread, oldest to newest</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/tasks/{ref}/comments/{id}</code></td>
+<td><code>tasks.read</code></td>
+<td>comment (+ETag <code>comment-&lt;v&gt;</code>)</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td><code>/tasks/{ref}/comments/{id}</code></td>
+<td><code>tasks.write</code>, author only</td>
+<td>correct (<code>If-Match</code>); the previous text becomes a revision</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/tasks/{ref}/comments/{id}/revisions</code></td>
+<td><code>tasks.read</code></td>
+<td>edit history (append-only)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="claims">Claims<a class="headerlink" href="#claims" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Permission</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><code>/claims</code></td>
+<td><code>tasks.read</code></td>
+<td>list (<code>taskId</code>, <code>sessionId</code>, <code>status</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/claims/{id}</code></td>
+<td><code>tasks.read</code></td>
+<td>claim</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/claims/{id}:heartbeat</code></td>
+<td>holder or <code>claims.manage</code></td>
+<td>extend the lease</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/claims/{id}:release</code></td>
+<td>holder or <code>claims.manage</code></td>
+<td>release; the task moves to the type's <code>releaseStatus</code> if the edge is declared</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/claims/{id}:reclaim</code></td>
+<td><code>tasks.claim</code></td>
+<td>take over an <strong>expired</strong> claim (new token)</td>
+</tr>
+</tbody>
+</table>
+<h3 id="runs">Runs<a class="headerlink" href="#runs" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Permission</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><code>/runs</code></td>
+<td><code>tasks.read</code></td>
+<td>list (<code>taskId</code>, <code>claimId</code>, <code>status</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/runs/{id}</code></td>
+<td><code>tasks.read</code></td>
+<td>run</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/runs/{id}/context</code></td>
+<td><code>tasks.read</code></td>
+<td>Run Context</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/runs/{id}:succeed</code></td>
+<td><code>tasks.claim</code>, owner</td>
+<td>success <code>{output?, completeTask=true}</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/runs/{id}:fail</code></td>
+<td>owner or <code>claims.manage</code></td>
+<td>failure (does not touch the task)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/runs/{id}:cancel</code></td>
+<td>owner or <code>claims.manage</code></td>
+<td>cancellation</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/runs/{id}:suspend</code></td>
+<td><code>tasks.claim</code>, owner of the live claim</td>
+<td>suspend <code>{reason, waitingForApprovalId?}</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/runs/{id}:handoff</code></td>
+<td><code>tasks.claim</code></td>
+<td>hand off to another harness (<code>Idempotency-Key</code> recommended)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/runs/{id}:request-cancel</code></td>
+<td><code>tasks.write</code> or <code>claims.manage</code></td>
+<td>cooperative cancellation signal</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/runs/{id}/checkpoints</code></td>
+<td><code>tasks.claim</code>, owner of the live claim</td>
+<td>checkpoint <code>{kind, data}</code></td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/runs/{id}/checkpoints</code></td>
+<td><code>tasks.read</code></td>
+<td>checkpoints by <code>seq</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/runs/{id}/actions</code></td>
+<td><code>tasks.claim</code>, owner of the live claim</td>
+<td>action <code>{action, status, skill?, externalReference?, metadata}</code>; budget → <code>409 budget_exceeded</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/runs/{id}/actions/{actionId}:finish</code></td>
+<td><code>tasks.claim</code></td>
+<td>finish a <code>started</code> action</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/runs/{id}/actions</code></td>
+<td><code>tasks.read</code></td>
+<td>action log by <code>seq</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/runs/{id}/control-messages</code></td>
+<td><code>tasks.write</code>; <code>force_cancel</code> — <code>claims.manage</code></td>
+<td>control message (<code>Idempotency-Key</code> and <code>expectedRunVersion</code> are required)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/runs/{id}/control-messages</code></td>
+<td><code>tasks.read</code></td>
+<td>messages, cursor <code>rc1_…</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/runs/{id}/control-messages/{messageId}:acknowledge</code></td>
+<td><code>tasks.claim</code>, holder of the live claim</td>
+<td>acknowledge <code>applied</code>, <code>rejected</code>, or <code>superseded</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/runs/{id}/child-handles</code></td>
+<td><code>tasks.claim</code> + <code>tasks.write</code>, owner of the live claim</td>
+<td>launch a child run; <code>201</code> new, <code>200</code> repeated <code>correlationId</code></td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/runs/{id}/child-handles</code></td>
+<td><code>tasks.read</code></td>
+<td>handles of the run (<code>?active=true</code>, cursor <code>cd1_…</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/child-handles/{idOrToken}</code></td>
+<td><code>tasks.read</code></td>
+<td>status and result by id or <code>ch1_…</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/child-handles/{id}:revoke</code></td>
+<td>holder of the parent run or <code>claims.manage</code></td>
+<td>revoke <code>{reason, cancelChild}</code></td>
+</tr>
+</tbody>
+</table>
+<p>A run names the agent revision it goes by (CP-ADR-0073): an executor whose
+principal is linked to an agent passes <code>agentRevisionId</code> in <code>:start-run</code>
+(without it — <code>422 agent_revision_required</code>; a revision of another agent —
+<code>422 agent_revision_mismatch</code>), and the server records it on the run and in the
+<code>run.started</code> event. The executor reads its current revision through
+<code>GET /agents/me</code>. There is no separate configuration snapshot per run (see
+<a href="harness-protocol.html#agent-revision">Agent revision on a run</a>).</p>
+<p>See <a href="execution.html">Execution — claims and runs</a> and <a href="harness-protocol.html">Harness protocol</a>.</p>
+<h3 id="artifacts">Artifacts<a class="headerlink" href="#artifacts" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Permission</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/artifacts</code></td>
+<td><code>artifacts.write</code></td>
+<td>append-only reference to a result: <code>type</code>, <code>name</code>, <code>task?</code>, <code>runId?</code>, <code>workspaceId?</code>, <code>uri?</code>, <code>content?</code>, <code>metadata</code>, <code>supersedesArtifactId?</code></td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/artifacts</code></td>
+<td><code>artifacts.read</code></td>
+<td>list (<code>taskId</code>, <code>runId</code>, <code>workspaceId</code>, <code>type</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/artifacts/{id}</code></td>
+<td><code>artifacts.read</code></td>
+<td>artifact</td>
+</tr>
+</tbody>
+</table>
+<h3 id="approvals">Approvals<a class="headerlink" href="#approvals" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Permission</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/approvals</code></td>
+<td><code>approvals.manage</code></td>
+<td>request; exactly one of <code>requiredRoleId</code> / <code>assignedPrincipalId</code>; <code>gate: true</code> requires <code>task</code> and blocks claim and complete</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/approvals</code></td>
+<td><code>approvals.read</code></td>
+<td>list (<code>status</code>, <code>taskId</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/approvals/{id}</code></td>
+<td><code>approvals.read</code></td>
+<td>approval</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/approvals/{id}:approve</code></td>
+<td><code>approvals.decide</code> + eligibility</td>
+<td>approve</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/approvals/{id}:reject</code></td>
+<td><code>approvals.decide</code> + eligibility</td>
+<td>reject</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/approvals/{id}:cancel</code></td>
+<td><code>approvals.manage</code>; for a gate — the author or an eligible decider</td>
+<td>cancel</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/approvals/{id}/outcome</code></td>
+<td><code>approvals.read</code></td>
+<td>the declared outcome of the decision and the status of each action</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/approvals/{id}:replay-outcome</code></td>
+<td><code>approvals.decide</code> (the decider or an admin)</td>
+<td>resume a failed or stuck outcome from the first unexecuted action; otherwise <code>409 outcome_not_replayable</code></td>
+</tr>
+</tbody>
+</table>
+<p>See <a href="approvals.html">Approvals</a>.</p>
+<h3 id="events-and-observations">Events and observations<a class="headerlink" href="#events-and-observations" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Permission</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><code>/events</code></td>
+<td><code>events.read</code></td>
+<td>event log (see <a href="#events-pagination">Event pagination</a>)</td>
+</tr>
+<tr>
+<td>WS</td>
+<td><code>/events/ws?after=&lt;cursor&gt;</code></td>
+<td><code>events.read</code></td>
+<td>event stream</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/observations</code></td>
+<td><code>observations.write</code></td>
+<td>explicit knowledge record; a repeat (<code>source</code>, <code>dedupKey</code>) → <code>200 deduplicated</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="context-and-knowledge">Context and knowledge<a class="headerlink" href="#context-and-knowledge" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Permission</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/context</code></td>
+<td>authentication (<code>task</code>/<code>runId</code> — <code>tasks.read</code>, <code>projectId</code> — <code>projects.read</code>, memory — <code>events.read</code>)</td>
+<td>operational context and memory pack</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/knowledge/snapshots</code></td>
+<td><code>observations.write</code> on <code>workspace:&lt;workspaceId&gt;</code></td>
+<td>source snapshot → memory-service (body up to 8 MiB)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/knowledge/packs</code></td>
+<td>a principal from <code>CP_KNOWLEDGE_PACK_ADMINS</code></td>
+<td>register a knowledge pack</td>
+</tr>
+<tr>
+<td>PUT</td>
+<td><code>/workspaces/{id}/knowledge-packs</code></td>
+<td><code>workspaces.manage</code> on <code>workspace:&lt;id&gt;</code></td>
+<td>packs and <code>strict</code> namespace of the tree (root only)</td>
+</tr>
+</tbody>
+</table>
+<p>See <a href="context.html">Task context and memory</a>.</p>
+<h3 id="workspaces-and-workspace-types">Workspaces and workspace types<a class="headerlink" href="#workspaces-and-workspace-types" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Permission</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/workspace-types</code></td>
+<td><code>workspaces.manage</code></td>
+<td>workspace type</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/workspace-types</code></td>
+<td><code>workspaces.read</code></td>
+<td>list (<code>status</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/workspace-types/{id}</code></td>
+<td><code>workspaces.read</code></td>
+<td>type (+ETag)</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td><code>/workspace-types/{id}</code></td>
+<td><code>workspaces.manage</code></td>
+<td>update (<code>If-Match</code>)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/workspace-types/{id}:archive</code></td>
+<td><code>workspaces.manage</code></td>
+<td>archive; in use — <code>422 workspace_type_in_use</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/workspaces</code></td>
+<td><code>workspaces.manage</code></td>
+<td>workspace (<code>typeId</code> or <code>typeKey</code>, <code>customFields</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/workspaces</code></td>
+<td><code>workspaces.read</code></td>
+<td>list (<code>parentId</code>, <code>rootsOnly</code>, <code>status</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/workspaces/tree</code></td>
+<td><code>workspaces.read</code></td>
+<td>tree (<code>rootId</code>, <code>depth</code>, <code>includeArchived</code>, <code>includeProjects</code>) → <code>{roots: [...]}</code></td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/workspaces/{id}</code></td>
+<td><code>workspaces.read</code></td>
+<td>workspace (+ETag)</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td><code>/workspaces/{id}</code></td>
+<td><code>workspaces.manage</code></td>
+<td>update (<code>If-Match</code>)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/workspaces/{id}:archive</code></td>
+<td><code>workspaces.manage</code></td>
+<td>archive (no active children)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/workspaces/{id}:move</code></td>
+<td><code>workspaces.manage</code></td>
+<td>move <code>{newParentId}</code> (<code>null</code> — to the root); a cycle or weakened governance — <code>422</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/workspaces/{id}/members</code></td>
+<td><code>workspaces.manage</code></td>
+<td>add a member</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/workspaces/{id}/members</code></td>
+<td><code>workspaces.read</code></td>
+<td>members</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/workspaces/{id}/members/{principalId}:remove</code></td>
+<td><code>workspaces.manage</code></td>
+<td>remove a member</td>
+</tr>
+</tbody>
+</table>
+<h3 id="projects-and-templates">Projects and templates<a class="headerlink" href="#projects-and-templates" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Permission</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/project-templates</code></td>
+<td><code>project_templates.manage</code></td>
+<td>the next immutable template version</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/project-templates</code></td>
+<td><code>project_templates.read</code></td>
+<td>list (<code>key</code>, <code>status</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/project-templates/{id}</code></td>
+<td><code>project_templates.read</code></td>
+<td>template</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/project-templates/{id}:deprecate</code></td>
+<td><code>project_templates.manage</code></td>
+<td>retire</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/projects</code></td>
+<td><code>projects.manage</code></td>
+<td>project: <code>workspaceId</code> or <code>workspaceSlug</code> (the workspace and the profile are created atomically); a second profile — <code>409 project_exists</code></td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/projects</code></td>
+<td><code>projects.read</code></td>
+<td>list (<code>workspaceId</code>, <code>status</code>, <code>statusKey</code>, <code>systemStatusCategory</code>, <code>templateKey</code>, <code>externalSystem</code>, <code>externalType</code>, <code>externalId</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/projects/{id}</code></td>
+<td><code>projects.read</code></td>
+<td>project (+ETag)</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td><code>/projects/{id}</code></td>
+<td><code>projects.manage</code></td>
+<td>update (<code>If-Match</code>)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/projects/{id}:archive</code></td>
+<td><code>projects.manage</code></td>
+<td>archive (idempotent)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/projects/{id}:transition</code></td>
+<td><code>projects.manage</code></td>
+<td>status transition (<code>If-Match</code>; declared ones only)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/projects/{id}/effective-config</code></td>
+<td><code>projects.read</code></td>
+<td>configuration and provenance by layer</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/projects/{id}/config-revisions</code></td>
+<td><code>projects.read</code></td>
+<td>configuration revisions</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/projects/{id}/config-revisions</code></td>
+<td><code>projects.manage</code></td>
+<td>new revision (not activated)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/projects/{id}/config-revisions/{revision}:activate</code></td>
+<td><code>projects.manage</code></td>
+<td>activate a revision (<code>If-Match</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/projects/{id}/external-references</code></td>
+<td><code>projects.read</code></td>
+<td>external references of the project</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/projects/{id}/external-references</code></td>
+<td><code>projects.manage</code></td>
+<td>add (<code>201</code>) or update metadata (<code>200</code>); another entity's reference — <code>409</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="external-references">External references<a class="headerlink" href="#external-references" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Permission</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/external-references</code></td>
+<td>by <code>entityType</code>: <code>project</code> → <code>projects.manage</code>, <code>task</code> → <code>tasks.write</code></td>
+<td>register a reference; <code>201</code> new, <code>200</code> same key, <code>409 external_reference_conflict</code></td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/external-references</code></td>
+<td>read permission of the type</td>
+<td>forward lookup <code>?entityType=&amp;entityId=</code> or reverse <code>?externalSystem=&amp;externalType=&amp;externalId=</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="organizational-model">Organizational model<a class="headerlink" href="#organizational-model" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Permission</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/roles</code></td>
+<td><code>org.manage</code></td>
+<td>role (<code>slug</code> is unique within the scope; <code>workspaceId?</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/roles</code></td>
+<td><code>org.read</code></td>
+<td>list (<code>workspaceId</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/roles/{id}</code></td>
+<td><code>org.read</code></td>
+<td>role (+ETag)</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td><code>/roles/{id}</code></td>
+<td><code>org.manage</code></td>
+<td>update (<code>If-Match</code>)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/capabilities</code></td>
+<td><code>org.manage</code></td>
+<td>capability</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/capabilities</code></td>
+<td><code>org.read</code></td>
+<td>list</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/capabilities/{id}</code></td>
+<td><code>org.read</code></td>
+<td>capability</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/principals/{id}/roles</code></td>
+<td><code>org.manage</code></td>
+<td>assign <code>{roleId, workspaceId?}</code></td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/principals/{id}/roles</code></td>
+<td><code>org.read</code> or <code>principals.read</code></td>
+<td>roles of the principal</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/principals/{id}/roles/{roleId}:revoke</code></td>
+<td><code>org.manage</code></td>
+<td>remove</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/principals/{id}/capabilities</code></td>
+<td><code>org.manage</code></td>
+<td>assign</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/principals/{id}/capabilities</code></td>
+<td><code>org.read</code> or <code>principals.read</code></td>
+<td>capabilities of the principal</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/principals/{id}/capabilities/{capabilityId}:revoke</code></td>
+<td><code>org.manage</code></td>
+<td>remove</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/principals/{id}/skills</code></td>
+<td><code>org.manage</code></td>
+<td>assign a skill</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/principals/{id}/skills</code></td>
+<td><code>org.read</code> or <code>principals.read</code></td>
+<td>skills of the principal</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/principals/{id}/skills/{skillId}:revoke</code></td>
+<td><code>org.manage</code></td>
+<td>remove</td>
+</tr>
+</tbody>
+</table>
+<h3 id="skills">Skills and invocations<a class="headerlink" href="#skills" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Permission</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>POST</td>
+<td><code>/skills</code></td>
+<td><code>org.manage</code></td>
+<td>publish a version (<code>name</code> + <code>version</code> are unique; <code>contract</code>, <code>sideEffects</code>, <code>riskLevel</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/skills</code></td>
+<td><code>org.read</code></td>
+<td>list (<code>name</code>, <code>status</code>)</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/skills/{ref}</code></td>
+<td><code>org.read</code>, <code>skills.invoke</code>, or <code>skills.execute</code></td>
+<td>version by <code>id</code>, <code>name@version</code>, or <code>name</code> (+ETag <code>skill-&lt;rowVersion&gt;</code>)</td>
+</tr>
+<tr>
+<td>PATCH</td>
+<td><code>/skills/{id}</code></td>
+<td><code>org.manage</code></td>
+<td><code>If-Match</code>; only <code>description</code> and a forward <code>status</code> change (<code>active</code> → <code>deprecated</code> → <code>disabled</code>). <code>config</code>, <code>inputSchema</code>, <code>outputSchema</code> are allowed only if they match the stored ones, otherwise <code>409 skill_version_immutable</code>; a backward status transition — <code>invalid_status_transition</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/skills/{ref}:invoke</code></td>
+<td><code>skills.invoke</code></td>
+<td>invocation <code>{inputs, idempotencyKey?, taskId?, runId?, approvalId?}</code> → <code>201</code> new, <code>200</code> repeated key</td>
+</tr>
+<tr>
+<td>GET</td>
+<td><code>/skill-invocations/{id}</code></td>
+<td><code>skills.invoke</code> or <code>skills.execute</code></td>
+<td>invocation (visible to the authority and the executor)</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/skill-invocations:claim</code></td>
+<td><code>skills.execute</code></td>
+<td>take an invocation <code>{protocols, localEntrypoints, httpOrigins, mcpEndpoints, audiences, sessionId?, leaseSeconds?, invocationId?}</code> → <code>200 {invocation, skill}</code> or <code>204</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/skill-invocations/{id}:heartbeat</code></td>
+<td><code>skills.execute</code></td>
+<td>extend the lease <code>{fencingToken, leaseSeconds?}</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/skill-invocations/{id}:complete</code></td>
+<td><code>skills.execute</code></td>
+<td>result <code>{fencingToken, output, cost?}</code>; <code>output</code> is re-validated against the schema</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/skill-invocations/{id}:fail</code></td>
+<td><code>skills.execute</code></td>
+<td>failure <code>{fencingToken, error: {code, message?, retryable?, details?}}</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/skill-invocations/{id}:cancel</code></td>
+<td>authority of the invocation or <code>org.manage</code></td>
+<td>cancel <code>{reason?}</code></td>
+</tr>
+</tbody>
+</table>
+<p>Order of <code>:invoke</code> checks:</p>
+<ol>
+<li>the <code>skills.invoke</code> permission, the version exists;</li>
+<li>a repeated <code>idempotencyKey</code> with the same <code>inputs</code> from the same principal
+   returns the existing invocation, otherwise <code>409 idempotency_key_reuse</code>;</li>
+<li>the version is invocable (<code>409 skill_not_invocable</code>, <code>details.reason</code>:
+   <code>disabled</code>, <code>no_contract</code>, <code>protocol_not_invocable</code>);</li>
+<li>with <code>idempotency: required</code> the key is mandatory
+   (<code>400 idempotency_key_required</code>);</li>
+<li><code>inputs</code> are validated against the schema (<code>400 invalid_skill_inputs</code>,
+   <code>details.errors[].path</code>);</li>
+<li><code>runId</code> must belong to the caller and be in the <code>running</code> status;</li>
+<li>the contract's <code>requiredPermissions</code> are checked on the task's workspace
+   (<code>403 skill_permission_denied</code>), the run's effective tool policy —
+   <code>403 tool_not_authorized</code> or <code>403 child_grant_exceeded</code>;</li>
+<li><code>external_write</code> requires an approved gate approval on the same
+   non-terminal task that has not yet been used for this version
+   (<code>409 approval_already_used</code>), or an <code>execution</code> basis (the task type
+   pinned this version, the run is in the <code>running</code> status).</li>
+</ol>
+<p>A successful <code>:complete</code> with <code>taskId</code> creates a <code>skill_result</code> artifact. More
+about the skill contract is in <a href="../sdk/skill-sdk.html">skill-sdk</a>.</p>
+<h3 id="operations">Operations<a class="headerlink" href="#operations" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Method</th>
+<th>Path</th>
+<th>Permission</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GET</td>
+<td><code>/operations/context-adapter</code></td>
+<td><code>operations.read</code></td>
+<td>state of memory delivery for your own tenant</td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/operations/context-adapter/{tenantId}:redrive</code></td>
+<td><code>operations.manage</code></td>
+<td>unpark and retry the same position <code>{reason}</code>; another tenant — <code>404</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/operations/context-adapter/{tenantId}:rebuild</code></td>
+<td><code>operations.manage</code></td>
+<td>rewind the cursor <code>{cursor?, reason}</code>; backward only, otherwise <code>422 cursor_must_not_advance</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/operations/journal:archive</code></td>
+<td><code>operations.manage</code></td>
+<td>move confirmed history to the archive <code>{beforeSeconds?, maxEvents?}</code></td>
+</tr>
+<tr>
+<td>POST</td>
+<td><code>/operations/journal:prune</code></td>
+<td><code>operations.manage</code></td>
+<td>physically delete the archive <code>{beforeSeconds?, maxEvents?}</code> — <strong>data is lost</strong></td>
+</tr>
+</tbody>
+</table>
+<div class="language-bash highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>curl<span class="w"> </span>-s<span class="w"> </span>-X<span class="w"> </span>POST<span class="w"> </span>https://platform.example.com/api/v1/operations/journal:archive<span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Authorization: Bearer </span><span class="nv">$TOKEN</span><span class="s2">"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">  </span>-H<span class="w"> </span><span class="s2">"Content-Type: application/json"</span><span class="w"> </span><span class="se">\</span>
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">  </span>-d<span class="w"> </span><span class="s1">'{"beforeSeconds": 2592000, "maxEvents": 50000}'</span>
+</span></code></pre></div>
+<p>The archiving horizon is limited by the minimum of the consumer cursors and the
+oldest undelivered outbox event. If there are no consumer cursors at all, the
+response is <code>409 retention_blocked_by_consumer</code>. The minimum event age is set by
+<code>CP_JOURNAL_RETENTION_MIN_AGE_SECONDS</code> (30 days). The procedures are described
+in <a href="../operations/backup.html">Backup</a> and
+<a href="../operations/monitoring.html">Monitoring and health</a>.</p>
+<h2 id="events-pagination">Event pagination<a class="headerlink" href="#events-pagination" title="Permanent link">&para;</a></h2>
+<p>The event log cursor is opaque (<code>ec1_…</code>) and is issued in <code>(tx_id, sequence)</code>
+order under a stable horizon. A subscription from an issued cursor receives
+everything committed later: unfinished transactions are sorted strictly after
+any issued position. Each event carries <code>sequence</code>, <code>type</code>, <code>entityType</code>,
+<code>entityId</code>, <code>actorId</code>, <code>sessionId</code>, <code>correlationId</code>, <code>requestId</code>,
+<code>traceRunId</code>, <code>payload</code>, <code>occurredAt</code>, and <code>cursor</code>. The event type catalog is
+in <a href="events.html">Events</a>.</p>
+<h2 id="sdk">SDK<a class="headerlink" href="#sdk" title="Permanent link">&para;</a></h2>
+<p>The official client is the <code>control-plane-client</code> package (module
+<code>control_plane_client</code>, class <code>ControlPlaneClient</code>). It sets
+<code>Idempotency-Key</code> per logical call, refreshes the IAM token, and parses the
+error envelope into exceptions. See <a href="../sdk/clients.html">Service clients</a>.</p>
+<h2 id="see-also">See also<a class="headerlink" href="#see-also" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="authorization.html">Authorization and permissions</a></li>
+<li><a href="harness-protocol.html">Harness protocol</a></li>
+<li><a href="configuration.html">Configuration</a></li>
+<li><a href="../reference/errors.html">Error codes</a></li>
+<li><a href="../reference/permissions.html">Permissions and scopes</a></li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="cli-and-mcp.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: CLI and MCP server">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                CLI and MCP server
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="configuration.html" class="md-footer__link md-footer__link--next" aria-label="Next: Configuration">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Configuration
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.sections", "navigation.top", "navigation.indexes", "navigation.footer", "navigation.path", "toc.follow", "search.suggest", "search.highlight", "content.code.copy", "content.code.annotate", "content.tabs.link"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.d7400e89.min.js"></script>
+      
+    
+  </body>
+</html>
