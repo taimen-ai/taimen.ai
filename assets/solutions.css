@@ -1,0 +1,166 @@
+/* Страницы готовых решений (/ru/solutions/*). Раскладка — «деловой лист решения»: колонка
+   текста, в первом экране карточка-доказательство, дальше секции. Источник — макеты владельца
+   (2026-10-05); переменные макетов сведены к токенам дизайн-системы, поэтому тема сайта
+   (светлая, тёмная, переключатель) работает и здесь. Всё под .sol, чтобы не задеть главную. */
+.sol {
+  --paper: var(--surface-page);
+  --card: var(--surface-card);
+  --sunken: var(--surface-sunken);
+  --ink: var(--text-primary);
+  --ink-2: var(--text-secondary);
+  --muted: var(--text-muted);
+  --line: var(--border-subtle);
+  --line-strong: var(--border-strong);
+  --brand-soft: var(--info-bg);
+  --brand-text: var(--text-brand);
+  --machine: var(--machine-line);
+  --ok: var(--success);
+  --ok-bg: var(--success-bg);
+  --warn: var(--warning);
+  --warn-bg: var(--warning-bg);
+  --bad: var(--error);
+  --bad-bg: var(--error-bg);
+  --shadow: var(--shadow-lg);
+  --sans: var(--font-sans);
+  --mono: var(--font-mono);
+  padding-block: 28px 64px;
+}
+.sol-crumbs { display: flex; justify-content: space-between; align-items: center; gap: 12px; flex-wrap: wrap; padding-bottom: 20px; border-bottom: 1px solid var(--line); font-size: 14px; color: var(--muted); }
+.sol-crumbs a { color: var(--brand-text); }
+.sol .cta .sol-actions, .sol-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 6px; }
+.sol .final .sol-actions a { color: var(--on-brand); text-decoration: underline; text-underline-offset: 3px; font-weight: 500; }
+
+.sol * { box-sizing:border-box }
+.sol { background:var(--paper);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.6;margin:0 }
+.sol h1, .sol h2, .sol h3 { text-wrap:balance;margin:0;line-height:1.2 }
+.sol p { margin:0 }
+.sol .num, .sol .mono { font-family:var(--mono);font-variant-numeric:tabular-nums }
+.sol .tag { font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--brand-text);font-weight:600 }
+.sol .hero { display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:48px;padding-block:44px 56px;align-items:start }
+.sol .hero h1 { font-size:clamp(30px,4.2vw,46px);font-weight:600;letter-spacing:-.01em }
+.sol .hero h1 em { font-style:normal;color:var(--brand-text) }
+.sol .lead { margin-top:20px;font-size:18px;color:var(--ink-2);max-width:60ch }
+.sol .facts { display:flex;flex-direction:column;gap:10px;margin-top:26px;padding:0;list-style:none }
+.sol .facts li { display:flex;gap:10px;align-items:baseline }
+.sol .facts li::before { content:"";flex:none;width:8px;height:8px;border-radius:2px;background:var(--machine);transform:translateY(-1px) }
+.sol .cta { margin-top:30px;display:flex;flex-direction:column;gap:8px;padding:18px 20px;border:1px solid var(--accent);background:var(--accent-bg);border-radius:10px;max-width:520px }
+.sol .cta b { font-size:17px }
+.sol .cta span { color:var(--ink-2);font-size:14.5px }
+.sol .callcard { background:var(--card);border:1px solid var(--line);border-radius:12px;box-shadow:var(--shadow);overflow:hidden;min-width:0 }
+.sol .cc-head { padding:16px 18px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:center }
+.sol .glyph { width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--sunken);font-size:13px;font-weight:600;color:var(--ink-2);border:1px solid var(--line-strong) }
+.sol .cc-who { min-width:0 }
+.sol .cc-who b { display:block;font-size:15px }
+.sol .cc-who span { display:block;font-size:13px;color:var(--muted) }
+.sol .score { text-align:right }
+.sol .score .big { font-family:var(--mono);font-size:30px;font-weight:500;line-height:1;color:var(--accent-text) }
+.sol .score .of { font-family:var(--mono);font-size:13px;color:var(--muted) }
+.sol .cc-state { display:flex;flex-wrap:wrap;gap:8px;align-items:center;padding:10px 18px;background:var(--sunken);border-bottom:1px solid var(--line);font-size:13px;color:var(--ink-2) }
+.sol .pill { display:inline-flex;align-items:center;gap:6px;padding:2px 10px;border-radius:999px;font-size:12.5px;font-weight:500;white-space:nowrap }
+.sol .pill-wait { background:var(--accent-bg);color:var(--accent-text);border:1px dashed var(--accent) }
+.sol .crits { list-style:none;margin:0;padding:6px 0 }
+.sol .crit { display:grid;grid-template-columns:20px minmax(0,1fr);gap:10px;padding:10px 18px }
+.sol .crit + .crit { border-top:1px solid var(--line) }
+.sol .ic { width:18px;height:18px;margin-top:3px }
+.sol .ic-ok { color:var(--ok) }
+.sol .ic-bad { color:var(--bad) }
+.sol .ic-part { color:var(--warn) }
+.sol .crit-top { display:flex;justify-content:space-between;gap:10px;align-items:baseline }
+.sol .crit-name { font-size:14.5px;font-weight:500;flex:1 1 auto;min-width:0 }
+.sol .crit-val { font-family:var(--mono);font-size:13px;color:var(--ink-2);white-space:nowrap }
+.sol .src { display:inline-block;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-left:6px;font-weight:500 }
+.sol .quote { margin-top:6px;font-size:13.5px;color:var(--ink-2);display:flex;gap:8px;align-items:baseline }
+.sol .quote .t { flex:none;font-family:var(--mono);font-size:12px;color:var(--brand-text);background:var(--brand-soft);padding:1px 6px;border-radius:4px }
+.sol .cc-foot { padding:12px 18px;border-top:1px solid var(--line);font-size:12.5px;color:var(--muted) }
+.sol section.s { padding-block:52px;border-top:1px solid var(--line) }
+.sol .s-head { display:grid;grid-template-columns:minmax(0,280px) minmax(0,1fr);gap:40px }
+.sol .s-head h2 { font-size:26px;font-weight:600 }
+.sol .s-head .kick { margin-top:10px;color:var(--muted);font-size:15px }
+.sol .body { min-width:0;display:flex;flex-direction:column;gap:18px;max-width:72ch }
+.sol .pains { display:grid;gap:18px }
+.sol .pain b { display:block;font-size:17px;margin-bottom:4px }
+.sol .pain p { color:var(--ink-2) }
+.sol .flow { list-style:none;margin:0;padding:0;display:grid;gap:0 }
+.sol .flow li { display:grid;grid-template-columns:44px minmax(0,1fr);gap:14px;position:relative;padding-bottom:22px }
+.sol .flow li:not(:last-child)::after { content:"";position:absolute;left:21px;top:40px;bottom:2px;border-left:2px solid var(--line-strong) }
+.sol .flow .n { width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-family:var(--mono);font-weight:500;background:var(--brand-soft);color:var(--brand-text);border:1px solid var(--machine) }
+.sol .flow li.human .n { background:var(--card);color:var(--ink);border:1.5px dashed var(--accent) }
+.sol .flow h3 { font-size:17px;font-weight:600;padding-top:9px }
+.sol .flow p { color:var(--ink-2);margin-top:4px }
+.sol .flow .who { display:inline-block;margin-left:8px;font-size:12px;font-weight:500;color:var(--accent-text);letter-spacing:.04em;text-transform:uppercase }
+.sol .roles { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:4px }
+.sol .role { background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px;display:flex;flex-direction:column;gap:10px }
+.sol .role h3 { font-size:16px }
+.sol .role ul { margin:0;padding-left:18px;color:var(--ink-2);display:flex;flex-direction:column;gap:6px;font-size:15px }
+.sol .tbl { overflow-x:auto;border:1px solid var(--line);border-radius:10px;background:var(--card) }
+.sol table { border-collapse:collapse;width:100%;min-width:560px;font-size:15px }
+.sol th, .sol td { text-align:left;vertical-align:top;padding:12px 16px;border-bottom:1px solid var(--line) }
+.sol tr:last-child td { border-bottom:0 }
+.sol th { font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:600;background:var(--sunken) }
+.sol td:first-child { color:var(--muted);width:24% }
+.sol td.us { color:var(--ink);font-weight:500 }
+.sol td.them { color:var(--ink-2) }
+.sol .kinds { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px }
+.sol .kind { border:1px solid var(--line);border-radius:10px;padding:16px;background:var(--card) }
+.sol .kind .k { font-size:12px;letter-spacing:.07em;text-transform:uppercase;color:var(--brand-text);font-weight:600 }
+.sol .kind b { display:block;margin-top:6px;font-size:15.5px }
+.sol .kind p { margin-top:4px;color:var(--ink-2);font-size:14.5px }
+.sol .weeks { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px }
+.sol .week { border-top:3px solid var(--machine);padding-top:12px }
+.sol .week .k { font-family:var(--mono);font-size:13px;color:var(--brand-text) }
+.sol .week ul { margin:8px 0 0;padding-left:18px;color:var(--ink-2);display:flex;flex-direction:column;gap:6px }
+.sol .trust { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 28px;list-style:none;margin:0;padding:0 }
+.sol .trust li b { display:block }
+.sol .trust li span { color:var(--ink-2);font-size:15px }
+.sol .plans { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px }
+.sol .plan { background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:12px }
+.sol .plan.main { border:1.5px solid var(--brand);box-shadow:var(--shadow) }
+.sol .plan h3 { font-size:17px }
+.sol .price { font-family:var(--mono);font-size:24px;font-weight:500 }
+.sol .price small { font-family:var(--sans);font-size:14px;color:var(--muted);font-weight:400 }
+.sol .plan ul { margin:0;padding-left:18px;color:var(--ink-2);display:flex;flex-direction:column;gap:6px;font-size:14.5px }
+.sol .faq { display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line) }
+.sol .faq details { border-bottom:1px solid var(--line);padding:14px 0 }
+.sol .faq summary { cursor:pointer;font-weight:500;font-size:16px;list-style:none;display:flex;justify-content:space-between;gap:12px }
+.sol .faq summary::-webkit-details-marker { display:none }
+.sol .faq summary::after { content:"+";font-family:var(--mono);color:var(--brand-text) }
+.sol .faq details[open] summary::after { content:"−" }
+.sol .faq details p { margin-top:8px;color:var(--ink-2) }
+.sol .faq summary:focus-visible { outline:2px solid var(--machine);outline-offset:4px;border-radius:4px }
+.sol .final { margin-top:8px;background:var(--brand);color:var(--on-brand);border-radius:14px;padding:30px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center }
+.sol .final h2 { font-size:24px;font-weight:600 }
+.sol .final p { margin-top:8px;opacity:.9;max-width:60ch }
+.sol .final .steps { font-family:var(--mono);font-size:13.5px;opacity:.95;display:flex;flex-direction:column;gap:4px }
+.sol .note { font-size:13px;color:var(--muted) }
+@media (max-width:900px) {
+  .sol .hero { grid-template-columns:1fr;gap:32px }
+  .sol .s-head { grid-template-columns:1fr;gap:18px }
+  .sol .roles, .sol .plans { grid-template-columns:1fr }
+  .sol .final { grid-template-columns:1fr }
+}
+@media (max-width:600px) {
+  .sol .kinds, .sol .weeks, .sol .trust { grid-template-columns:1fr }
+  .sol .cc-head { grid-template-columns:auto 1fr }
+  .sol .score { grid-column:1 / -1;text-align:left;display:flex;align-items:baseline;gap:8px }
+}
+.sol .roles.four { grid-template-columns:repeat(2,minmax(0,1fr)) }
+.sol .ic-mem { color:var(--machine) }
+.sol .cross { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px 28px;list-style:none;margin:0;padding:0 }
+.sol .cross li b { display:block }
+.sol .cross li span { color:var(--ink-2);font-size:15px }
+.sol .rule-cap { font-size:13px;color:var(--muted);margin-top:8px }
+.sol td.num-cell { font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--ink);width:auto }
+@media (max-width:600px) {
+  .sol .roles.four, .sol .cross { grid-template-columns:1fr }
+}
+.sol .load { list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px 28px }
+.sol .load li { display:flex;gap:10px;align-items:baseline }
+.sol .load li::before { content:"";flex:none;width:8px;height:8px;border:1.5px solid var(--machine);border-radius:2px;transform:translateY(-1px) }
+@media (max-width:600px) {
+  .sol .load { grid-template-columns:1fr }
+}
+
+.sol-index { padding-block: 44px 24px; display: flex; flex-direction: column; gap: 20px; }
+.sol-index h1 { font-size: clamp(30px, 4.2vw, 46px); font-weight: 600; letter-spacing: -.01em; }
+.sol-index .lead { font-size: 18px; color: var(--ink-2); max-width: 60ch; margin-bottom: 12px; }
+.sol .final .sol-actions { display: flex; flex-wrap: wrap; gap: 8px 20px; margin-top: 14px; }

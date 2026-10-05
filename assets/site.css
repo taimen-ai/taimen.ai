@@ -404,3 +404,13 @@ h3 { font-size: 20px; line-height: 1.3; font-weight: 600; letter-spacing: -0.01e
   .lp-cycle.is-run .lp-runner { animation: none; }
   .lp-btn { transition: none; }
 }
+
+/* Карточки готовых решений: русская главная и /ru/solutions/. */
+.sol-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.sol-card { display: flex; flex-direction: column; gap: 10px; padding: 24px; background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); color: var(--text-primary); text-decoration: none; }
+.sol-card:hover { border-color: var(--border-strong); }
+.sol-card .k { font: 500 12px/1.4 var(--font-mono); color: var(--text-brand); letter-spacing: .04em; text-transform: uppercase; }
+.sol-card h3 { font-size: 20px; line-height: 1.25; }
+.sol-card p { color: var(--text-secondary); }
+.sol-card .more { margin-top: auto; color: var(--link); font-weight: 500; }
+@media (max-width: 900px) { .sol-list { grid-template-columns: 1fr; } }
