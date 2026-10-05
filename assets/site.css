@@ -68,6 +68,21 @@ svg { flex: none; }
 .lp-lang a { padding: 6px 9px; font: 500 12px/1.5 var(--font-mono); color: var(--text-secondary); text-decoration: none; }
 .lp-lang a:hover { background: var(--surface-hover); }
 .lp-lang a[aria-current] { background: var(--surface-hover); color: var(--text-primary); }
+.lp-dd { position: relative; }
+.lp-dd summary { display: flex; align-items: center; gap: 4px; list-style: none; cursor: pointer; font-size: 14px; color: var(--text-secondary); white-space: nowrap; }
+.lp-dd summary::-webkit-details-marker { display: none; }
+.lp-dd summary:hover, .lp-dd[open] summary { color: var(--text-primary); }
+.lp-dd summary svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; transition: transform .15s; }
+.lp-dd[open] summary svg { transform: rotate(180deg); }
+.lp-dd summary:focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 4px; border-radius: 4px; }
+.lp-dd-panel { position: absolute; left: -12px; top: calc(100% + 14px); z-index: var(--z-header); display: grid; gap: 2px; width: 320px; padding: 8px; background: var(--surface-card); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); }
+.lp-nav .lp-dd-panel a { display: grid; gap: 2px; padding: 10px 12px; border-radius: var(--radius-sm); white-space: normal; color: var(--text-primary); }
+.lp-nav .lp-dd-panel a:hover { background: var(--surface-hover); }
+.lp-dd-panel b { font-size: 15px; font-weight: 500; }
+.lp-dd-panel span { font-size: 13px; color: var(--text-muted); }
+.lp-nav .lp-dd-panel .lp-dd-all { margin-top: 4px; padding-top: 12px; border-top: 1px solid var(--border-subtle); border-radius: 0; color: var(--link); font-weight: 500; }
+.lp-menu-label { margin: 6px 0 0; padding: 8px 12px 2px; border-top: 1px solid var(--border-subtle); font: 500 12px/1.4 var(--font-mono); color: var(--text-muted); text-transform: uppercase; letter-spacing: .04em; }
+.lp-menu-panel .lp-menu-sub { padding-left: 20px; }
 .lp-menu { display: none; position: relative; }
 .lp-menu summary { list-style: none; }
 .lp-menu summary::-webkit-details-marker { display: none; }

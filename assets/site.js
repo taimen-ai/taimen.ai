@@ -30,12 +30,26 @@
   window.addEventListener("scroll", onScroll, { passive: true });
   onScroll();
 
-  var menu = doc.querySelector(".lp-menu");
-  if (menu) {
-    menu.addEventListener("click", function (e) { if (e.target.closest("a")) menu.removeAttribute("open"); });
-    doc.addEventListener("click", function (e) { if (!menu.contains(e.target)) menu.removeAttribute("open"); });
-    doc.addEventListener("keydown", function (e) { if (e.key === "Escape") menu.removeAttribute("open"); });
-  }
+  /* Мобильное меню и раскрывающиеся списки навигации: открыт не больше одного, закрываются
+     кликом мимо, Escape и переходом по ссылке. */
+  var pops = Array.prototype.slice.call(doc.querySelectorAll(".lp-menu, .lp-dd"));
+  pops.forEach(function (pop) {
+    pop.addEventListener("click", function (e) { if (e.target.closest("a")) pop.removeAttribute("open"); });
+    pop.addEventListener("toggle", function () {
+      if (pop.open) pops.forEach(function (o) { if (o !== pop) o.removeAttribute("open"); });
+    });
+  });
+  doc.addEventListener("click", function (e) {
+    pops.forEach(function (pop) { if (!pop.contains(e.target)) pop.removeAttribute("open"); });
+  });
+  doc.addEventListener("keydown", function (e) {
+    if (e.key !== "Escape") return;
+    pops.forEach(function (pop) {
+      if (!pop.open) return;
+      pop.removeAttribute("open");
+      pop.querySelector("summary").focus();
+    });
+  });
 
   if ("IntersectionObserver" in window) {
     var seen = new IntersectionObserver(function (entries) {
